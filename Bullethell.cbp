@@ -4,7 +4,6 @@
 	<Project>
 		<Option title="Bullethell" />
 		<Option makefile="makefile" />
-		<Option makefile_is_custom="0" />
 		<Option execution_dir="../bin/Bullethell" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
@@ -49,10 +48,17 @@
 		<Unit filename="bullethell.h" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
-		<Unit filename="func.cpp" />
+		<Unit filename="enemy.cpp" />
+		<Unit filename="enemy.h" />
+		<Unit filename="gun.cpp" />
+		<Unit filename="gun.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="player.cpp" />
+		<Unit filename="player.h" />
 		<Unit filename="settings.cpp" />
 		<Unit filename="settings.h" />
+		<Unit filename="shot.cpp" />
+		<Unit filename="shot.h" />
 		<Unit filename="texture.cpp" />
 		<Unit filename="texture.h" />
 		<Unit filename="timer.cpp" />
