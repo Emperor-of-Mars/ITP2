@@ -1,29 +1,11 @@
-/*
- * Author: Erik Skalla, Stefan Reinhold, Samuel Wambera, Martin Schwarz
- * Created: 01.05.2014
- * Last change: 01.05.2014 20:16
- * Purpose: Game Elements
- */
+#include "player.h"
+#include "gun.h"
 
-#include "bullethell.h"
+using namespace std;
 
-void PlayVideo(){
-	return;
-}
+extern int SCREEN_HEIGHT;
+extern int SCREEN_WIDTH;
 
-bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2){
-	for(unsigned int i = 0; i < col1->size(); i++){
-		for(unsigned int j = 0; j < col2->size(); j++){
-			if((*col1)[i].x < (*col2)[j].x) return false;
-			if((*col1)[i].x > (*col2)[j].x + (*col2)[j].w) return false;
-			if((*col1)[i].y < (*col2)[j].y) return false;
-			if((*col1)[i].y > (*col2)[j].y + (*col2)[j].h) return false;
-		}
-	}
-	return true;
-}
-
-//###############################################  Player:
 Player::Player(){
 	mLife = 100;
 	maxVel = 10;
@@ -156,76 +138,3 @@ void Player::render(){
 	mTexture->render(1, (int)mXpos, (int)mYpos, mScaleX, mScaleY, &clip);
 	return;
 }
-
-//###############################################  Gun:
-Gun::Gun(vector<Shot*> *Shots, Texture *tex, int posX, int posY, float ScaleX, float ScaleY){
-	coolDown.start();
-	maxVel = 10;
-	Damage = 0;
-	mXpos = posX - ScaleX * tex->getWidth() / 2;
-	mYpos = posY - ScaleY * tex->getHeight() / 8;
-	mScaleX = ScaleX;
-	mScaleY = ScaleY;
-	mTexture = tex;
-	mShots = Shots;
-}
-
-void Gun::fire(float posX, float posY, float mScaleX, float mScaleY){
-	if(coolDown.getTicks() > 300){
-		Shot *newshot;
-		mShots->push_back(newshot = new Shot(mTexture, mXpos + (int)posX, mYpos + (int)posY, mScaleX, mScaleY, -15, 10));
-		(*mShots)[mShots->size() - 1]->setCol(0, 0, 60, 100);
-		coolDown.start();
-	}
-	return;
-}
-
-//###############################################  Shot:
-Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int dam){
-	maxVel = vel;
-	Damage = dam;
-	SpritePos = 0;
-	frameAnimPause = 120;
-	mXpos = posX;
-	mYpos = posY;
-	mScaleX = sX;
-	mScaleY = sY;
-	mTexture = tex;
-	mWidth = tex->getWidth();
-	mHeight = tex->getHeight() / 4;
-	clip = {0, 0, mWidth, mHeight};
-	curAnimFrame.start();
-}
-
-bool Shot::move(float frameTime){
-	mYpos += maxVel * ((frameTime) / 10.f * mScaleY);
-	for(unsigned int i = 0; i < mCol.size(); i++){
-		mCol[i].x = mXpos;
-		mCol[i].y = mYpos;
-	}
-	if(mYpos > SCREEN_HEIGHT - mHeight)return false;
-	else return true;
-}
-
-void Shot::render(){
-	mTexture->render(1, mXpos, mYpos, mScaleX, mScaleY, &clip);
-	return;
-}
-
-void Shot::setCol(int x, int y, int w, int h){
-	SDL_Rect col = {x, y, w, h};
-	mCol.push_back(col);
-	return;
-}
-
-vector<SDL_Rect> *Shot::getCol(){
-	return &mCol;
-}
-
-
-
-
-
-
-
-

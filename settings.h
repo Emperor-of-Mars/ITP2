@@ -8,7 +8,7 @@
 class Settings{
     public:
         Settings();
-        void settings_view(SDL_Event *event);
+        int settings_view(SDL_Event *event);
         void read_settings();        //lesen der settings aus settings-datei
         void write_settings();       //schreiben der settings in settings-datei
         void decrease_resolution();

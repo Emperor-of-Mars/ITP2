@@ -1,0 +1,172 @@
+# depslib dependency file v1.0
+1401788710 source:/home/user/Downloads/ITP2/button.cpp
+	"button.h"
+
+1401788710 /home/user/Downloads/ITP2/button.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"texture.h"
+
+1401788710 /home/user/Downloads/ITP2/texture.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+
+1401788710 source:/home/user/Downloads/ITP2/func.cpp
+	"bullethell.h"
+
+1401788710 /home/user/Downloads/ITP2/bullethell.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"timer.h"
+	"texture.h"
+	"button.h"
+	"settings.h"
+
+1401788710 /home/user/Downloads/ITP2/timer.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+
+1401788710 /home/user/Downloads/ITP2/settings.h
+
+1401788710 source:/home/user/Downloads/ITP2/main.cpp
+	"bullethell.h"
+
+1401788710 source:/home/user/Downloads/ITP2/settings.cpp
+	"bullethell.h"
+	<fstream>
+
+1401788710 source:/home/user/Downloads/ITP2/texture.cpp
+	"texture.h"
+
+1401788710 source:/home/user/Downloads/ITP2/timer.cpp
+	"timer.h"
+
+1401788710 source:/home/user/GIT/ITP2/button.cpp
+	"button.h"
+
+1401788710 /home/user/GIT/ITP2/button.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"texture.h"
+
+1401788710 /home/user/GIT/ITP2/texture.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+
+1402522494 source:/home/user/GIT/ITP2/settings.cpp
+	"bullethell.h"
+	"settings.h"
+	<fstream>
+
+1402522768 /home/user/GIT/ITP2/bullethell.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"timer.h"
+	"texture.h"
+	"button.h"
+
+1401788710 /home/user/GIT/ITP2/timer.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+
+1402522227 /home/user/GIT/ITP2/settings.h
+
+1401788710 source:/home/user/GIT/ITP2/texture.cpp
+	"texture.h"
+
+1401788710 source:/home/user/GIT/ITP2/timer.cpp
+	"timer.h"
+
+1402523360 source:/home/user/GIT/ITP2/main.cpp
+	"bullethell.h"
+	"settings.h"
+	"player.cpp"
+
+1402522747 /home/user/GIT/ITP2/player.h
+	"shot.h"
+	"gun.h"
+
+1402523666 /home/user/GIT/ITP2/shot.h
+	"bullethell.h"
+
+1402523589 /home/user/GIT/ITP2/gun.h
+	"bullethell.h"
+	"shot.h"
+
+1402523482 /home/user/GIT/ITP2/player.cpp
+	"player.h"
+	"gun.h"
+
+1402523409 /home/user/GIT/ITP2/gun.cpp
+	"gun.h"
+	"shot.cpp"
+
+1402521764 /home/user/GIT/ITP2/shot.cpp
+	"shot.h"
+
+1402523568 source:/home/user/GIT/ITP2/gun.cpp
+	"gun.h"
+
+1402521764 source:/home/user/GIT/ITP2/enemy.cpp
+	"enemy.h"
+
+1402523708 /home/user/GIT/ITP2/enemy.h
+	"bullethell.h"
+	"shot.h"
+	"gun.h"
+
+1402523482 source:/home/user/GIT/ITP2/player.cpp
+	"player.h"
+	"gun.h"
+
+1402521764 source:/home/user/GIT/ITP2/shot.cpp
+	"shot.h"
+
