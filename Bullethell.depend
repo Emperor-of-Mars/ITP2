@@ -264,10 +264,10 @@
 1402559152 source:/home/samuel/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402568363 source:/home/kibbles/ITP2/button.cpp
+1402595525 source:/home/kibbles/ITP2/button.cpp
 	"button.h"
 
-1402568363 /home/kibbles/ITP2/button.h
+1402595525 /home/kibbles/ITP2/button.h
 	<iostream>
 	<string>
 	<sstream>
@@ -278,7 +278,7 @@
 	<SDL2/SDL_mixer.h>
 	"texture.h"
 
-1402568363 /home/kibbles/ITP2/texture.h
+1402595525 /home/kibbles/ITP2/texture.h
 	<iostream>
 	<string>
 	<sstream>
@@ -288,15 +288,15 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402568363 source:/home/kibbles/ITP2/enemy.cpp
+1402595525 source:/home/kibbles/ITP2/enemy.cpp
 	"enemy.h"
 
-1402568363 /home/kibbles/ITP2/enemy.h
+1402595525 /home/kibbles/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
 
-1402568363 /home/kibbles/ITP2/bullethell.h
+1402595525 /home/kibbles/ITP2/bullethell.h
 	<iostream>
 	<string>
 	<sstream>
@@ -309,7 +309,7 @@
 	"texture.h"
 	"button.h"
 
-1402568363 /home/kibbles/ITP2/timer.h
+1402595525 /home/kibbles/ITP2/timer.h
 	<iostream>
 	<string>
 	<sstream>
@@ -319,38 +319,38 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402568363 /home/kibbles/ITP2/shot.h
+1402595525 /home/kibbles/ITP2/shot.h
 	"bullethell.h"
 
-1402568363 /home/kibbles/ITP2/gun.h
+1402595525 /home/kibbles/ITP2/gun.h
 	"bullethell.h"
 	"shot.h"
 
-1402568363 source:/home/kibbles/ITP2/gun.cpp
+1402595525 source:/home/kibbles/ITP2/gun.cpp
 	"gun.h"
 
-1402568363 source:/home/kibbles/ITP2/player.cpp
+1402595525 source:/home/kibbles/ITP2/player.cpp
 	"player.h"
 	"gun.h"
 
-1402568363 /home/kibbles/ITP2/player.h
+1402595525 /home/kibbles/ITP2/player.h
 	"shot.h"
 	"gun.h"
 
-1402569764 source:/home/kibbles/ITP2/settings.cpp
+1402596436 source:/home/kibbles/ITP2/settings.cpp
 	"bullethell.h"
 	"settings.h"
 	<fstream>
 
-1402569764 /home/kibbles/ITP2/settings.h
+1402596436 /home/kibbles/ITP2/settings.h
 
-1402569764 source:/home/kibbles/ITP2/shot.cpp
+1402595525 source:/home/kibbles/ITP2/shot.cpp
 	"shot.h"
 
-1402568363 source:/home/kibbles/ITP2/texture.cpp
+1402595525 source:/home/kibbles/ITP2/texture.cpp
 	"texture.h"
 
-1402568363 source:/home/kibbles/ITP2/timer.cpp
+1402595525 source:/home/kibbles/ITP2/timer.cpp
 	"timer.h"
 
 1402591530 source:/home/kibbles/ITP2/main.cpp
@@ -360,7 +360,7 @@
 	"./pugixml/pugixml.hpp"
 	"./pugixml/pugiconfig.hpp"
 
-1393300050 /home/kibbles/ITP2/pugixml/pugixml.hpp
+1402596436 /home/kibbles/ITP2/pugixml/pugixml.hpp
 	"pugiconfig.hpp"
 	<stddef.h>
 	<exception>
@@ -368,7 +368,7 @@
 	<iosfwd>
 	<string>
 
-1393300085 /home/kibbles/ITP2/pugixml/pugiconfig.hpp
+1402596436 /home/kibbles/ITP2/pugixml/pugiconfig.hpp
 
 1393454147 /home/kibbles/ITP2/pugixml/pugixml.cpp
 	"pugixml.hpp"
@@ -386,7 +386,7 @@
 	<new>
 	<stdint.h>
 
-1393454147 source:/home/kibbles/ITP2/pugixml/pugixml.cpp
+1402596436 source:/home/kibbles/ITP2/pugixml/pugixml.cpp
 	"pugixml.hpp"
 	<stdlib.h>
 	<stdio.h>

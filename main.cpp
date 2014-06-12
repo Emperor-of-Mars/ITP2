@@ -32,7 +32,6 @@ int main(int argc, char *argv[]){
 
     //XML Parser
     pugi::xml_document doc;
-    if (!doc.load_file("test.xml")) return -1;
     pugi::xml_parse_result result = doc.load_file("test.xml");
     cout << "Load result: " << result.description() << endl;
     //PugiXML - Test
