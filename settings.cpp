@@ -58,10 +58,7 @@ void Settings::read_settings(){
 void Settings::write_settings(){
     fstream setts;
     setts.open("settings.dat", fstream::out);
-    //hier die funktion zum ausschreiben der settings
-    if(settings_found == false){
-        setts << available_widths[actual_resolution] << '\n' << available_heights[actual_resolution] << '\n';
-    }
+    setts << available_widths[actual_resolution] << '\n' << available_heights[actual_resolution] << '\n';
     setts.close();
 }
 

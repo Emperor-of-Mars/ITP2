@@ -89,7 +89,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402588290 source:/home/user/GIT/ITP2/settings.cpp
+1402595129 source:/home/user/GIT/ITP2/settings.cpp
 	"bullethell.h"
 	"settings.h"
 	<fstream>
@@ -125,10 +125,12 @@
 1401788710 source:/home/user/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402581714 source:/home/user/GIT/ITP2/main.cpp
+1402598683 source:/home/user/GIT/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
+	"./pugixml/pugixml.hpp"
+	"./pugixml/pugiconfig.hpp"
 
 1402522747 /home/user/GIT/ITP2/player.h
 	"shot.h"
@@ -401,4 +403,30 @@
 	<string>
 	<new>
 	<stdint.h>
+
+1402595504 source:/home/user/GIT/ITP2/pugixml/pugixml.cpp
+	"pugixml.hpp"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<assert.h>
+	<wchar.h>
+	<math.h>
+	<float.h>
+	<setjmp.h>
+	<istream>
+	<ostream>
+	<string>
+	<new>
+	<stdint.h>
+
+1402595504 /home/user/GIT/ITP2/pugixml/pugixml.hpp
+	"pugiconfig.hpp"
+	<stddef.h>
+	<exception>
+	<iterator>
+	<iosfwd>
+	<string>
+
+1402595504 /home/user/GIT/ITP2/pugixml/pugiconfig.hpp
 
