@@ -55,6 +55,9 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.h" />
+		<Unit filename="pugixml/pugiconfig.hpp" />
+		<Unit filename="pugixml/pugixml.cpp" />
+		<Unit filename="pugixml/pugixml.hpp" />
 		<Unit filename="settings.cpp" />
 		<Unit filename="settings.h" />
 		<Unit filename="shot.cpp" />

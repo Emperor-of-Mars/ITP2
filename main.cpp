@@ -8,6 +8,8 @@
 #include "bullethell.h"
 #include "settings.h"
 #include "player.h"
+#include "./pugixml/pugixml.hpp"
+#include "./pugixml/pugiconfig.hpp"
 
 using namespace std;
 
@@ -27,6 +29,17 @@ int main(int argc, char *argv[]){
 	bool quit = false;
 	stringstream FPS_text;
 	settings = new Settings;
+
+    //XML Parser
+    pugi::xml_document doc;
+    if (!doc.load_file("test.xml")) return -1;
+    pugi::xml_parse_result result = doc.load_file("test.xml");
+    cout << "Load result: " << result.description() << endl;
+    //PugiXML - Test
+    cout << "Lvl1 name: " << doc.child("level").child_value("name") << endl;
+    cout << "Lvl2 name: " << doc.last_child().child_value("name") << endl;
+    cout << "Boss life: " << doc.child("level").child("enemies").child("boss").child_value("life") << endl;
+
 	SCREEN_HEIGHT = settings->get_resolution_height();
 	SCREEN_WIDTH = settings->get_resolution_width();
 	Timer frameTimer;
