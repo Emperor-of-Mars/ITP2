@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<level>
+  <name>level1</name>
+  <creator>Dickbutt</creator>
+  <enemies>
+    
+    <enemy1>
+      <number>4</number>
+      <life>3</life>
+      <spawnpoints>
+	<sp>50,50</sp>
+	<sp>100,50</sp>
+	<sp>50,100</sp>
+	<sp>100,100</sp>
+      </spawnpoints>
+      <direction>s,e,w,n</direction>
+    </enemy1>
+    
+    <enemy1>
+      <life>3</life>
+      <spawnpoints>1,2,3,4</spawnpoints>
+      <direction>n,w,s,e</direction>
+    </enemy1>
+    
+    <boss>
+      <life>9001</life>
+      <spawnpoints>1</spawnpoints>
+      <movement>
+	<dir>r,50,5</dir> 
+	<dir>l,100,5</dir>
+	<dir>r,100,5</dir> 
+	<dir>l,100,5</dir> 
+	<dir>r,50,5</dir>
+	<dir>d,300,25</dir>
+      </movement>
+    </boss>
+      
+  </enemies>
+  <next>level2</next>
+</level> 
+
+<level>
+  <name>level2</name>
+  <creator>Dickbutt</creator>
+  <enemies>
+    
+    <enemy1>
+      <number>4</number>
+      <life>3</life>
+      <spawnpoints>
+	<sp>50,50</sp>
+	<sp>100,50</sp>
+	<sp>50,100</sp>
+	<sp>100,100</sp>
+      </spawnpoints>
+      <direction>s,e,w,n</direction>
+    </enemy1>
+    
+    <enemy1>
+      <life>3</life>
+      <spawnpoints>1,2,3,4</spawnpoints>
+      <direction>n,w,s,e</direction>
+    </enemy1>
+    
+    <boss>
+      <life>9001</life>
+      <spawnpoints>1</spawnpoints>
+      <movement>
+	<dir>r,50,5</dir> 
+	<dir>l,100,5</dir>
+	<dir>r,100,5</dir> 
+	<dir>l,100,5</dir> 
+	<dir>r,50,5</dir>
+	<dir>d,300,25</dir>
+      </movement>
+    </boss>
+      
+  </enemies>
+  <next>level2</next>
+</level> 
