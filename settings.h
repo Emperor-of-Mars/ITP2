@@ -18,4 +18,8 @@ class Settings{
         int maximal_resolution;
         vector<int> available_heights;
         vector<int> available_widths;
+        stringstream res_text;
+        Texture *resolution;
+        SDL_Color textColor;
+        bool settings_found;
 };
