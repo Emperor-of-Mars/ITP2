@@ -11,8 +11,8 @@
 
 using namespace std;
 
-int SCREEN_WIDTH = 1920;
-int SCREEN_HEIGHT = 1080;
+int SCREEN_WIDTH = 0;
+int SCREEN_HEIGHT = 0;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -26,6 +26,9 @@ int main(int argc, char *argv[]){
 	float FPS = 0;
 	bool quit = false;
 	stringstream FPS_text;
+	settings = new Settings;
+	SCREEN_HEIGHT = settings->get_resolution_height();
+	SCREEN_WIDTH = settings->get_resolution_width();
 	Timer frameTimer;
 	Texture buttonTexture, fps, Background;
 	Button play_button, settings_button, credits_button, close_button;
@@ -226,8 +229,6 @@ int run(SDL_Event *event){
 
 //###############################################  Initialize SDL
 bool init_SDL(){
-	SCREEN_WIDTH = 1960;
-	SCREEN_HEIGHT = 1080;
 	if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0){
 		cout << "SDL failed to initialize! SDL_Error: " << SDL_GetError() << endl;
 		return false;

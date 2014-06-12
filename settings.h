@@ -3,8 +3,6 @@
 
 #endif // SETTINGS_H_INCLUDED
 
-
-//in den settings wird stehen: auflösung aktuell, auflösungen möglich,
 class Settings{
     public:
         Settings();

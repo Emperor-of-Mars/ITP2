@@ -2,6 +2,8 @@
 
 using namespace std;
 
+extern int SCREEN_HEIGHT;
+
 Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int dam){
 	maxVel = vel;
 	Damage = dam;

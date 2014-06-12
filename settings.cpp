@@ -4,6 +4,9 @@
 
 using namespace std;
 
+extern int SCREEN_HEIGHT;
+extern int SCREEN_WIDTH;
+
 Settings::Settings(){
     read_settings();
 }
@@ -12,15 +15,16 @@ void Settings::read_settings(){
     fstream setts;
     setts.open("settings.dat", fstream::in);
     if(!setts.is_open()){       //die datei ist nicht vorhanden, es werden default-werte verwendet
-        available_heights.resize(1);
-        available_widths.resize(1);
+        available_heights.push_back(600);
+        available_widths.push_back(800);
         available_heights[0] = 600;
         available_widths[0] = 800;
         actual_resolution = 0;
         maximal_resolution = 0;
     }
     else{
-        //hier der code zum einlesen der settings
+        vector<char> temp;
+
     }
     setts.close();
 }
