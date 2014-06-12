@@ -25,9 +25,9 @@ Settings *settings = NULL;
 int main(int argc, char *argv[]){
 	SDL_Event event;
 	int frameTime = 0, subMenu = 0, MBUp = 1;
-	float FPS = 0;
+	//float FPS = 0;
 	bool quit = false;
-	stringstream FPS_text;
+	//stringstream FPS_text;
 	settings = new Settings;
 
     //XML Parser
@@ -74,15 +74,15 @@ int main(int argc, char *argv[]){
 	settings_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.4 - settings_button.getHeight() / 2);
 	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.6 - credits_button.getHeight() / 2);
 	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.8 - close_button.getHeight() / 2);
-	fps.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+	//fps.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	PlayVideo();
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
-		FPS = 1000.f / (float)frameTime;
-		FPS_text.str("");
-		FPS_text << FPS;
+		//FPS = 1000.f / (float)frameTime;
+		//FPS_text.str("");
+		//FPS_text << FPS;
 		while(SDL_PollEvent(&event) != 0){
 			if(event.type == SDL_QUIT)quit = true;
 			else if(event.type == SDL_KEYDOWN){
@@ -123,7 +123,7 @@ int main(int argc, char *argv[]){
 			break;
 		}
 //###############################################  Rendering
-		fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
+		//fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
 
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
@@ -133,7 +133,7 @@ int main(int argc, char *argv[]){
 		settings_button.render();
 		credits_button.render();
 		close_button.render();
-		fps.render(0);
+		//fps.render(0);
 
 		SDL_RenderPresent(gRenderer);
 
@@ -151,21 +151,22 @@ int main(int argc, char *argv[]){
 int run(SDL_Event *event){
 	int state = 0;
 	int frameTime = 0;
-	float FPS = 0;
+	//float FPS = 0;
 	bool quit = false;
-	SDL_Color textColor = {255, 64, 64, 255};
-	stringstream FPS_text;
+	//SDL_Color textColor = {255, 64, 64, 255};
+	//stringstream FPS_text;
 	Timer frameTimer;
-	Texture Background, fps, player_ship, gun_tex;
+	Texture Background, fps, player_ship, gun_tex, collision_temp;
 	Player player;
 	vector<Shot*> shots;
 	vector<SDL_Rect> aaa;//collision test only
-	SDL_Rect col_a = {300, 400, 200, 200};//collision test only
+	SDL_Rect col_a = {400, 200, 200, 200};//collision test only
 	aaa.push_back(col_a);//collision test only
 	if(!Background.loadFromFile("res/Stars_Background.png") ||
 		!player_ship.loadFromFile("res/player.png") ||
 		!gun_tex.loadFromFile("res/bullet.png") ||
-		!player.init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 120))
+		!collision_temp.loadFromFile("res/werbung.png") ||
+		!player.init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -177,9 +178,9 @@ int run(SDL_Event *event){
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
-		FPS = 1000.f / (float)frameTime;
-		FPS_text.str("");
-		FPS_text << FPS;
+		//FPS = 1000.f / (float)frameTime;
+		//FPS_text.str("");
+		//FPS_text << FPS;
 //###############################################  Input handling
 		while(SDL_PollEvent(event) != 0){
 			if(event->type == SDL_QUIT)quit = true;
@@ -192,7 +193,7 @@ int run(SDL_Event *event){
 				}
 			}
 		}
-		fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
+		//fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
 		player.handleEvent(event, frameTime);
 
 		for(unsigned int i = 0; i < shots.size(); i++){
@@ -202,7 +203,7 @@ int run(SDL_Event *event){
 			}
 		}
 //###############################################  Collission detection
-		if(check_col(player.getCol(), &aaa)){
+		if(check_col(player.getCol(), &aaa)){       //aaa is im prinzip der gegner im mom (einfach ein rect)
 			if(player.colHandle(51)) quit = true;
 		}
 		for(unsigned int i = 0; i < shots.size(); i++){
@@ -216,10 +217,10 @@ int run(SDL_Event *event){
 		SDL_RenderClear(gRenderer);
 
 		Background.render(2);
-		fps.render();
+		//fps.render();
 		player.render();
 
-		player_ship.render(1, 300, 400, 0.2, 0.2);//collision test only
+		collision_temp.render(1, 400, 200, 1, 1);//collision test only
 
 		for(unsigned int i = 0; i < shots.size(); i++){
 			shots[i]->render();
@@ -294,9 +295,9 @@ void PlayVideo(){
 bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2){
 	for(unsigned int i = 0; i < col1->size(); i++){
 		for(unsigned int j = 0; j < col2->size(); j++){
-			if((*col1)[i].x < (*col2)[j].x) return false;
-			if((*col1)[i].x > (*col2)[j].x + (*col2)[j].w) return false;
-			if((*col1)[i].y < (*col2)[j].y) return false;
+			if(((*col1)[i].x + (*col1)[i].w) < (*col2)[j].x) return false;
+			if((*col1)[i].x > ((*col2)[j].x + (*col2)[j].w)) return false;
+			if(((*col1)[i].y + (*col1)[i].h) < (*col2)[j].y) return false;
 			if((*col1)[i].y > (*col2)[j].y + (*col2)[j].h) return false;
 		}
 	}

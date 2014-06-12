@@ -10,7 +10,7 @@ class Player{
 	public:
 		Player();
 		~Player();
-		bool init(Texture *tex, Texture *bullet, vector<Shot*> *Shot = NULL, float sx = 1, float sy = 1, float screenScaleX = 1, float screenScaleY = 1, int life = 100, int animationSpeed = 120);
+		bool init(Texture *tex, Texture *bullet, vector<Shot*> *Shot, float sx, float sy, float screenScaleX, float screenScaleY, int life, unsigned int animationSpeed);
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		bool colHandle(int dam);

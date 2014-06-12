@@ -20,7 +20,7 @@ Player::Player(){
 	mScreenScaleY = 0;
 	SpritePos[0] = 2;
 	SpritePos[1] = 1;
-	frameAnimPause = 200;
+	frameAnimPause = 20;
 	clip = {0, 0, 0, 0};
 	mTexture = NULL;
 	curAnimFrame.start();
@@ -30,7 +30,7 @@ Player::~Player(){
 	for(unsigned int i = 0; i < mGun.size(); i++)delete mGun[i];
 }
 
-bool Player::init(Texture *tex, Texture *bullet, vector<Shot*> *Shots, float sx, float sy, float screenScaleX, float screenScaleY, int life, int animationSpeed){
+bool Player::init(Texture *tex, Texture *bullet, vector<Shot*> *Shots, float sx, float sy, float screenScaleX, float screenScaleY, int life, unsigned int frameAnimPause){
 	mTexture = tex;
 	if(mTexture == NULL) return false;
 	clip.h = mTexture->getHeight() / 5;
@@ -41,7 +41,6 @@ bool Player::init(Texture *tex, Texture *bullet, vector<Shot*> *Shots, float sx,
 	mScaleY = sy;
 	mScreenScaleX = screenScaleX;
 	mScreenScaleY = screenScaleY;
-	frameAnimPause = animationSpeed;
 	mLife = life;
 	Gun *newgun = NULL;
 	mGun.push_back(newgun = new Gun(Shots, bullet, (mWidth / 2) - 50 * mScaleX, 20 * mScaleY, mScaleX, mScaleY));
