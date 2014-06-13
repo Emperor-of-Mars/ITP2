@@ -13,6 +13,8 @@ class Settings{
         void increase_resolution();
         int get_resolution_height();
         int get_resolution_width();
+        int get_fullscreen();
+        void toggle_fullscreen();
     private:
         int actual_resolution;
         int maximal_resolution;
@@ -22,4 +24,6 @@ class Settings{
         Texture *resolution;
         SDL_Color textColor;
         bool settings_found;
+        int full_screen;
+        string full_screen_string;
 };

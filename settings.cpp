@@ -17,6 +17,7 @@ void Settings::read_settings(){
     int temp_w[] = {640, 1024, 1280, 1366, 1600, 1920, 3840};
     int temp_h[] = {480, 576, 720, 768, 900, 1080, 2160};
     maximal_resolution = 7;
+    full_screen_string.clear();
     for(int i = 0; i < maximal_resolution; i++){
         available_heights.push_back(temp_h[i]);
         available_widths.push_back(temp_w[i]);
@@ -24,30 +25,49 @@ void Settings::read_settings(){
     if(!setts.is_open()){       //die datei ist nicht vorhanden, es werden default-werte verwendet
         actual_resolution = 4;
         settings_found = false;
+        full_screen = false;
+        full_screen_string += "OFF";
     }
     else{
         char temp[5];
         char temp_c;
-        for(int i = 0; i < 5; i++){
+        for(int i = 0; i < 5; i++){         //auslesen der breite
             temp_c = setts.get();
             if((temp_c == EOF) || (temp_c == '\n')){
                 temp[i] = '\0';
+                break;
             }
             else{
                 temp[i] = temp_c;
             }
         }
         available_widths.push_back(atoi(temp));
-        for(int i = 0; i < 5; i++){
+
+        for(int i = 0; i < 5; i++){         //auslesen der höhe
             temp_c = setts.get();
             if((temp_c == EOF) || (temp_c == '\n')){
                 temp[i] = '\0';
+                break;
             }
             else{
                 temp[i] = temp_c;
             }
         }
         available_heights.push_back(atoi(temp));
+
+        for(int i = 0; i < 2; i++){         //auslesen ob fullscreen oder nicht
+            temp_c = setts.get();
+            if((temp_c == EOF) || (temp_c == '\n')){
+                temp[i] = '\0';
+                break;
+            }
+            else{
+                temp[i] = temp_c;
+            }
+        }
+        full_screen = atoi(temp);
+        if(full_screen == 1) full_screen_string += "ON";
+        else full_screen_string += "OFF";
         actual_resolution = 7;
         maximal_resolution++;
         settings_found = true;
@@ -58,7 +78,7 @@ void Settings::read_settings(){
 void Settings::write_settings(){
     fstream setts;
     setts.open("settings.dat", fstream::out);
-    setts << available_widths[actual_resolution] << '\n' << available_heights[actual_resolution] << '\n';
+    setts << available_widths[actual_resolution] << '\n' << available_heights[actual_resolution] << '\n' << full_screen << '\n';
     setts.close();
 }
 
@@ -100,7 +120,7 @@ int Settings::settings_view(SDL_Event *event){
 		!setVsync.init(&buttonTexture, 225, "Vsync:", textColor) ||
 		!apply.init(&buttonTexture, 225, "Apply Changes", textColor) ||
 		!warning.loadFromRenderedText("Warning: Some settings will apply only after restart!", textColor) ||
-		!full.loadFromRenderedText("on", textColor) ||
+		!full.loadFromRenderedText(full_screen_string.c_str(), textColor) ||
 		!resolution->loadFromRenderedText(res_text.str().c_str(), textColor) ||
 		!vsync.loadFromRenderedText("on", textColor) ||
 		!backToMenu.init(&buttonTexture, 225, "Back", textColor))
@@ -153,7 +173,13 @@ int Settings::settings_view(SDL_Event *event){
                 resolution->setPosition(SCREEN_WIDTH * 0.5 - resolution->getWidth() * 0.5, SCREEN_HEIGHT * 0.1 + setResLeft.getHeight() / 2 - resolution->getHeight() / 2);
                 while(event->button.state == SDL_PRESSED){SDL_PollEvent(event);}
 			}
-			if(setFull.handleEvent(event));
+			if(setFull.handleEvent(event)){
+                toggle_fullscreen();
+                full.loadFromRenderedText(full_screen_string.c_str(), textColor);
+                full.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+                full.setPosition(SCREEN_WIDTH * 0.5 + (setFull.getWidth() * 0.6 - full.getWidth() * 0.5), SCREEN_HEIGHT * 0.2 + setFull.getHeight() / 2 - full.getHeight() / 2);
+                while(event->button.state == SDL_PRESSED){SDL_PollEvent(event);}
+			}
 			//if(apply.handleEvent(event));
 			if(backToMenu.handleEvent(event) == 1)quit = true;
 		}
@@ -177,8 +203,8 @@ int Settings::settings_view(SDL_Event *event){
 			SDL_Delay(1000.f / (float)MAX_FPS - (float)frameTime);
 		}
 	}
-	write_settings();
 //###############################################  Gameloop end
+    delete resolution;
 	return state;
 }
 
@@ -189,4 +215,19 @@ int Settings::get_resolution_width(){
     return available_widths[actual_resolution];
 }
 
+int Settings::get_fullscreen(){
+    return full_screen;
+}
 
+void Settings::toggle_fullscreen(){
+    if(full_screen == 1){
+        full_screen = 0;
+        full_screen_string.clear();
+        full_screen_string += "OFF";
+    }
+    else{
+        full_screen_string.clear();
+        full_screen_string += "ON";
+        full_screen = 1;
+    }
+}

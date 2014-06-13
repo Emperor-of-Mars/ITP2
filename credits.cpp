@@ -44,7 +44,7 @@ void Credits::credits_view(SDL_Event *event){
     t_credits_programmer_name.setPosition((float)SCREEN_WIDTH * 0.3, (float)SCREEN_HEIGHT * 0.6);
     t_credits_programmer_name.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
     t_credits_programmer_name.render();
-    t_credits_programmer_name.loadFromRenderedText("Stefan Reinhard", textColor);
+    t_credits_programmer_name.loadFromRenderedText("Stefan Reinhold", textColor);
     t_credits_programmer_name.setPosition((float)SCREEN_WIDTH * 0.3, (float)SCREEN_HEIGHT * 0.7);
     t_credits_programmer_name.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
     t_credits_programmer_name.render();
