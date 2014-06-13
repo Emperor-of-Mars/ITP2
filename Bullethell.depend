@@ -125,12 +125,13 @@
 1401788710 source:/home/user/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402611018 source:/home/user/GIT/ITP2/main.cpp
+1402653124 source:/home/user/GIT/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
 	"./pugixml/pugixml.hpp"
 	"./pugixml/pugiconfig.hpp"
+	"credits.h"
 
 1402610551 /home/user/GIT/ITP2/player.h
 	"shot.h"
@@ -165,7 +166,7 @@
 	"shot.h"
 	"gun.h"
 
-1402610551 source:/home/user/GIT/ITP2/player.cpp
+1402655202 source:/home/user/GIT/ITP2/player.cpp
 	"player.h"
 	"gun.h"
 
@@ -429,4 +430,10 @@
 	<string>
 
 1402595504 /home/user/GIT/ITP2/pugixml/pugiconfig.hpp
+
+1402652994 source:/home/user/GIT/ITP2/credits.cpp
+	"credits.h"
+
+1402650941 /home/user/GIT/ITP2/credits.h
+	"bullethell.h"
 

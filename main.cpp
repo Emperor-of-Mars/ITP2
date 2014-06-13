@@ -10,6 +10,7 @@
 #include "player.h"
 #include "./pugixml/pugixml.hpp"
 #include "./pugixml/pugiconfig.hpp"
+#include "credits.h"
 
 using namespace std;
 
@@ -29,6 +30,8 @@ int main(int argc, char *argv[]){
 	bool quit = false;
 	//stringstream FPS_text;
 	settings = new Settings;
+	SCREEN_HEIGHT = settings->get_resolution_height();
+	SCREEN_WIDTH = settings->get_resolution_width();
 
     //XML Parser
     pugi::xml_document doc;
@@ -39,9 +42,8 @@ int main(int argc, char *argv[]){
     cout << "Lvl2 name: " << doc.last_child().child_value("name") << endl;
     cout << "Boss life: " << doc.child("level").child("enemies").child("boss").child_value("life") << endl;
 
-	SCREEN_HEIGHT = settings->get_resolution_height();
-	SCREEN_WIDTH = settings->get_resolution_width();
 	Timer frameTimer;
+	Credits credits;
 	Texture buttonTexture, fps, Background;
 	Button play_button, settings_button, credits_button, close_button;
 	SDL_Color textColor = {255, 88, 88, 255};
@@ -100,7 +102,7 @@ int main(int argc, char *argv[]){
 			if(credits_button.handleEvent(&event) == 1) subMenu = 3;
 			if(close_button.handleEvent(&event) == 1) subMenu = 4;
 		}
-
+        while(SDL_PollEvent(&event)){}
 		switch(subMenu){
 		case 0:
 			break;
@@ -115,7 +117,9 @@ int main(int argc, char *argv[]){
 			subMenu = 0;
 			break;
 		case 3:
-			//MBUp = 0;
+			MBUp = 0;
+			credits.credits_view(&event);
+			subMenu = 0;
 			break;
 		case 4:
 			MBUp = 0;
@@ -292,7 +296,7 @@ void PlayVideo(){
 	return;
 }
 
-bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2){
+bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2){     //die funktion zur collision-detection
 	for(unsigned int i = 0; i < col1->size(); i++){
 		for(unsigned int j = 0; j < col2->size(); j++){
 			if(((*col1)[i].x + (*col1)[i].w) < (*col2)[j].x) return false;
