@@ -3,3 +3,10 @@
 
 using namespace std;
 
+Enemy::Enemy(){
+
+}
+
+Enemy::~Enemy(){
+
+}

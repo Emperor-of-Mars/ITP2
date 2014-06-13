@@ -40,4 +40,3 @@ bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2);
 
 
 
-

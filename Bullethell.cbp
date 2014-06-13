@@ -54,6 +54,10 @@
 		<Unit filename="enemy.h" />
 		<Unit filename="gun.cpp" />
 		<Unit filename="gun.h" />
+		<Unit filename="level.cpp" />
+		<Unit filename="level.h" />
+		<Unit filename="levelselection.cpp" />
+		<Unit filename="levelselection.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="player.cpp" />
 		<Unit filename="player.h" />

@@ -10,6 +10,8 @@
 #include "player.h"
 #include "credits.h"
 #include "xmlLoader.h"
+#include "level.h"
+#include "levelselection.h"
 
 using namespace std;
 
@@ -20,6 +22,7 @@ SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 TTF_Font *gFont = NULL;
 Settings *settings = NULL;
+vector<Level* > Levels;
 
 //###############################################  Main
 int main(int argc, char *argv[]){
@@ -32,9 +35,10 @@ int main(int argc, char *argv[]){
 	SCREEN_HEIGHT = settings->get_resolution_height();
 	SCREEN_WIDTH = settings->get_resolution_width();
 
-    XmlDocument testxml;
+    XmlDocument levelsxml;
 	Timer frameTimer;
 	Credits credits;
+	Levelselection lvlselect;
 	Texture buttonTexture, fps, Background;
 	Button play_button, settings_button, credits_button, close_button;
 	SDL_Color textColor = {255, 88, 88, 255};
@@ -52,7 +56,7 @@ int main(int argc, char *argv[]){
 		!settings_button.init(&buttonTexture, 225, "Settings", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
 		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
-        !testxml.init("res/test.xml"))
+        !levelsxml.init("res/levels.xml"))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -103,6 +107,7 @@ int main(int argc, char *argv[]){
 			break;
 		case 1:
 			MBUp = 0;
+//			lvlselect.levelselection_view(&event);
 			if(run(&event) == 1) quit = true;
 			subMenu = 0;
 			break;
