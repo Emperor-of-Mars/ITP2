@@ -89,7 +89,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402598856 source:/home/user/GIT/ITP2/settings.cpp
+1402663374 source:/home/user/GIT/ITP2/settings.cpp
 	"bullethell.h"
 	"settings.h"
 	<fstream>
@@ -117,7 +117,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402592099 /home/user/GIT/ITP2/settings.h
+1402666089 /home/user/GIT/ITP2/settings.h
 
 1401788710 source:/home/user/GIT/ITP2/texture.cpp
 	"texture.h"
@@ -125,7 +125,7 @@
 1401788710 source:/home/user/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402653124 source:/home/user/GIT/ITP2/main.cpp
+1402665357 source:/home/user/GIT/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -431,7 +431,7 @@
 
 1402595504 /home/user/GIT/ITP2/pugixml/pugiconfig.hpp
 
-1402652994 source:/home/user/GIT/ITP2/credits.cpp
+1402656687 source:/home/user/GIT/ITP2/credits.cpp
 	"credits.h"
 
 1402650941 /home/user/GIT/ITP2/credits.h
