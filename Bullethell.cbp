@@ -48,6 +48,8 @@
 		<Unit filename="bullethell.h" />
 		<Unit filename="button.cpp" />
 		<Unit filename="button.h" />
+		<Unit filename="credits.cpp" />
+		<Unit filename="credits.h" />
 		<Unit filename="enemy.cpp" />
 		<Unit filename="enemy.h" />
 		<Unit filename="gun.cpp" />
