@@ -8,9 +8,8 @@
 #include "bullethell.h"
 #include "settings.h"
 #include "player.h"
-#include "./pugixml/pugixml.hpp"
-#include "./pugixml/pugiconfig.hpp"
 #include "credits.h"
+#include "xmlLoader.h"
 
 using namespace std;
 
@@ -33,15 +32,7 @@ int main(int argc, char *argv[]){
 	SCREEN_HEIGHT = settings->get_resolution_height();
 	SCREEN_WIDTH = settings->get_resolution_width();
 
-    //XML Parser
-    pugi::xml_document doc;
-    pugi::xml_parse_result result = doc.load_file("test.xml");
-    cout << "Load result: " << result.description() << endl;
-    //PugiXML - Test
-    cout << "Lvl1 name: " << doc.child("level").child_value("name") << endl;
-    cout << "Lvl2 name: " << doc.last_child().child_value("name") << endl;
-    cout << "Boss life: " << doc.child("level").child("enemies").child("boss").child_value("life") << endl;
-
+    XmlDocument testxml;
 	Timer frameTimer;
 	Credits credits;
 	Texture buttonTexture, fps, Background;
@@ -60,13 +51,16 @@ int main(int argc, char *argv[]){
 		!play_button.init(&buttonTexture, 225, "Play", textColor) ||
 		!settings_button.init(&buttonTexture, 225, "Settings", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
-		!close_button.init(&buttonTexture, 225, "Close", textColor))
+		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
+        !testxml.init("res/test.xml"))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
 		return 1;
 	}
 //###############################################  Set stuff
+
+
 	buttonTexture.setBlendMode(SDL_BLENDMODE_BLEND);
 	play_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	settings_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);

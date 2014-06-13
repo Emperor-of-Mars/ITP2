@@ -490,7 +490,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402568906 source:/home/stefan/ITP2/enemy.cpp
+1402671853 source:/home/stefan/ITP2/enemy.cpp
 	"enemy.h"
 
 1402568906 /home/stefan/ITP2/enemy.h
@@ -557,4 +557,19 @@
 
 1402568906 source:/home/stefan/ITP2/timer.cpp
 	"timer.h"
+
+1402673272 source:/home/stefan/ITP2/main.cpp
+	"bullethell.h"
+	"settings.h"
+	"player.h"
+	"credits.h"
+	"xmlLoader.h"
+
+1402673430 /home/stefan/ITP2/xmlLoader.h
+	"./pugixml/pugixml.hpp"
+	"./pugixml/pugiconfig.hpp"
+	<iostream>
+
+1402673438 source:/home/stefan/ITP2/xmlLoader.cpp
+	"xmlLoader.h"
 

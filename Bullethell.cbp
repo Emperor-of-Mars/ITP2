@@ -68,6 +68,8 @@
 		<Unit filename="texture.h" />
 		<Unit filename="timer.cpp" />
 		<Unit filename="timer.h" />
+		<Unit filename="xmlLoader.cpp" />
+		<Unit filename="xmlLoader.h" />
 		<Extensions>
 			<DoxyBlocks>
 				<comment_style block="0" line="0" />
