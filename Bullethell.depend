@@ -437,3 +437,124 @@
 1402650941 /home/user/GIT/ITP2/credits.h
 	"bullethell.h"
 
+1402568906 source:/home/stefan/ITP2/button.cpp
+	"button.h"
+
+1402568906 /home/stefan/ITP2/button.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"texture.h"
+
+1402568906 /home/stefan/ITP2/texture.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+
+1402669060 source:/home/stefan/ITP2/credits.cpp
+	"credits.h"
+
+1402668894 /home/stefan/ITP2/credits.h
+	"bullethell.h"
+
+1402568906 /home/stefan/ITP2/bullethell.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+	"timer.h"
+	"texture.h"
+	"button.h"
+
+1402568906 /home/stefan/ITP2/timer.h
+	<iostream>
+	<string>
+	<sstream>
+	<vector>
+	<SDL2/SDL.h>
+	<SDL2/SDL_image.h>
+	<SDL2/SDL_ttf.h>
+	<SDL2/SDL_mixer.h>
+
+1402568906 source:/home/stefan/ITP2/enemy.cpp
+	"enemy.h"
+
+1402568906 /home/stefan/ITP2/enemy.h
+	"bullethell.h"
+	"shot.h"
+	"gun.h"
+
+1402568906 /home/stefan/ITP2/shot.h
+	"bullethell.h"
+
+1402568906 /home/stefan/ITP2/gun.h
+	"bullethell.h"
+	"shot.h"
+
+1402568906 source:/home/stefan/ITP2/gun.cpp
+	"gun.h"
+
+1402668894 source:/home/stefan/ITP2/player.cpp
+	"player.h"
+	"gun.h"
+
+1402668894 /home/stefan/ITP2/player.h
+	"shot.h"
+	"gun.h"
+
+1402668894 source:/home/stefan/ITP2/pugixml/pugixml.cpp
+	"pugixml.hpp"
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
+	<assert.h>
+	<wchar.h>
+	<math.h>
+	<float.h>
+	<setjmp.h>
+	<istream>
+	<ostream>
+	<string>
+	<new>
+	<stdint.h>
+
+1402668894 /home/stefan/ITP2/pugixml/pugixml.hpp
+	"pugiconfig.hpp"
+	<stddef.h>
+	<exception>
+	<iterator>
+	<iosfwd>
+	<string>
+
+1402668894 /home/stefan/ITP2/pugixml/pugiconfig.hpp
+
+1402668894 source:/home/stefan/ITP2/settings.cpp
+	"bullethell.h"
+	"settings.h"
+	<fstream>
+
+1402668894 /home/stefan/ITP2/settings.h
+
+1402569734 source:/home/stefan/ITP2/shot.cpp
+	"shot.h"
+
+1402568906 source:/home/stefan/ITP2/texture.cpp
+	"texture.h"
+
+1402568906 source:/home/stefan/ITP2/timer.cpp
+	"timer.h"
+
