@@ -15,7 +15,7 @@ Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int da
 	mScaleY = sY;
 	mTexture = tex;
 	mWidth = tex->getWidth();
-	mHeight = tex->getHeight() / 4;
+	mHeight = tex->getHeight();
 	clip = {0, 0, mWidth, mHeight};
 	curAnimFrame.start();
 }
