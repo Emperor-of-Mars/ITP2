@@ -491,10 +491,10 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402843152 source:/home/stefan/ITP2/enemy.cpp
+1402866245 source:/home/stefan/ITP2/enemy.cpp
 	"enemy.h"
 
-1402843121 /home/stefan/ITP2/enemy.h
+1402863828 /home/stefan/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
@@ -506,14 +506,14 @@
 	"bullethell.h"
 	"shot.h"
 
-1402568906 source:/home/stefan/ITP2/gun.cpp
+1402860408 source:/home/stefan/ITP2/gun.cpp
 	"gun.h"
 
-1402668894 source:/home/stefan/ITP2/player.cpp
+1402866463 source:/home/stefan/ITP2/player.cpp
 	"player.h"
 	"gun.h"
 
-1402840920 /home/stefan/ITP2/player.h
+1402860408 /home/stefan/ITP2/player.h
 	"shot.h"
 	"gun.h"
 
@@ -550,7 +550,7 @@
 
 1402668894 /home/stefan/ITP2/settings.h
 
-1402569734 source:/home/stefan/ITP2/shot.cpp
+1402860408 source:/home/stefan/ITP2/shot.cpp
 	"shot.h"
 
 1402568906 source:/home/stefan/ITP2/texture.cpp
@@ -559,7 +559,7 @@
 1402568906 source:/home/stefan/ITP2/timer.cpp
 	"timer.h"
 
-1402843320 source:/home/stefan/ITP2/main.cpp
+1402866366 source:/home/stefan/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -568,13 +568,14 @@
 	"level.h"
 	"levelselection.h"
 
-1402837763 /home/stefan/ITP2/xmlLoader.h
+1402860408 /home/stefan/ITP2/xmlLoader.h
 	"./pugixml/pugixml.hpp"
 	"./pugixml/pugiconfig.hpp"
 	"bullethell.h"
 	"level.h"
 
-1402842602 source:/home/stefan/ITP2/xmlLoader.cpp
+1402865331 source:/home/stefan/ITP2/xmlLoader.cpp
+	<limits>
 	"xmlLoader.h"
 	"enemy.h"
 

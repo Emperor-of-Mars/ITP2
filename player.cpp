@@ -5,6 +5,8 @@ using namespace std;
 
 extern int SCREEN_HEIGHT;
 extern int SCREEN_WIDTH;
+extern int LEFT_SCREEN_WIDTH;
+extern int RIGHT_SCREEN_WIDTH;
 
 Player::Player(){
 	mLife = 100;
@@ -88,7 +90,7 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 
 	if(key[SDL_SCANCODE_RIGHT]){//Move right
 		mXpos += frameLenght * mScreenScaleX;//Change position
-		if(mXpos > SCREEN_WIDTH - mWidth - SCREEN_WIDTH/32*7)mXpos = SCREEN_WIDTH - mWidth - SCREEN_WIDTH/32*7;//Check if out of screen
+		if(mXpos > SCREEN_WIDTH - mWidth - LEFT_SCREEN_WIDTH)mXpos = SCREEN_WIDTH - mWidth - LEFT_SCREEN_WIDTH;//Check if out of screen
 		if(SpritePos[0] < 4&& curAnimFrame.getTicks() >= frameAnimPause){
 			SpritePos[0]++;
 			curAnimFrame.start();
@@ -98,7 +100,7 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 
 	if(key[SDL_SCANCODE_LEFT]){//Move left
 		mXpos -= frameLenght * mScreenScaleX;//Change position
-		if(mXpos < SCREEN_WIDTH/32*7)mXpos = SCREEN_WIDTH/32*7;//Check if out of screen
+		if(mXpos < LEFT_SCREEN_WIDTH)mXpos = LEFT_SCREEN_WIDTH;//Check if out of screen
 		if(SpritePos[0] > 0 && curAnimFrame.getTicks() >= frameAnimPause){
 			SpritePos[0]--;
 			curAnimFrame.start();

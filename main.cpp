@@ -19,6 +19,8 @@ int run(SDL_Event *event, Level* lvl);
 
 int SCREEN_WIDTH = 0;
 int SCREEN_HEIGHT = 0;
+int LEFT_SCREEN_WIDTH;
+int RIGHT_SCREEN_WIDTH;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -38,6 +40,8 @@ int main(int argc, char *argv[]){
 	settings = new Settings;
 	SCREEN_HEIGHT = settings->get_resolution_height();
 	SCREEN_WIDTH = settings->get_resolution_width();
+	LEFT_SCREEN_WIDTH = SCREEN_WIDTH/32*7;
+	RIGHT_SCREEN_WIDTH = SCREEN_WIDTH - SCREEN_WIDTH/32*7;
 
     XmlDocument levelsxml;
 	Timer frameTimer;
@@ -295,6 +299,7 @@ int run(SDL_Event *event, Level* lvl){
 	}
 //###############################################  Gameloop end
     highsxml.writeScore("res/highscores.xml", player.getScore());
+<<<<<<< HEAD
 
     //aufräumen
 	while(Enemies.size() > 0){
@@ -308,7 +313,12 @@ int run(SDL_Event *event, Level* lvl){
 	while(shots.size() > 0){
         delete shots[0];
 		shots.erase(shots.begin());
+=======
+	for(unsigned int i = 0; i < shots.size(); i++){
+		delete shots[i];
+>>>>>>> 733cc92b68fdf5b4bc5456bbd9216d97f5b0385d
 	}
+	shots.clear();
 	return state;
 }
 
