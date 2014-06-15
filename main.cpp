@@ -299,13 +299,8 @@ int run(SDL_Event *event, Level* lvl){
 	}
 //###############################################  Gameloop end
     highsxml.writeScore("res/highscores.xml", player.getScore());
-<<<<<<< HEAD
 
     //aufräumen
-	while(Enemies.size() > 0){
-        delete Enemies[0];
-		Enemies.erase(Enemies.begin());
-	}
 	while(enemyshots.size() > 0){
         delete enemyshots[0];
 		enemyshots.erase(enemyshots.begin());
@@ -313,10 +308,6 @@ int run(SDL_Event *event, Level* lvl){
 	while(shots.size() > 0){
         delete shots[0];
 		shots.erase(shots.begin());
-=======
-	for(unsigned int i = 0; i < shots.size(); i++){
-		delete shots[i];
->>>>>>> 733cc92b68fdf5b4bc5456bbd9216d97f5b0385d
 	}
 	shots.clear();
 	return state;
@@ -362,10 +353,19 @@ bool init_SDL(){
 //###############################################  Close SDL
 void close_SDL(){
 
+	vector<Enemy* > Enemies;
+
     for(unsigned int i = 0; i < Levels.size(); i++){
+
+        Enemies = Levels[i]->getEnemies();
+
+        while(Enemies.size() > 0){
+            delete Enemies[0];
+            Enemies.erase(Enemies.begin());
+        }
+
         delete Levels[i];
     }
-
     //Destroy Window and Renderer
 	SDL_DestroyRenderer(gRenderer);
 	gRenderer = NULL;
