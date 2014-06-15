@@ -11,7 +11,9 @@ class Enemy{
 	public:
 		Enemy();
 		~Enemy();
-        bool init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int animationSpeed);
+        bool init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX,
+                    float screenScaleY, int life, int velocity, unsigned int animationSpeed,
+                    float wSpawn, float hSpawn);
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		bool colHandle(int dam);

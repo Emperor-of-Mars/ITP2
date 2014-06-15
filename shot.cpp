@@ -26,7 +26,7 @@ bool Shot::move(float frameTime){
 		mCol[i].x = mXpos;
 		mCol[i].y = mYpos;
 	}
-	if(mYpos > SCREEN_HEIGHT - mHeight)return false;
+	if(mYpos <= 0)return false;
 	else return true;
 }
 

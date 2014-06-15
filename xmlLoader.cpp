@@ -44,26 +44,48 @@ bool XmlDocument::init(string location){
 
             if(strcmp(enemy.value(), "enemy")){
 
-                mLife = strtol(enemy.child_value("life"), NULL, 10);
-                maxVel = strtol(enemy.child_value("speed"), NULL, 10);
+                int numberofspawns = 0;
 
-                Enemy* newenemy = new Enemy;
-                Enemies.push_back(newenemy);
+                numberofspawns = strtol(enemy.child_value("quantity"), NULL, 10);
 
-                Texture* enemysprite = new Texture;
-                enemysprite->loadFromFile(enemy.child_value("sprite"));
-                Texture* bulletsprite = new Texture;
-                bulletsprite->loadFromFile(enemy.child_value("bulletsprite"));
+                for(int i = 0; i < numberofspawns; i++){
 
-                if(!newenemy->init(enemysprite, bulletsprite, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
-                            (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
-                            (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
-                            (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20)){
+                    mLife = strtol(enemy.child_value("life"), NULL, 10);
+                    maxVel = strtol(enemy.child_value("speed"), NULL, 10);
 
-                                cout << "Failed initiating enemy" << endl;
-                                return false;
+                    float wSpawn, hSpawn;
+                    stringstream ss;
+                    ss << "sp" << i+1;
+                    string spawns = ss.str();
 
-                            }
+                    cout << spawns << endl;
+
+                    pugi::xml_node spawnpoints = enemy.child("spawnpoints");
+
+                    wSpawn = strtof(strtok((char*)spawnpoints.child_value((char*)spawns.c_str()), ","), NULL);
+                    hSpawn = strtof(strtok(NULL, ","), NULL);
+
+                    Enemy* newenemy = new Enemy;
+                    Enemies.push_back(newenemy);
+
+                    Texture* enemysprite = new Texture;
+                    enemysprite->loadFromFile(enemy.child_value("sprite"));
+                    Texture* bulletsprite = new Texture;
+                    bulletsprite->loadFromFile(enemy.child_value("bulletsprite"));
+
+                    if(!newenemy->init(enemysprite, bulletsprite,
+                                (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
+                                (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
+                                (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
+                                (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20,
+                                wSpawn, hSpawn)){
+
+                                    cout << "Failed initiating enemy" << endl;
+                                    return false;
+
+                                }
+
+                }
 
             }
 

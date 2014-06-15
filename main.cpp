@@ -19,6 +19,8 @@ int run(SDL_Event *event, Level* lvl);
 
 int SCREEN_WIDTH = 0;
 int SCREEN_HEIGHT = 0;
+int LEFT_SCREEN_WIDTH;
+int RIGHT_SCREEN_WIDTH;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -38,6 +40,8 @@ int main(int argc, char *argv[]){
 	settings = new Settings;
 	SCREEN_HEIGHT = settings->get_resolution_height();
 	SCREEN_WIDTH = settings->get_resolution_width();
+	LEFT_SCREEN_WIDTH = SCREEN_WIDTH/32*7;
+	RIGHT_SCREEN_WIDTH = SCREEN_WIDTH - SCREEN_WIDTH/32*7;
 
     XmlDocument levelsxml;
 	Timer frameTimer;
@@ -172,12 +176,14 @@ int main(int argc, char *argv[]){
 int run(SDL_Event *event, Level* lvl){
 	int state = 0;
 	int frameTime = 0;
-	//float FPS = 0;
 	bool quit = false;
-	//SDL_Color textColor = {255, 64, 64, 255};
-	//stringstream FPS_text;
+	//Textausgabe
+	stringstream life;
+	stringstream score;
+	SDL_Color textColor = {255, 64, 64, 255};
+
 	Timer frameTimer;
-	Texture fps, player_ship, gun_tex;
+	Texture str1, str2, player_ship, gun_tex;
 	Texture* Background;
 	Player player;
 	vector<Shot*> shots;
@@ -206,9 +212,10 @@ int run(SDL_Event *event, Level* lvl){
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
-		//FPS = 1000.f / (float)frameTime;
-		//FPS_text.str("");
-		//FPS_text << FPS;
+		life.str("");
+        life << "Leben: " << player.getLife();
+		score.str("");
+		score << "Score: " << player.getScore();
 //###############################################  Input handling
 		while(SDL_PollEvent(event) != 0){
 			if(event->type == SDL_QUIT)quit = true;
@@ -221,7 +228,8 @@ int run(SDL_Event *event, Level* lvl){
 				}
 			}
 		}
-		//fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
+		str1.loadFromRenderedText(life.str().c_str(), textColor);
+		str2.loadFromRenderedText(score.str().c_str(), textColor);
 		player.handleEvent(event, frameTime);
 
         for(unsigned int i = 0; i < Enemies.size(); i++){
@@ -233,7 +241,7 @@ int run(SDL_Event *event, Level* lvl){
 
 		for(unsigned int i = 0; i < shots.size(); i++){
 			if(!shots[i]->move(frameTime)){   //wenn eine 0 zurückkommt, heißt das, der schuss ist aus dem spielfeld raus -> schuss wird gelöscht
-
+                cout << "shot out of screen: " << i << endl;
 				delete shots[i];
 				shots.erase(shots.begin() + i);
 			}
@@ -246,12 +254,15 @@ int run(SDL_Event *event, Level* lvl){
         }
 
 
-		/*for(unsigned int i = 0; i < shots.size(); i++){
-			if(check_col(shots[i]->getCol(), Enemies[i]->getCol())){
-				delete shots[i];
-				shots.erase(shots.begin() + i);
-			}
-		}*/
+		for(unsigned int i = 0; i < shots.size(); i++){
+            for(unsigned int j = 0; j < Enemies.size(); j++){
+                if(check_col(shots[i]->getCol(), Enemies[j]->getCol())){
+                    delete shots[i];
+                    shots.erase(shots.begin() + i);
+                    cout << "shot collision with enemy: " << i << endl;
+                }
+            }
+		}
 
 		/*for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
 			if(check_col(enemyshots[i]->getCol(), player.getCol())){
@@ -264,7 +275,8 @@ int run(SDL_Event *event, Level* lvl){
 		SDL_RenderClear(gRenderer);
 
 		Background->render(2);
-		//fps.render();
+		str1.render(1,20,100);
+		str2.render(1,20,150);
 		player.render();
         for(unsigned int i = 0; i < Enemies.size(); i++){
             Enemies[i]->render();
@@ -284,8 +296,8 @@ int run(SDL_Event *event, Level* lvl){
     highsxml.writeScore("res/highscores.xml", player.getScore());
 	for(unsigned int i = 0; i < shots.size(); i++){
 		delete shots[i];
-		shots.erase(shots.begin() + i);
 	}
+	shots.clear();
 	return state;
 }
 
