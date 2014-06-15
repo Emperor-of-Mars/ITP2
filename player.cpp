@@ -13,7 +13,6 @@ Player::Player(){
 	maxVel = 10;
 	mXpos = SCREEN_WIDTH / 2;
 	mYpos = SCREEN_HEIGHT / 1.2;
-	BulletFired = 0;
 	mWidth = 0;
 	mHeight = 0;
 	mScaleX = 0;
@@ -109,8 +108,8 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 	else if(SpritePos[0] < 2 && curAnimFrame.getTicks() >= frameAnimPause) {SpritePos[0]++; curAnimFrame.start();}
 
 	if(key[SDL_SCANCODE_W] || key[SDL_SCANCODE_SPACE]){//fire gun
-		mGun[0]->fire(mXpos, mYpos, mScaleX, mScaleY);
-		mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY);
+		mGun[0]->fire(mXpos, mYpos, mScaleX, mScaleY, 0);
+		mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY, 0);
 	}
 	for(unsigned int i = 0; i < mCol.size(); i++){//update collission boxes
 		mCol[i].x = mXpos;
@@ -119,8 +118,9 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 	return;
 }
 
-bool Player::colHandle(){
-	mLife--;
+bool Player::colHandle(bool coll_ship){
+	if(coll_ship == true)mLife -= 30;
+	else mLife -= 1;
 	if(mLife <= 0) return true;
 	else return false;
 }

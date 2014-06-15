@@ -40,7 +40,7 @@ bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screen
     mXpos = LEFT_SCREEN_WIDTH + (SCREEN_WIDTH - LEFT_SCREEN_WIDTH) * wSpawn; //NEEDS XML VALUE
     mYpos = SCREEN_HEIGHT * hSpawn;  //NEEDS XML VALUE
 
-
+    curAnimFrame.start();
 	mTexture = tex;
 	if(mTexture == NULL) return false;
 	clip.h = mTexture->getHeight();
@@ -62,12 +62,6 @@ void Enemy::setCol(int x, int y, int w, int h){
 	SDL_Rect col = {x, y, w, h};
 	mCol.push_back(col);
 	return;
-}
-
-bool Enemy::colHandle(int dam){
-	mLife -= dam;
-	if(mLife <= 0) return true;
-	else return false;
 }
 
 int Enemy::getWidth(){
@@ -104,3 +98,20 @@ int Enemy::getX(){
 int Enemy::getY(){
     return mYpos;
 }
+
+void Enemy::shoot(){
+    /*if(curAnimFrame.getTicks() > 60){
+        mGun[0]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
+        mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
+        curAnimFrame.start();
+    }*/
+}
+
+bool Enemy::colHandle(int dam){
+    mLife -= dam;
+    if(mLife <= 0) return true;
+    else return false;
+}
+
+
+

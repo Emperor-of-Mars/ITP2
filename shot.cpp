@@ -4,9 +4,9 @@ using namespace std;
 
 extern int SCREEN_HEIGHT;
 
-Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int dam){
+Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int dir){
 	maxVel = vel;
-	Damage = dam;
+	Direction = dir;
 	SpritePos = 0;
 	frameAnimPause = 120;
 	mXpos = posX;
@@ -21,12 +21,13 @@ Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int da
 }
 
 bool Shot::move(float frameTime){
-	mYpos += maxVel * ((frameTime) / 10.f * mScaleY);
+	if(Direction == 0) mYpos += maxVel * ((frameTime) / 10.f * mScaleY);      //schießt nach oben
+	else if(Direction == 1) mYpos -= maxVel * ((frameTime) / 10.f * mScaleY);     //schießt nach unten
 	for(unsigned int i = 0; i < mCol.size(); i++){
 		mCol[i].x = mXpos;
 		mCol[i].y = mYpos;
 	}
-	if(mYpos <= 0)return false;
+	if((mYpos <= (0-mHeight)) || (mYpos > (SCREEN_HEIGHT+mHeight)))return false;
 	else return true;
 }
 

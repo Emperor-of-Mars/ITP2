@@ -16,6 +16,7 @@ class Enemy{
                     float wSpawn, float hSpawn);
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
+		void shoot();
 		bool colHandle(int dam);
 		vector<SDL_Rect> *getCol();
 		vector<Shot* > getShots();

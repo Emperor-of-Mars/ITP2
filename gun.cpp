@@ -14,10 +14,10 @@ Gun::Gun(vector<Shot*> *Shots, Texture *tex, int posX, int posY, float ScaleX, f
 	mShots = Shots;
 }
 
-void Gun::fire(float posX, float posY, float mScaleX, float mScaleY){
+void Gun::fire(float posX, float posY, float mScaleX, float mScaleY, int dir){
 	if(coolDown.getTicks() > 100){
 		Shot *newshot;
-		mShots->push_back(newshot = new Shot(mTexture, mXpos + (int)posX, mYpos + (int)posY, mScaleX, mScaleY, -15, 10));
+		mShots->push_back(newshot = new Shot(mTexture, mXpos + (int)posX, mYpos + (int)posY, mScaleX, mScaleY, -15, dir));
 		(*mShots)[mShots->size() - 1]->setCol(0, 0, 60, 100);
 		coolDown.start();
 	}
