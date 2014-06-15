@@ -11,11 +11,12 @@ class Enemy{
 	public:
 		Enemy();
 		~Enemy();
-        bool init(Texture *tex, Texture *bullet, vector<Shot*> *Shot, float sx, float sy, float screenScaleX, float screenScaleY, int life, unsigned int animationSpeed);
+        bool init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int animationSpeed);
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		bool colHandle(int dam);
 		vector<SDL_Rect> *getCol();
+		vector<Shot* > getShots();
         void render();
 		int getWidth();
 		int getHeight();
@@ -28,6 +29,7 @@ class Enemy{
 		SDL_Rect clip;
 		Texture *mTexture;
 		vector<Gun*> mGun;
+		vector<Shot* > Shots;
 		vector<SDL_Rect> mCol;
 };
 

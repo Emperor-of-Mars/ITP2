@@ -13,10 +13,11 @@ Level::~Level(){
 
 }
 
-bool Level::init(string backgroundlocation, int levelnumber, string levelname){
+bool Level::init(string backgroundlocation, int levelnumber, string levelname, vector<Enemy* > menemies){
 
     name = levelname;
     number = levelnumber;
+    Enemies = menemies;
 
     if(!Background.loadFromFile(backgroundlocation.c_str())){
 
@@ -42,6 +43,11 @@ Texture* Level::getBackground(){
 
     return ptr;
 
+}
+
+vector<Enemy* > Level::getEnemies(){
+
+    return Enemies;
 }
 
 #endif

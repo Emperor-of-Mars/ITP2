@@ -15,14 +15,15 @@ class Level{
         ~Level();
         Texture* getBackground();
         int getNumber();
+        vector<Enemy* > getEnemies();
         string getName();
-        bool init(string backgroundlocation, int levelnumber, string levelname);
+        bool init(string backgroundlocation, int levelnumber, string levelname, vector<Enemy* > menemies);
 
     private:
         int number;
         string name;
         Texture Background;
-        vector<Enemy* > enemies;
+        vector<Enemy* > Enemies;
 
 };
 

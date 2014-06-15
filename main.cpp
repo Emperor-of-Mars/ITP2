@@ -67,6 +67,17 @@ int main(int argc, char *argv[]){
 //###############################################  Set stuff
 
     Levels = levelsxml.getLevels();
+
+    //DEBUG
+//    for(unsigned int i = 0; i < Levels.size(); i++){
+//        cout << "Enemies in Level " << Levels[i]->getName() << ": ";
+//        for(unsigned int j = 0; j < Levels[i]->getEnemies().size(); j++){
+//            cout << "x ";
+//
+//        }
+//        cout << endl;
+//    }
+
 	buttonTexture.setBlendMode(SDL_BLENDMODE_BLEND);
 	play_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	settings_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
@@ -167,6 +178,8 @@ int run(SDL_Event *event, Level* lvl){
 	Texture* Background;
 	Player player;
 	vector<Shot*> shots;
+	vector<Shot*> enemyshots;
+	vector<Enemy* > Enemies;
 	vector<SDL_Rect> aaa;//collision test only
 	SDL_Rect col_a = {400, 200, 200, 200};//collision test only
 	aaa.push_back(col_a);//collision test only
@@ -182,7 +195,16 @@ int run(SDL_Event *event, Level* lvl){
 		return 1;
 	}
 //###############################################  Set stuff
+<<<<<<< HEAD
+    Enemies = lvl->getEnemies();
 	player.setCol(0, 0, player.getWidth(), player.getHeight());
+    for(unsigned int i = 0; i < Enemies.size(); i++){
+        Enemies[i]->setCol(0, 0, Enemies[i]->getWidth(), Enemies[i]->getHeight());
+    }
+
+=======
+	player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
+>>>>>>> a2dc6c95a1c026ce6d12c1d3e5bd970557f4f089
 	//Background->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 //###############################################  Gameloop
 	while(!quit){
@@ -206,6 +228,13 @@ int run(SDL_Event *event, Level* lvl){
 		//fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
 		player.handleEvent(event, frameTime);
 
+        for(unsigned int i = 0; i < Enemies.size(); i++){
+            enemyshots = Enemies[i]->getShots();
+            for(unsigned int j = 0; j < enemyshots.size(); j++){
+                shots.push_back(enemyshots[i]);
+            }
+        }
+
 		for(unsigned int i = 0; i < shots.size(); i++){
 			if(!shots[i]->move(frameTime)){
 				delete shots[i];
@@ -216,6 +245,13 @@ int run(SDL_Event *event, Level* lvl){
 		if(check_col(player.getCol(), &aaa)){       //aaa is im prinzip der gegner im mom (einfach ein rect)
 			if(player.colHandle(51)) quit = true;
 		}
+
+		for(unsigned int i = 0; i < Enemies.size(); i++){
+            if(check_col(player.getCol(), Enemies[i]->getCol())){
+                if(player.colHandle(51)) quit = true;
+            }
+        }
+
 		for(unsigned int i = 0; i < shots.size(); i++){
 			if(check_col(shots[i]->getCol(), &aaa)){
 				delete shots[i];
@@ -229,6 +265,9 @@ int run(SDL_Event *event, Level* lvl){
 		Background->render(2);
 		//fps.render();
 		player.render();
+        for(unsigned int i = 0; i < Enemies.size(); i++){
+            Enemies[i]->render();
+        }
 
 		collision_temp.render(1, 400, 200, 1, 1);//collision test only
 
@@ -287,6 +326,11 @@ bool init_SDL(){
 
 //###############################################  Close SDL
 void close_SDL(){
+
+    for(unsigned int i = 0; i < Levels.size(); i++){
+        delete Levels[i];
+    }
+
     //Destroy Window and Renderer
 	SDL_DestroyRenderer(gRenderer);
 	gRenderer = NULL;

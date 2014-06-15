@@ -6,6 +6,7 @@
   <enemies>
     <enemy>
       <sprite>res/testenemy.png</sprite>
+      <bulletsprite>res/bullet.png</bulletsprite>
       <number>4</number>
       <life>3</life>
       <speed>10</speed>
@@ -29,6 +30,7 @@
     
     <enemy>
       <sprite>res/testenemy.png</sprite>
+      <bulletsprite>res/bullet.png</bulletsprite>
       <number>4</number>
       <life>3</life>
       <speed>10</speed>
@@ -43,6 +45,7 @@
     
     <enemy>
       <sprite>res/testenemy.png</sprite>
+      <bulletsprite>res/bullet.png</bulletsprite>
       <number>4</number>
       <life>3</life>
       <speed>10</speed>
@@ -54,19 +57,6 @@
       </spawnpoints>
       <direction>s,e,w,n</direction>
     </enemy>
-    
-    <boss>
-      <life>9001</life>
-      <spawnpoints>1</spawnpoints>
-      <movement>
-	<dir>r,50,5</dir> 
-	<dir>l,100,5</dir>
-	<dir>r,100,5</dir> 
-	<dir>l,100,5</dir> 
-	<dir>r,50,5</dir>
-	<dir>d,300,25</dir>
-      </movement>
-    </boss>
     
     </enemies>
   </level> 

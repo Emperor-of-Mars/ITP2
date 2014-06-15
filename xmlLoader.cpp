@@ -33,7 +33,7 @@ bool XmlDocument::init(string location){
 
         for (pugi::xml_node enemy = level.child("enemies").first_child(); enemy; enemy = enemy.next_sibling()) {
 
-            int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2], BulletFired;
+            int maxVel, mLife;
 
 
             //DEBUG
@@ -41,7 +41,7 @@ bool XmlDocument::init(string location){
 
 
 
-            if(enemy.value() == "enemy"){
+            if(strcmp(enemy.value(), "enemy")){
 
                 mLife = strtol(enemy.child_value("life"), NULL, 10);
                 maxVel = strtol(enemy.child_value("speed"), NULL, 10);
@@ -51,22 +51,31 @@ bool XmlDocument::init(string location){
 
                 Texture* enemysprite = new Texture;
                 enemysprite->loadFromFile(enemy.child_value("sprite"));
+                Texture* bulletsprite = new Texture;
+                bulletsprite->loadFromFile(enemy.child_value("bulletsprite"));
 
+                if(!newenemy->init(enemysprite, bulletsprite, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
+                            (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
+                            (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
+                            (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20)){
 
-                //newenemy->init(enemysprite);
+                                cout << "Failed initiating enemy" << endl;
+                                return false;
 
+                            }
 
             }
 
-
         }
 
-        if(!lvl->init(level.child_value("background"), levelnumber, level.child_value("name"))){
+
+        if(!lvl->init(level.child_value("background"), levelnumber, level.child_value("name"), Enemies)){
             cout << "Couldn't initate Level" << endl;
             return false;
         }
 
         levelnumber++;
+        Enemies.clear();
     }
 
     //DEBUGAUSGABE
