@@ -15,6 +15,8 @@
 
 using namespace std;
 
+int run(SDL_Event *event, Level* lvl);
+
 int SCREEN_WIDTH = 0;
 int SCREEN_HEIGHT = 0;
 
@@ -64,7 +66,7 @@ int main(int argc, char *argv[]){
 	}
 //###############################################  Set stuff
 
-
+    Levels = levelsxml.getLevels();
 	buttonTexture.setBlendMode(SDL_BLENDMODE_BLEND);
 	play_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	settings_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
@@ -108,7 +110,7 @@ int main(int argc, char *argv[]){
 		case 1:
 			MBUp = 0;
 //			lvlselect.levelselection_view(&event);
-			if(run(&event) == 1) quit = true;
+			if(run(&event, Levels[0]) == 1) quit = true;
 			subMenu = 0;
 			break;
 		case 2:
@@ -153,7 +155,7 @@ int main(int argc, char *argv[]){
 }
 
 //###############################################  Gameplay function
-int run(SDL_Event *event){
+int run(SDL_Event *event, Level* lvl){
 	int state = 0;
 	int frameTime = 0;
 	//float FPS = 0;
@@ -161,13 +163,15 @@ int run(SDL_Event *event){
 	//SDL_Color textColor = {255, 64, 64, 255};
 	//stringstream FPS_text;
 	Timer frameTimer;
-	Texture Background, fps, player_ship, gun_tex, collision_temp;
+	Texture fps, player_ship, gun_tex, collision_temp;
+	Texture* Background;
 	Player player;
 	vector<Shot*> shots;
 	vector<SDL_Rect> aaa;//collision test only
 	SDL_Rect col_a = {400, 200, 200, 200};//collision test only
 	aaa.push_back(col_a);//collision test only
-	if(!Background.loadFromFile("res/Stars_Background.png") ||
+	Background = lvl->getBackground();
+	if(!Background ||
 		!player_ship.loadFromFile("res/player.png") ||
 		!gun_tex.loadFromFile("res/bullet.png") ||
 		!collision_temp.loadFromFile("res/werbung.png") ||
@@ -179,7 +183,7 @@ int run(SDL_Event *event){
 	}
 //###############################################  Set stuff
 	player.setCol(0, 0, player.getWidth(), player.getHeight());
-	//Background.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+	//Background->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
@@ -222,7 +226,7 @@ int run(SDL_Event *event){
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
 
-		Background.render(2);
+		Background->render(2);
 		//fps.render();
 		player.render();
 

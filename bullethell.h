@@ -34,7 +34,6 @@ using namespace std;
 bool init_SDL();
 void close_SDL();
 void PlayVideo();
-int run(SDL_Event *event);
 bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2);
 
 
