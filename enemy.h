@@ -18,6 +18,8 @@ class Enemy{
 		vector<SDL_Rect> *getCol();
 		vector<Shot* > getShots();
         void render();
+        int getX();
+        int getY();
 		int getWidth();
 		int getHeight();
 		int getLife();

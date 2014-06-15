@@ -91,3 +91,11 @@ void Enemy::render(){
 	mTexture->render(1, (int)mXpos, (int)mYpos, mScaleX, mScaleY, &clip);
 	return;
 }
+
+int Enemy::getX(){
+    return mXpos;
+}
+
+int Enemy::getY(){
+    return mYpos;
+}

@@ -177,20 +177,17 @@ int run(SDL_Event *event, Level* lvl){
 	//SDL_Color textColor = {255, 64, 64, 255};
 	//stringstream FPS_text;
 	Timer frameTimer;
-	Texture fps, player_ship, gun_tex, collision_temp;
+	Texture fps, player_ship, gun_tex;
 	Texture* Background;
 	Player player;
 	vector<Shot*> shots;
 	vector<Shot*> enemyshots;
+	vector<Shot*> enemyshots_temp;
 	vector<Enemy* > Enemies;
-	vector<SDL_Rect> aaa;//collision test only
-	SDL_Rect col_a = {400, 200, 200, 200};//collision test only
-	aaa.push_back(col_a);//collision test only
-	Background = lvl->getBackground();
+    Background = lvl->getBackground();
 	if(!Background ||
 		!player_ship.loadFromFile("res/player.png") ||
 		!gun_tex.loadFromFile("res/bullet.png") ||
-		!collision_temp.loadFromFile("res/werbung.png") ||
 		!player.init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
 	{
 		cout << "Failed to load resources!" << endl;
@@ -202,10 +199,9 @@ int run(SDL_Event *event, Level* lvl){
     Enemies = lvl->getEnemies();
 	player.setCol(0, 0, player.getWidth(), player.getHeight());
     for(unsigned int i = 0; i < Enemies.size(); i++){
-        Enemies[i]->setCol(0, 0, Enemies[i]->getWidth(), Enemies[i]->getHeight());
-    }
+        Enemies[i]->setCol(Enemies[i]->getX(), Enemies[i]->getY(), Enemies[i]->getWidth(), Enemies[i]->getHeight());
+        }
     player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
-	//Background->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
@@ -229,35 +225,39 @@ int run(SDL_Event *event, Level* lvl){
 		player.handleEvent(event, frameTime);
 
         for(unsigned int i = 0; i < Enemies.size(); i++){
-            enemyshots = Enemies[i]->getShots();
-            for(unsigned int j = 0; j < enemyshots.size(); j++){
-                shots.push_back(enemyshots[i]);
+            enemyshots_temp = Enemies[i]->getShots();
+            for(unsigned int j = 0; j < enemyshots_temp.size(); j++){
+                enemyshots.push_back(enemyshots_temp[j]);
             }
         }
 
 		for(unsigned int i = 0; i < shots.size(); i++){
-			if(!shots[i]->move(frameTime)){
+			if(!shots[i]->move(frameTime)){ //wenn eine 0 zurückkommt, heißt das, der schuss ist aus dem spielfeld raus -> schuss wird gelöscht
 				delete shots[i];
 				shots.erase(shots.begin() + i);
 			}
 		}
 //###############################################  Collission detection
-		if(check_col(player.getCol(), &aaa)){       //aaa is im prinzip der gegner im mom (einfach ein rect)
-			if(player.colHandle(51)) quit = true;
-		}
-
-		for(unsigned int i = 0; i < Enemies.size(); i++){
-            if(check_col(player.getCol(), Enemies[i]->getCol())){
+		for(unsigned int i = 0; i < Enemies.size(); i++){   //collision-detection für gegner mit player
+            if(check_col(player.getCol(), Enemies[i]->getCol())){//wenn eine collision entdeckt wird, wird der schuß gelöscht
                 if(player.colHandle(51)) quit = true;
             }
         }
 
-		for(unsigned int i = 0; i < shots.size(); i++){
-			if(check_col(shots[i]->getCol(), &aaa)){
+		/*for(unsigned int i = 0; i < shots.size(); i++){
+			if(check_col(shots[i]->getCol(), Enemies[i]->getCol())){
 				delete shots[i];
 				shots.erase(shots.begin() + i);
 			}
-		}
+		}*/
+
+        /*for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
+			if(check_col(enemyshots[i]->getCol(), player.getCol())){
+				delete enemyshots[i];
+				enemyshots.erase(enemyshots.begin() + i);
+			}
+
+		}*/
 //###############################################  Rendering
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
@@ -268,8 +268,6 @@ int run(SDL_Event *event, Level* lvl){
         for(unsigned int i = 0; i < Enemies.size(); i++){
             Enemies[i]->render();
         }
-
-		collision_temp.render(1, 400, 200, 1, 1);//collision test only
 
 		for(unsigned int i = 0; i < shots.size(); i++){
 			shots[i]->render();
