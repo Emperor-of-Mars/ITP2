@@ -117,8 +117,8 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 	return;
 }
 
-bool Player::colHandle(int dam){
-	mLife -= dam;
+bool Player::colHandle(){
+	mLife--;
 	if(mLife <= 0) return true;
 	else return false;
 }

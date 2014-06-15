@@ -228,44 +228,45 @@ int run(SDL_Event *event, Level* lvl){
 		str2.loadFromRenderedText(score.str().c_str(), textColor);
 		player.handleEvent(event, frameTime);
 
-        for(unsigned int i = 0; i < Enemies.size(); i++){
+        for(unsigned int i = 0; i < Enemies.size(); i++){       //laden der schüße die gegner abgegeben haben
             enemyshots_temp = Enemies[i]->getShots();
             for(unsigned int j = 0; j < enemyshots_temp.size(); j++){
                 enemyshots.push_back(enemyshots_temp[j]);
             }
         }
 
-		for(unsigned int i = 0; i < shots.size(); i++){
+		for(unsigned int i = 0; i < shots.size(); i++){         //bewegen der schüsse
 			if(!shots[i]->move(frameTime)){   //wenn eine 0 zurückkommt, heißt das, der schuss ist aus dem spielfeld raus -> schuss wird gelöscht
-                cout << "shot out of screen: " << i << endl;
+                //cout << "shot out of screen: " << i << endl;
 				delete shots[i];
 				shots.erase(shots.begin() + i);
 			}
 		}
 //###############################################  Collission detection
-		for(unsigned int i = 0; i < Enemies.size(); i++){
+		for(unsigned int i = 0; i < Enemies.size(); i++){           //collision-detection für kollision zwischen player und gegner
             if(check_col(player.getCol(), Enemies[i]->getCol())){
-                if(player.colHandle(51)) quit = true;
+                if(player.colHandle()) quit = true;
             }
         }
 
 
-		for(unsigned int i = 0; i < shots.size(); i++){
+		for(unsigned int i = 0; i < shots.size(); i++){             //collision-detection für schuß auf gegner
             for(unsigned int j = 0; j < Enemies.size(); j++){
                 if(check_col(shots[i]->getCol(), Enemies[j]->getCol())){
                     delete shots[i];
                     shots.erase(shots.begin() + i);
-                    cout << "shot collision with enemy: " << i << endl;
+                    //cout << "shot collision with enemy: " << i << endl;
                 }
             }
 		}
 
-		/*for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
+		for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
 			if(check_col(enemyshots[i]->getCol(), player.getCol())){
 				delete enemyshots[i];
 				enemyshots.erase(enemyshots.begin() + i);
+				if(player.colHandle()) quit = true;
             }
-        }*/
+        }
 //###############################################  Rendering
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
@@ -281,6 +282,10 @@ int run(SDL_Event *event, Level* lvl){
 		for(unsigned int i = 0; i < shots.size(); i++){
 			shots[i]->render();
 		}
+
+		for(unsigned int i = 0; i < enemyshots.size(); i++){
+            enemyshots[i]->render();
+		}
 		SDL_RenderPresent(gRenderer);
 
 		frameTime = frameTimer.getTicks();
@@ -290,9 +295,19 @@ int run(SDL_Event *event, Level* lvl){
 	}
 //###############################################  Gameloop end
     highsxml.writeScore("res/highscores.xml", player.getScore());
-	for(unsigned int i = 0; i < shots.size(); i++){
-		delete shots[i];
-		shots.erase(shots.begin() + i);
+
+    //aufräumen
+	while(Enemies.size() > 0){
+        delete Enemies[0];
+		Enemies.erase(Enemies.begin());
+	}
+	while(enemyshots.size() > 0){
+        delete enemyshots[0];
+		enemyshots.erase(enemyshots.begin());
+	}
+	while(shots.size() > 0){
+        delete shots[0];
+		shots.erase(shots.begin());
 	}
 	return state;
 }
