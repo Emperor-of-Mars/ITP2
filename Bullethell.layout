@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
+<<<<<<< HEAD
 	<File name="enemy.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1238" topLine="32" />
 		</Cursor>
 	</File>
+=======
+>>>>>>> 931b4894e890652875f6b2ab084a2ebc1df4686c
 	<File name="bullethell.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="344" topLine="0" />
 		</Cursor>
 	</File>
+<<<<<<< HEAD
 	<File name="shot.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="564" topLine="0" />
@@ -19,6 +23,16 @@
 	<File name="enemy.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="408" topLine="0" />
+=======
+	<File name="player.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="306" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="228" />
+>>>>>>> 931b4894e890652875f6b2ab084a2ebc1df4686c
 		</Cursor>
 	</File>
 	<File name="gun.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -27,6 +41,7 @@
 		</Cursor>
 	</File>
 	<File name="player.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+<<<<<<< HEAD
 		<Cursor>
 			<Cursor1 position="582" topLine="3" />
 		</Cursor>
@@ -54,6 +69,10 @@
 	<File name="xmlLoader.cpp" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="1385" topLine="34" />
+=======
+		<Cursor>
+			<Cursor1 position="414" topLine="0" />
+>>>>>>> 931b4894e890652875f6b2ab084a2ebc1df4686c
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
