@@ -174,11 +174,9 @@ int run(SDL_Event *event, Level* lvl){
 	int frameTime = 0;
 	bool quit = false;
 	//Textausgabe
-	string string1 = "Leben: ";
-	string string2 = "Score: ";
+	stringstream life;
+	stringstream score;
 	SDL_Color textColor = {255, 64, 64, 255};
-	stringstream string1_text;
-	stringstream string2_text;
 
 	Timer frameTimer;
 	Texture str1, str2, player_ship, gun_tex;
@@ -210,10 +208,10 @@ int run(SDL_Event *event, Level* lvl){
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
-		string1_text.str("");
-		string2_text.str("");
-		string1_text << string1 << player.getLife();
-		string2_text << string2 << player.getScore();
+		life.str("");
+        life << "Leben: " << player.getLife();
+		score.str("");
+		score << "Score: " << player.getScore();
 //###############################################  Input handling
 		while(SDL_PollEvent(event) != 0){
 			if(event->type == SDL_QUIT)quit = true;
@@ -226,8 +224,8 @@ int run(SDL_Event *event, Level* lvl){
 				}
 			}
 		}
-		str1.loadFromRenderedText(string1_text.str().c_str(), textColor);
-		str2.loadFromRenderedText(string2_text.str().c_str(), textColor);
+		str1.loadFromRenderedText(life.str().c_str(), textColor);
+		str2.loadFromRenderedText(score.str().c_str(), textColor);
 		player.handleEvent(event, frameTime);
 
         for(unsigned int i = 0; i < Enemies.size(); i++){
@@ -239,7 +237,7 @@ int run(SDL_Event *event, Level* lvl){
 
 		for(unsigned int i = 0; i < shots.size(); i++){
 			if(!shots[i]->move(frameTime)){   //wenn eine 0 zurückkommt, heißt das, der schuss ist aus dem spielfeld raus -> schuss wird gelöscht
-
+                cout << "shot out of screen: " << i << endl;
 				delete shots[i];
 				shots.erase(shots.begin() + i);
 			}
@@ -252,12 +250,15 @@ int run(SDL_Event *event, Level* lvl){
         }
 
 
-		/*for(unsigned int i = 0; i < shots.size(); i++){
-			if(check_col(shots[i]->getCol(), Enemies[i]->getCol())){
-				delete shots[i];
-				shots.erase(shots.begin() + i);
-			}
-		}*/
+		for(unsigned int i = 0; i < shots.size(); i++){
+            for(unsigned int j = 0; j < Enemies.size(); j++){
+                if(check_col(shots[i]->getCol(), Enemies[j]->getCol())){
+                    delete shots[i];
+                    shots.erase(shots.begin() + i);
+                    cout << "shot collision with enemy: " << i << endl;
+                }
+            }
+		}
 
 		/*for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
 			if(check_col(enemyshots[i]->getCol(), player.getCol())){
