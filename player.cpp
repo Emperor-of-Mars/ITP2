@@ -24,6 +24,7 @@ Player::Player(){
 	clip = {0, 0, 0, 0};
 	mTexture = NULL;
 	curAnimFrame.start();
+	score = 0;
 }
 
 Player::~Player(){
@@ -57,6 +58,13 @@ void Player::setCol(int x, int y, int w, int h){
 void Player::handleEvent(SDL_Event *e, int frameTime){
 	int frameLenght = maxVel * ((frameTime) / 10.f);
 	const Uint8 *key = SDL_GetKeyboardState(NULL);
+    if(key[SDL_SCANCODE_LCTRL]) {
+        	mScreenScaleX = 0.25;
+            mScreenScaleY = 0.25;
+    } else {
+            mScreenScaleX = 0.5;
+            mScreenScaleY = 0.5;
+    }
 
 	if(key[SDL_SCANCODE_UP]){//Move up
 		mYpos -= frameLenght * mScreenScaleY;//Change position
@@ -80,7 +88,7 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 
 	if(key[SDL_SCANCODE_RIGHT]){//Move right
 		mXpos += frameLenght * mScreenScaleX;//Change position
-		if(mXpos > SCREEN_WIDTH - mWidth)mXpos = SCREEN_WIDTH - mWidth;//Check if out of screen
+		if(mXpos > SCREEN_WIDTH - mWidth - SCREEN_WIDTH/32*7)mXpos = SCREEN_WIDTH - mWidth - SCREEN_WIDTH/32*7;//Check if out of screen
 		if(SpritePos[0] < 4&& curAnimFrame.getTicks() >= frameAnimPause){
 			SpritePos[0]++;
 			curAnimFrame.start();
@@ -90,7 +98,7 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 
 	if(key[SDL_SCANCODE_LEFT]){//Move left
 		mXpos -= frameLenght * mScreenScaleX;//Change position
-		if(mXpos < 0)mXpos = 0;//Check if out of screen
+		if(mXpos < SCREEN_WIDTH/32*7)mXpos = SCREEN_WIDTH/32*7;//Check if out of screen
 		if(SpritePos[0] > 0 && curAnimFrame.getTicks() >= frameAnimPause){
 			SpritePos[0]--;
 			curAnimFrame.start();
@@ -125,6 +133,10 @@ int Player::getHeight(){
 
 int Player::getLife(){
 	return mLife;
+}
+
+unsigned int Player::getScore() {
+    return score;
 }
 
 vector<SDL_Rect> *Player::getCol(){

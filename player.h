@@ -19,9 +19,10 @@ class Player{
 		int getWidth();
 		int getHeight();
 		int getLife();
+		unsigned int getScore();
 	private:
 		int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2], BulletFired;
-		unsigned int frameAnimPause;
+		unsigned int frameAnimPause, score;
 		float mScaleX, mScaleY, mScreenScaleX, mScreenScaleY;
 		Timer curAnimFrame;
 		SDL_Rect clip;

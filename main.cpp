@@ -25,6 +25,8 @@ SDL_Renderer *gRenderer = NULL;
 TTF_Font *gFont = NULL;
 Settings *settings = NULL;
 vector<Level* > Levels;
+vector<unsigned int> TopScores;
+XmlHighscore highsxml;
 
 //###############################################  Main
 int main(int argc, char *argv[]){
@@ -58,7 +60,8 @@ int main(int argc, char *argv[]){
 		!settings_button.init(&buttonTexture, 225, "Settings", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
 		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
-        !levelsxml.init("res/levels.xml"))
+        !levelsxml.init("res/levels.xml") ||
+        !highsxml.init("res/highscores.xml"))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -279,6 +282,7 @@ int run(SDL_Event *event, Level* lvl){
 		}
 	}
 //###############################################  Gameloop end
+    highsxml.writeScore("res/highscores.xml", player.getScore());
 	for(unsigned int i = 0; i < shots.size(); i++){
 		delete shots[i];
 		shots.erase(shots.begin() + i);

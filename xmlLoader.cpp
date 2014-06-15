@@ -1,6 +1,7 @@
 #ifndef XMLLOADER_CPP
 #define XMLLOADER_CPP
 
+#include <limits>
 #include "xmlLoader.h"
 #include "enemy.h"
 
@@ -97,4 +98,45 @@ vector<Enemy* > XmlDocument::getEnemies(){
     return Enemies;
 }
 
+XmlHighscore::XmlHighscore() {
+
+}
+
+XmlHighscore::~XmlHighscore() {
+
+}
+
+bool XmlHighscore::init(string location){
+
+    result = doc.load_file(location.c_str());
+
+    if(!result){
+        cout << "Defined File: " << location << endl;
+        cout << result.description() << endl;
+        return false;
+    }
+    return true;
+}
+
+void XmlHighscore::showScore(){
+    int scorenumber = 0;
+    int maxscore = numeric_limits<int>::max();
+    int minscore = 0;
+    int value = 0;
+
+    for (scorenumber = 0; scorenumber<10; scorenumber++) {
+        for (pugi::xml_node score = doc.first_child(); score; score = score.next_sibling()) {
+            value = atoi(score.value());
+            if(minscore <= value && minscore < maxscore) minscore = value;
+        }
+    if (maxscore > minscore) maxscore = minscore;
+    scorenumber++;
+    }
+}
+
+void XmlHighscore::writeScore(string location, int score){
+    pugi::xml_node newsc = doc.append_child("score");
+    newsc.append_child(pugi::node_pcdata).text().set(score);
+    doc.save_file(location.c_str());
+}
 #endif

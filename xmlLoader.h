@@ -25,4 +25,17 @@ class XmlDocument{
         vector<Enemy* > Enemies;
 };
 
+class XmlHighscore{
+    public:
+        XmlHighscore();
+        ~XmlHighscore();
+        bool init(string location);
+        void showScore();
+        void writeScore(string location, int score);
+
+    private:
+        string location;
+        pugi::xml_document doc;
+        pugi::xml_parse_result result;
+};
 #endif

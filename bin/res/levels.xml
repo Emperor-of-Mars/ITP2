@@ -2,7 +2,7 @@
 <level>
   <name>level1</name>
   <creator>Dickbutt</creator>
-  <background>res/Stars_Background.png</background>
+  <background>res/Stars_Background_preview.png</background>
   <enemies>
     <enemy>
       <sprite>res/testenemy.png</sprite>

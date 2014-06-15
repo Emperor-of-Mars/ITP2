@@ -15,7 +15,7 @@ Gun::Gun(vector<Shot*> *Shots, Texture *tex, int posX, int posY, float ScaleX, f
 }
 
 void Gun::fire(float posX, float posY, float mScaleX, float mScaleY){
-	if(coolDown.getTicks() > 300){
+	if(coolDown.getTicks() > 100){
 		Shot *newshot;
 		mShots->push_back(newshot = new Shot(mTexture, mXpos + (int)posX, mYpos + (int)posY, mScaleX, mScaleY, -15, 10));
 		(*mShots)[mShots->size() - 1]->setCol(0, 0, 60, 100);
