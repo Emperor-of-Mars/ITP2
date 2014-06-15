@@ -182,7 +182,7 @@ int run(SDL_Event *event, Level* lvl){
 		return 1;
 	}
 //###############################################  Set stuff
-	player.setCol(0, 0, player.getWidth(), player.getHeight());
+	player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
 	//Background->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 //###############################################  Gameloop
 	while(!quit){
