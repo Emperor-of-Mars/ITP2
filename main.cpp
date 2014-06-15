@@ -299,7 +299,6 @@ int run(SDL_Event *event, Level* lvl){
 	}
 //###############################################  Gameloop end
     highsxml.writeScore("res/highscores.xml", player.getScore());
-<<<<<<< HEAD
 
     //aufräumen
 	while(Enemies.size() > 0){
@@ -313,10 +312,6 @@ int run(SDL_Event *event, Level* lvl){
 	while(shots.size() > 0){
         delete shots[0];
 		shots.erase(shots.begin());
-=======
-	for(unsigned int i = 0; i < shots.size(); i++){
-		delete shots[i];
->>>>>>> 733cc92b68fdf5b4bc5456bbd9216d97f5b0385d
 	}
 	shots.clear();
 	return state;
