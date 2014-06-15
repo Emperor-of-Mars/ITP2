@@ -380,6 +380,38 @@ void close_SDL(){
 }
 
 void PlayVideo(){
+	Texture frame;
+	stringstream file;
+	string num;
+	int frameTime = 0;
+	Timer frameTimer, tim;
+	tim.start();
+	int i = 10;
+	while(1){
+		frameTimer.start();
+		file << i;
+		file >> num;
+		file.str("");
+		file.clear();
+		while(num.size() < 4) num.insert(0, "0");
+		file << "res/Introsequenz/" << num << ".jpg";
+		//cout << file.str() << endl;
+		if(!frame.loadFromFile(file.str().c_str())) break;
+		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
+		SDL_RenderClear(gRenderer);
+		frame.render(2);
+		SDL_RenderPresent(gRenderer);
+		file.str("");
+		num = "";
+		file.clear();
+		i++;
+		frameTime = frameTimer.getTicks();
+		if(frameTime < 1000.f / 25){
+			//cout << 1000.f / (float)25 - (float)frameTime << endl;
+			SDL_Delay(1000.f / (float)25 - (float)frameTime);
+		}
+	}
+	//cout << tim.getTicks() << endl;
 	return;
 }
 
