@@ -195,16 +195,13 @@ int run(SDL_Event *event, Level* lvl){
 		return 1;
 	}
 //###############################################  Set stuff
-<<<<<<< HEAD
+
     Enemies = lvl->getEnemies();
 	player.setCol(0, 0, player.getWidth(), player.getHeight());
     for(unsigned int i = 0; i < Enemies.size(); i++){
         Enemies[i]->setCol(0, 0, Enemies[i]->getWidth(), Enemies[i]->getHeight());
     }
-
-=======
-	player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
->>>>>>> a2dc6c95a1c026ce6d12c1d3e5bd970557f4f089
+    player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
 	//Background->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 //###############################################  Gameloop
 	while(!quit){
