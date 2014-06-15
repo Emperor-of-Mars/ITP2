@@ -278,7 +278,7 @@ int run(SDL_Event *event, Level* lvl){
 		for(unsigned int i = 0; i < shots.size(); i++){             //collision-detection für schuß von player
             for(unsigned int j = 0; j < Enemies.size(); j++){
                 if(check_col(shots[i]->getCol(), Enemies[j]->getCol())){
-                    //cout << "schuss: " << i << " hat gegner: " << j << " getroffen" << endl;
+                    cout << "schuss: " << i << " hat gegner: " << j << " getroffen" << endl;
                     delete shots[i];
                     shots.erase(shots.begin() + i);
                     if(Enemies[j]->colHandle(5)){
