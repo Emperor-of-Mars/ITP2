@@ -326,8 +326,8 @@ int run(SDL_Event *event, Level* lvl){
         //cout << "rendering" << endl;
 
 
-		Background->render(1,0,scrollingOffset - SCREEN_HEIGHT, 0.711111111111111111,0.711111111111111111);
-		Background->render(1,0,scrollingOffset, 0.711111111111111111, 0.711111111111111111);
+		Background->render(1,0,scrollingOffset - SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+		Background->render(1,0,scrollingOffset, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		str1.render(1,20,100);
 		str2.render(1,20,150);
 		player->render();
