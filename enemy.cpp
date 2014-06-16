@@ -113,11 +113,14 @@ vector<vector<float >> Enemy::getMovements(){
 }
 
 void Enemy::shoot(){
-    if(curAnimFrame.getTicks() > 6000){
         mGun[0]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
         mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
-        curAnimFrame.start();
-    }
+}
+
+void Enemy::delShot(int pos){
+    cout << "delete shot: " << pos << endl;
+    delete Shots[pos];
+    Shots.erase(Shots.begin() + pos);
 }
 
 bool Enemy::colHandle(int dam,Player *player){

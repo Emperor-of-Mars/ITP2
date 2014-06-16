@@ -31,6 +31,7 @@ class Enemy{
 		int getLife();
 		vector<vector<float >> getMovements();
 		Explosion* explode();
+		void delShot(int pos);
 
 	private:
         int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2], BulletFired, score, spawnXpos, spawnYpos;
