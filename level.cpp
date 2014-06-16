@@ -24,7 +24,6 @@ bool Level::init(string backgroundlocation, int levelnumber, string levelname, v
         cout << "Couldn't Load Background from " << backgroundlocation << endl;
         return false;
     }
-
     return true;
 
 }
@@ -38,15 +37,12 @@ string Level::getName(){
 }
 
 Texture* Level::getBackground(){
-
     Texture* ptr = &Background;
-
     return ptr;
 
 }
 
 vector<Enemy* > Level::getEnemies(){
-
     return Enemies;
 }
 

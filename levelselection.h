@@ -2,11 +2,12 @@
 #define LEVELSELECTION_H
 
 #include "bullethell.h"
+#include "level.h"
 
 class Levelselection{
     public:
         Levelselection();
-        void levelselection_view(SDL_Event *event);
+        int levelselection_view(SDL_Event *event, int anzahl);
 };
 
 #endif

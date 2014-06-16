@@ -22,6 +22,26 @@
     
   </enemies>
 </level> 
+<level>
+  <name>level2</name>
+  <creator>Dickbutt</creator>
+  <background>res/Stars_Background_preview.png</background>
+  <enemies>
+    <enemy>
+      <sprite>res/testenemy.png</sprite>
+      <bulletsprite>res/bullet.png</bulletsprite>
+      <quantity>2</quantity>
+      <life>20</life>
+      <speed>10</speed>
+      <spawnpoints>
+	<sp1>0.1,0.2</sp1>
+	<sp2>0.1,0.1</sp2>
+      </spawnpoints>
+      <direction>s,e,w,n</direction>
+    </enemy>
+    
+  </enemies>
+</level> 
   
 <!--<level>
   <name>level2</name>

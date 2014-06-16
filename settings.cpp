@@ -101,12 +101,12 @@ void Settings::increase_resolution(){
 }
 
 int Settings::settings_view(SDL_Event *event){
-    int state = 0, frameTime = 0, MBUp = 0;
+    int state = 0, frameTime = 0;
 	bool quit = false;
 	Timer frameTimer;
 	textColor = {255, 88, 88, 255};
-	Button setResLeft, setResRight, setFull, setVsync, apply, backToMenu;
-	Texture warning, full, vsync, Background, buttonTexture, buttonTexture_kl;
+	Button setResLeft, setResRight, setFull, apply, backToMenu;
+	Texture warning, full, Background, buttonTexture, buttonTexture_kl;
 	resolution = new Texture;
 	res_text << available_widths[actual_resolution] << " x " << available_heights[actual_resolution];
 
@@ -117,12 +117,9 @@ int Settings::settings_view(SDL_Event *event){
 		!setResLeft.init(&buttonTexture_kl, 112.5, "<", textColor) ||
 		!setResRight.init(&buttonTexture_kl, 112.5, ">", textColor) ||
 		!setFull.init(&buttonTexture, 225, "Fullscreen:", textColor) ||
-		!setVsync.init(&buttonTexture, 225, "Vsync:", textColor) ||
-		!apply.init(&buttonTexture, 225, "Apply Changes", textColor) ||
 		!warning.loadFromRenderedText("Warning: Some settings will apply only after restart!", textColor) ||
 		!full.loadFromRenderedText(full_screen_string.c_str(), textColor) ||
 		!resolution->loadFromRenderedText(res_text.str().c_str(), textColor) ||
-		!vsync.loadFromRenderedText("on", textColor) ||
 		!backToMenu.init(&buttonTexture, 225, "Back", textColor))
 	{
 		cout << "Failed to load resources!" << endl;
@@ -137,13 +134,11 @@ int Settings::settings_view(SDL_Event *event){
 	setFull.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	full.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	backToMenu.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
-	//apply.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	setResLeft.setPosition(SCREEN_WIDTH * 0.5 - setResLeft.getWidth() - resolution->getWidth() * 0.6, SCREEN_HEIGHT * 0.1);
 	setResRight.setPosition(SCREEN_WIDTH * 0.5 + resolution->getWidth() * 0.6, SCREEN_HEIGHT * 0.1);
 	resolution->setPosition(SCREEN_WIDTH * 0.5 - resolution->getWidth() * 0.5, SCREEN_HEIGHT * 0.1 + setResLeft.getHeight() / 2 - resolution->getHeight() / 2);
 	setFull.setPosition(SCREEN_WIDTH * 0.5 - (setFull.getWidth() * 0.6 + full.getWidth() * 0.5), SCREEN_HEIGHT * 0.2);
 	full.setPosition(SCREEN_WIDTH * 0.5 + (setFull.getWidth() * 0.6 - full.getWidth() * 0.5), SCREEN_HEIGHT * 0.2 + setFull.getHeight() / 2 - full.getHeight() / 2);
-	//apply.setPosition(SCREEN_WIDTH * 0.5 - apply.getWidth() / 2, SCREEN_HEIGHT * 0.6 - apply.getHeight() / 2);
 	backToMenu.setPosition(SCREEN_WIDTH *0.1 - backToMenu.getWidth() * 0.5, SCREEN_HEIGHT * 0.8 - backToMenu.getHeight() / 2);
 //###############################################  Gameloop
 	while(!quit){
@@ -159,8 +154,8 @@ int Settings::settings_view(SDL_Event *event){
 				}
 			}
 		}
-		if(event->type == SDL_MOUSEBUTTONUP) MBUp = 1;
-		if(MBUp == 1){
+		//if(event->type == SDL_MOUSEBUTTONUP) MBUp = 1;
+		//if(MBUp == 1){
 			if(setResLeft.handleEvent(event) == 1){
                 decrease_resolution();
                 resolution->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
@@ -180,9 +175,8 @@ int Settings::settings_view(SDL_Event *event){
                 full.setPosition(SCREEN_WIDTH * 0.5 + (setFull.getWidth() * 0.6 - full.getWidth() * 0.5), SCREEN_HEIGHT * 0.2 + setFull.getHeight() / 2 - full.getHeight() / 2);
                 while(event->button.state == SDL_PRESSED){SDL_PollEvent(event);}
 			}
-			//if(apply.handleEvent(event));
 			if(backToMenu.handleEvent(event) == 1)quit = true;
-		}
+		//}
 //###############################################  Rendering
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
@@ -193,7 +187,6 @@ int Settings::settings_view(SDL_Event *event){
 		resolution->render();
 		setFull.render();
 		full.render();
-		//apply.render();
 		backToMenu.render();
 
 		SDL_RenderPresent(gRenderer);
