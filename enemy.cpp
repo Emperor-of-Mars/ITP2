@@ -24,6 +24,7 @@ Enemy::Enemy(){
 	frameAnimPause = 20;
 	mTexture = NULL;
 	curAnimFrame.start();
+	movemodulo = 0;
 
 }
 
@@ -31,14 +32,22 @@ Enemy::~Enemy(){
     for(unsigned int i = 0; i < mGun.size(); i++) delete mGun[i];
 }
 
-bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int frameAnimPause, float wSpawn, float hSpawn, int points){
+bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int frameAnimPause, float wSpawn, float hSpawn, int points, vector<vector<float >> bewegungen){
 
     mLife = life;
 	maxVel = velocity;
     score = points;
+    movements = bewegungen;
 
-    mXpos = LEFT_SCREEN_WIDTH + (SCREEN_WIDTH - LEFT_SCREEN_WIDTH) * wSpawn; //NEEDS XML VALUE
+    mXpos = LEFT_SCREEN_WIDTH + (RIGHT_SCREEN_WIDTH - LEFT_SCREEN_WIDTH) * wSpawn; //NEEDS XML VALUE
     mYpos = SCREEN_HEIGHT * hSpawn;  //NEEDS XML VALUE
+
+    spawnXpos = mXpos - LEFT_SCREEN_WIDTH;
+    if(mYpos < 0) spawnYpos = SCREEN_HEIGHT - mYpos*-1;
+    if(mYpos >= 0) spawnYpos = SCREEN_HEIGHT - mYpos;
+
+    spawnXscale = wSpawn;
+    spawnYscale = hSpawn;
 
     curAnimFrame.start();
 	mTexture = tex;
@@ -99,6 +108,10 @@ int Enemy::getY(){
     return mYpos;
 }
 
+vector<vector<float >> Enemy::getMovements(){
+    return movements;
+}
+
 void Enemy::shoot(){
     if(curAnimFrame.getTicks() > 6000){
         mGun[0]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
@@ -131,8 +144,39 @@ Explosion* Enemy::explode(){
 bool Enemy::movement(int frameTime){
 
     int frameLenght = maxVel * ((frameTime) / 10.f);
-    mYpos += frameLenght * 0.1;
-    if(mYpos > SCREEN_HEIGHT) return true;
+    int index = movemodulo%movements.size();
+
+    switch((int)movements[index][0]){
+        case 0:
+                mYpos -= frameLenght * 0.1;
+                if(mYpos <= (SCREEN_HEIGHT*movements[index][1])){
+                    movemodulo++;
+                }
+                break;
+
+        case 1:
+                mXpos += frameLenght * 0.1;
+                if(mXpos >= ((LEFT_SCREEN_WIDTH + (RIGHT_SCREEN_WIDTH - LEFT_SCREEN_WIDTH)*movements[index][1]))){
+                    movemodulo++;
+                }
+                break;
+
+        case 2:
+                mYpos += frameLenght * 0.1;
+                if(mYpos >= (SCREEN_HEIGHT*movements[index][1])){
+                    movemodulo++;
+                }
+                break;
+
+        case 3:
+                mXpos -= frameLenght * 0.1;
+                if(mXpos <= ((LEFT_SCREEN_WIDTH + (RIGHT_SCREEN_WIDTH - LEFT_SCREEN_WIDTH)*movements[index][1]))){
+                    movemodulo++;
+                }
+                break;
+        default:
+                break;
+    }
 
     for(unsigned int i = 0; i < mCol.size(); i++){//update collission boxes
 		mCol[i].x = mXpos + (int)(mWidth * mScreenScaleX);

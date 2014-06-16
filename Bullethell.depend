@@ -467,7 +467,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402932165 source:/home/stefan/ITP2/credits.cpp
+1402933775 source:/home/stefan/ITP2/credits.cpp
 	"credits.h"
 
 1402668894 /home/stefan/ITP2/credits.h
@@ -496,10 +496,10 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402930274 source:/home/stefan/ITP2/enemy.cpp
+1402942378 source:/home/stefan/ITP2/enemy.cpp
 	"enemy.h"
 
-1402928992 /home/stefan/ITP2/enemy.h
+1402941755 /home/stefan/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
@@ -567,7 +567,7 @@
 1402568906 source:/home/stefan/ITP2/timer.cpp
 	"timer.h"
 
-1402932165 source:/home/stefan/ITP2/main.cpp
+1402940592 source:/home/stefan/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -584,7 +584,7 @@
 	"bullethell.h"
 	"level.h"
 
-1402919250 source:/home/stefan/ITP2/xmlLoader.cpp
+1402938942 source:/home/stefan/ITP2/xmlLoader.cpp
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"

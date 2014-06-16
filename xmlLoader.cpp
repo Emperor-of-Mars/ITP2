@@ -34,61 +34,83 @@ bool XmlDocument::init(string location){
 
         for (pugi::xml_node enemy = level.child("enemies").first_child(); enemy; enemy = enemy.next_sibling()) {
 
-            int maxVel, mLife, mPoints;
+            int maxVel, mLife, mPoints, j;
+            vector<vector<float >> bewegungen;
+            vector<float > neuerMove;
 
 
             //DEBUG
             cout << "Enemy debug: " << enemy.name() << endl;
 
+            pugi::xml_node movements = enemy.child("movement");
 
+            j = 1;
 
-            if(strcmp(enemy.value(), "enemy")){
+            for (pugi::xml_node bewegung = movements.first_child(); bewegung; bewegung = bewegung.next_sibling()) {
+                    neuerMove.clear();
 
-                int numberofspawns = 0;
+                    stringstream s2;
+                    s2 << "move" << j;
+                    string moves = s2.str();
 
-                numberofspawns = strtol(enemy.child_value("quantity"), NULL, 10);
+                    cout << moves;
 
-                for(int i = 0; i < numberofspawns; i++){
+                    neuerMove.push_back(atof(strtok((char*)movements.child_value((char*)moves.c_str()), ",")));
+                    neuerMove.push_back(strtof(strtok(NULL, ","), NULL));
+                    bewegungen.push_back(neuerMove);
 
-                    mLife = strtol(enemy.child_value("life"), NULL, 10);
-                    maxVel = strtol(enemy.child_value("speed"), NULL, 10);
-                    mPoints = strtol(enemy.child_value("points"), NULL, 10);
+                    cout << "bewegung erstellt" << endl;
+                    j++;
+            }
 
-                    float wSpawn, hSpawn;
-                    stringstream ss;
-                    ss << "sp" << i+1;
-                    string spawns = ss.str();
-
-                    cout << spawns << endl;
-
-                    pugi::xml_node spawnpoints = enemy.child("spawnpoints");
-
-                    wSpawn = strtof(strtok((char*)spawnpoints.child_value((char*)spawns.c_str()), ","), NULL);
-                    hSpawn = strtof(strtok(NULL, ","), NULL);
-
-                    Enemy* newenemy = new Enemy;
-                    Enemies.push_back(newenemy);
-
-                    Texture* enemysprite = new Texture;
-                    enemysprite->loadFromFile(enemy.child_value("sprite"));
-                    Texture* bulletsprite = new Texture;
-                    bulletsprite->loadFromFile(enemy.child_value("bulletsprite"));
-
-                    if(!newenemy->init(enemysprite, bulletsprite,
-                                (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
-                                (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
-                                (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
-                                (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20,
-                                wSpawn, hSpawn, mPoints)){
-
-                                    cout << "Failed initiating enemy" << endl;
-                                    return false;
-
-                                }
-
+            for(unsigned int i = 0; i < bewegungen.size(); i++){
+                    cout << "Bewegungen: " << bewegungen[i][0] << " " << bewegungen[i][1] << endl;
                 }
 
+            int numberofspawns = 0;
+
+            numberofspawns = strtol(enemy.child_value("quantity"), NULL, 10);
+
+            for(int i = 0; i < numberofspawns; i++){
+
+                mLife = strtol(enemy.child_value("life"), NULL, 10);
+                maxVel = strtol(enemy.child_value("speed"), NULL, 10);
+                mPoints = strtol(enemy.child_value("points"), NULL, 10);
+
+                float wSpawn, hSpawn;
+                stringstream ss;
+                ss << "sp" << i+1;
+                string spawns = ss.str();
+
+                cout << spawns << endl;
+
+                pugi::xml_node spawnpoints = enemy.child("spawnpoints");
+
+                wSpawn = strtof(strtok((char*)spawnpoints.child_value((char*)spawns.c_str()), ","), NULL);
+                hSpawn = strtof(strtok(NULL, ","), NULL);
+
+                Enemy* newenemy = new Enemy;
+                Enemies.push_back(newenemy);
+
+                Texture* enemysprite = new Texture;
+                enemysprite->loadFromFile(enemy.child_value("sprite"));
+                Texture* bulletsprite = new Texture;
+                bulletsprite->loadFromFile(enemy.child_value("bulletsprite"));
+
+                if(!newenemy->init(enemysprite, bulletsprite,
+                            (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
+                            (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
+                            (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
+                            (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20,
+                            wSpawn, hSpawn, mPoints, bewegungen)){
+
+                                cout << "Failed initiating enemy" << endl;
+                                return false;
+
+                            }
+
             }
+
 
         }
 
@@ -104,6 +126,9 @@ bool XmlDocument::init(string location){
 
     //DEBUGAUSGABE
     for(unsigned int i = 0; i < Levels.size(); i++){
+//        vector<Enemy* > Gegner = Levels[i]->getEnemies();
+//        vector<vector<float >> movethisdebug = Gegner[0]->getMovements();
+//        cout << "Movements: " << movethisdebug[0][0] << " " << movethisdebug[0][1] << endl;
         cout << Levels[i]->getName() << endl;
     }
     //DEBUGAUSGABE ENDE
