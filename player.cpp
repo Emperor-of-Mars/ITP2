@@ -52,7 +52,8 @@ bool Player::init(Texture *tex, Texture *bullet, vector<Shot*> *Shots, float sx,
 }
 
 void Player::setCol(){
-	SDL_Rect col = {0, 0, mWidth - (int)(mWidth*0.15), mHeight - (int)(mHeight*0.15)};
+	//SDL_Rect col = {0, 0, mWidth - (int)(mWidth*0.25), mHeight - (int)(mHeight*0.25)};
+	SDL_Rect col = {0, 0, mWidth, mHeight};
 	mCol.push_back(col);
 	return;
 }
@@ -113,8 +114,8 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 		mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY, 0);
 	}
 	for(unsigned int i = 0; i < mCol.size(); i++){//update collission boxes
-		mCol[i].x = mXpos + (int)(mWidth * 0.15);
-		mCol[i].y = mYpos + (int)(mHeight * 0.15);
+		mCol[i].x = mXpos;
+		mCol[i].y = mYpos;
 	}
 	return;
 }

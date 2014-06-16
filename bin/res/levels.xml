@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <level>
   <name>level1</name>
   <creator>Dickbutt</creator>
@@ -7,82 +6,41 @@
     <enemy>
       <sprite>res/testenemy.png</sprite>
       <bulletsprite>res/Bullet_02.png</bulletsprite>
-      <quantity>8</quantity>
-      <life>5</life>
+      <quantity>27</quantity>
+      <life>20</life>
       <speed>10</speed>
       <points>25</points>
       <spawnpoints>
-	<sp1>0.1,0.2</sp1>
-	<sp2>0.1,0.1</sp2>
-	<sp3>0.2,0.1</sp3>
-	<sp4>0.2,0.2</sp4>
-	<sp5>0.1,0.2</sp5>
-	<sp6>0.1,0.1</sp6>
-	<sp7>0.2,0.1</sp7>
-	<sp8>0.2,0.2</sp8>
+ <sp1>0.1,0.1</sp1>
+ <sp2>0.2,0.1</sp2>
+ <sp3>0.3,0.1</sp3>
+ <sp4>0.4,0.1</sp4>
+ <sp5>0.5,0.1</sp5>
+ <sp6>0.6,0.1</sp6>
+ <sp7>0.7,0.1</sp7>
+ <sp8>0.8,0.1</sp8>
+ <sp9>0.9,0.1</sp9>
+ <sp10>0.1,0.2</sp10>
+ <sp11>0.2,0.2</sp11>
+ <sp12>0.3,0.2</sp12>
+ <sp13>0.4,0.2</sp13>
+ <sp14>0.5,0.2</sp14>
+ <sp15>0.6,0.2</sp15>
+ <sp16>0.7,0.2</sp16>
+ <sp17>0.8,0.2</sp17>
+ <sp18>0.9,0.2</sp18>
+ <sp19>0.1,0.3</sp19>
+ <sp20>0.2,0.3</sp20>
+ <sp21>0.3,0.3</sp21>
+ <sp22>0.4,0.3</sp22>
+ <sp23>0.5,0.3</sp23>
+ <sp24>0.6,0.3</sp24>
+ <sp25>0.7,0.3</sp25>
+ <sp26>0.8,0.3</sp26>
+ <sp27>0.9,0.3</sp27>
       </spawnpoints>
       <direction>s,e,w,n</direction>
     </enemy>
     
   </enemies>
-</level> 
-<level>
-  <name>level2</name>
-  <creator>Dickbutt</creator>
-  <background>res/Stars_Background_lel.png</background>
-  <enemies>
-    <enemy>
-      <sprite>res/testenemy.png</sprite>
-      <bulletsprite>res/Bullet_03.png</bulletsprite>
-      <quantity>2</quantity>
-      <life>10</life>
-      <speed>10</speed>
-      <spawnpoints>
-	<sp1>0.1,0.2</sp1>
-	<sp2>0.1,0.1</sp2>
-      </spawnpoints>
-      <direction>s,e,w,n</direction>
-    </enemy>
-    
-  </enemies>
-</level> 
-  
-<!--<level>
-  <name>level2</name>
-  <creator>Dickbutt</creator>
-  <background>res/Stars_Background.png</background>
-  <enemies>
-    
-    <enemy>
-      <sprite>res/testenemy.png</sprite>
-      <bulletsprite>res/bullet.png</bulletsprite>
-      <number>4</number>
-      <life>3</life>
-      <speed>10</speed>
-      <spawnpoints>
-	<sp>50,50</sp>
-	<sp>100,50</sp>
-	<sp>50,100</sp>
-	<sp>100,100</sp>
-      </spawnpoints>
-      <direction>s,e,w,n</direction>
-    </enemy>
-    
-    <enemy>
-      <sprite>res/testenemy.png</sprite>
-      <bulletsprite>res/bullet.png</bulletsprite>
-      <number>4</number>
-      <life>3</life>
-      <speed>10</speed>
-      <spawnpoints>
-	<sp>50,50</sp>
-	<sp>100,50</sp>
-	<sp>50,100</sp>
-	<sp>100,100</sp>
-      </spawnpoints>
-      <direction>s,e,w,n</direction>
-    </enemy>
-    
-    </enemies>
-  </level> -->
-    
+</level>
