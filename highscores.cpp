@@ -44,10 +44,4 @@ void Highscores::highscores_view(SDL_Event *event, XmlHighscore *highsxml){
         SDL_PollEvent(event);
         if(event->type == SDL_KEYDOWN) return;
     }
-
-
-        /*frameTime = frameTimer.getTicks();
-		if(frameTime < 1000.f / MAX_FPS){
-			SDL_Delay(1000.f / (float)MAX_FPS - (float)frameTime);
-		}*/
 }

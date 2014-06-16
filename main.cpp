@@ -35,10 +35,8 @@ vector<Level* > Levels;
 //###############################################  Main
 int main(int argc, char *argv[]){
 	SDL_Event event;
-	int frameTime = 0, subMenu = 0;    //MBUp = 1;
-	//float FPS = 0;
+	int frameTime = 0, subMenu = 0;
 	bool quit = false;
-	//stringstream FPS_text;
 	int level = -1;             //zur levelauswahl zum speichern des rückgabewerts von levelselection
 	settings = new Settings;
 	SCREEN_HEIGHT = settings->get_resolution_height();
@@ -94,15 +92,10 @@ int main(int argc, char *argv[]){
 	highscores_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.5 - settings_button.getHeight() / 2);
 	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.7 - credits_button.getHeight() / 2);
 	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.9 - close_button.getHeight() / 2);
-	//fps.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
-	//PlayVideo();
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
-		//FPS = 1000.f / (float)frameTime;
-		//FPS_text.str("");
-		//FPS_text << FPS;
 		while(SDL_PollEvent(&event) != 0){
 			if(event.type == SDL_QUIT)quit = true;
 			else if(event.type == SDL_KEYDOWN){
@@ -112,21 +105,17 @@ int main(int argc, char *argv[]){
 					break;
 				}
 			}
-		}
-		//if(event.type == SDL_MOUSEBUTTONUP) MBUp = 1;           //wenn event Mousebutton up ist
-		//if(MBUp == 1){                                          //welcher button angeklickt wurde
-			if(play_button.handleEvent(&event) == 1) subMenu = 1;
-			if(settings_button.handleEvent(&event) == 1) subMenu = 2;
-			if(credits_button.handleEvent(&event) == 1) subMenu = 3;
-			if(close_button.handleEvent(&event) == 1) subMenu = 4;
-			if(highscores_button.handleEvent(&event) == 1) subMenu = 5;
-		}
+		}                                         //welcher button angeklickt wurde
+        if(play_button.handleEvent(&event) == 1) subMenu = 1;
+        if(settings_button.handleEvent(&event) == 1) subMenu = 2;
+        if(credits_button.handleEvent(&event) == 1) subMenu = 3;
+        if(close_button.handleEvent(&event) == 1) subMenu = 4;
+        if(highscores_button.handleEvent(&event) == 1) subMenu = 5;
         while(SDL_PollEvent(&event)){}
 		switch(subMenu){
 		case 0:
 			break;
 		case 1:
-			//MBUp = 0;
 
             levelsxml = new XmlDocument;
 
@@ -145,21 +134,17 @@ int main(int argc, char *argv[]){
 			subMenu = 0;
 			break;
 		case 2:
-			//MBUp = 0;
 			settings->settings_view(&event);
 			subMenu = 0;
 			break;
 		case 3:
-			//MBUp = 0;
 			credits.credits_view(&event);
 			subMenu = 0;
 			break;
 		case 4:
-			//MBUp = 0;
 			quit = true;
 			break;
         case 5:
-			MBUp = 0;
 			highscores.highscores_view(&event, highsxml);
 			subMenu = 0;
 			break;
@@ -176,7 +161,6 @@ int main(int argc, char *argv[]){
 		highscores_button.render();
 		credits_button.render();
 		close_button.render();
-		//fps.render(0);
 
 		SDL_RenderPresent(gRenderer);
 
