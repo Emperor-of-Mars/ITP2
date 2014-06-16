@@ -45,12 +45,16 @@ int main(int argc, char *argv[]){
 	LEFT_SCREEN_WIDTH = SCREEN_WIDTH/32*7;
 	RIGHT_SCREEN_WIDTH = SCREEN_WIDTH - SCREEN_WIDTH/32*7;
 
-    XmlDocument levelsxml;
+
 	Timer frameTimer;
 	Credits credits;
 	Highscores highscores;
 	Levelselection lvlselect;
+<<<<<<< HEAD
 	highsxml = new XmlHighscore();
+=======
+	XmlDocument *levelsxml = NULL;
+>>>>>>> f264714a24a8cdc577a3c915757677ce3be17a60
 	Texture buttonTexture, fps, Background;
 	Button play_button, settings_button, highscores_button, credits_button, close_button;
 	SDL_Color textColor = {255, 88, 88, 255};
@@ -69,8 +73,12 @@ int main(int argc, char *argv[]){
         !highscores_button.init(&buttonTexture, 225, "Highscores", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
 		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
+<<<<<<< HEAD
         !levelsxml.init("res/levels.xml") ||
         !highsxml->init("res/highscores.xml"))
+=======
+        !highsxml.init("res/highscores.xml"))
+>>>>>>> f264714a24a8cdc577a3c915757677ce3be17a60
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -78,17 +86,8 @@ int main(int argc, char *argv[]){
 	}
 //###############################################  Set stuff
 
-    Levels = levelsxml.getLevels();
 
-    //DEBUG
-//    for(unsigned int i = 0; i < Levels.size(); i++){
-//        cout << "Enemies in Level " << Levels[i]->getName() << ": ";
-//        for(unsigned int j = 0; j < Levels[i]->getEnemies().size(); j++){
-//            cout << "x ";
-//
-//        }
-//        cout << endl;
-//    }
+
 
 	buttonTexture.setBlendMode(SDL_BLENDMODE_BLEND);
 	play_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
@@ -103,7 +102,7 @@ int main(int argc, char *argv[]){
 	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.7 - credits_button.getHeight() / 2);
 	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.9 - close_button.getHeight() / 2);
 	//fps.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
-	PlayVideo();
+	//PlayVideo();
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
@@ -135,6 +134,19 @@ int main(int argc, char *argv[]){
 			break;
 		case 1:
 			MBUp = 0;
+
+            levelsxml = new XmlDocument;
+
+            if(!levelsxml->init("res/levels.xml")){
+                cout << "Failed to load resources!" << endl;
+                close_SDL();
+                return 1;
+            }
+
+            Levels = levelsxml->getLevels();
+
+			delete levelsxml;
+
 //			lvlselect.levelselection_view(&event);
 			if(run(&event, Levels[0]) == 1) quit = true;
 			subMenu = 0;
@@ -218,13 +230,15 @@ int run(SDL_Event *event, Level* lvl){
 //###############################################  Set stuff
 
     Enemies = lvl->getEnemies();
-    for(unsigned int i = 0; i < Enemies.size(); i++){
-        Enemies[i]->setCol(Enemies[i]->getX(), Enemies[i]->getY(), Enemies[i]->getWidth(), Enemies[i]->getHeight());
+    if(Enemies[0]){
+        for(unsigned int i = 0; i < Enemies.size(); i++){
+            Enemies[i]->setCol(Enemies[i]->getX(), Enemies[i]->getY(), Enemies[i]->getWidth(), Enemies[i]->getHeight());
+        }
     }
+
+
     player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
-
     //cout << "vor while in run" << endl;
-
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
@@ -245,6 +259,7 @@ int run(SDL_Event *event, Level* lvl){
 				}
 			}
 		}
+
 		str1.loadFromRenderedText(life.str().c_str(), textColor);
 		str2.loadFromRenderedText(score.str().c_str(), textColor);
 		player.handleEvent(event, frameTime);
@@ -259,6 +274,7 @@ int run(SDL_Event *event, Level* lvl){
                 enemyshots.push_back(enemyshots_temp[j]);
             }
         }
+
         //cout << "bewegen der schüsse" << endl;
 		for(unsigned int i = 0; i < shots.size(); i++){         //bewegen der schüsse
 			if(!shots[i]->move(frameTime)){   //wenn eine 0 zurückkommt, heißt das, der schuss ist aus dem spielfeld raus -> schuss wird gelöscht
@@ -267,6 +283,7 @@ int run(SDL_Event *event, Level* lvl){
 				shots.erase(shots.begin() + i);
 			}
 		}
+
         //cout << "bewegen der enemyschüsse" << endl;
 		for(unsigned int i = 0; i < enemyshots.size(); i++){
             if(!enemyshots[i]->move(frameTime)){   //wenn eine 0 zurückkommt, heißt das, der schuss ist aus dem spielfeld raus -> schuss wird gelöscht
@@ -343,6 +360,7 @@ int run(SDL_Event *event, Level* lvl){
     highsxml->writeScore("res/highscores.xml", player.getScore());
 
     //aufräumen
+
     cout << "aufräumen" << endl;
 	while(enemyshots.size() > 0){
         delete enemyshots[0];
@@ -351,6 +369,10 @@ int run(SDL_Event *event, Level* lvl){
 	while(shots.size() > 0){
         delete shots[0];
 		shots.erase(shots.begin());
+	}
+	while(Levels.size() > 0){
+        delete Levels[0];
+        Levels.erase(Levels.begin());
 	}
 	//shots.clear();
 	return state;
