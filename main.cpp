@@ -274,6 +274,7 @@ int run(SDL_Event *event, Level* lvl){
                 //cout << "shot out of screen: " << i << endl;
 				delete shots[i];
 				shots.erase(shots.begin() + i);
+				i--;
 			}
 		}
 
@@ -283,6 +284,7 @@ int run(SDL_Event *event, Level* lvl){
                 //cout << "shot out of screen: " << i << endl;
 				delete enemyshots[i];
 				enemyshots.erase(enemyshots.begin() + i);
+				i--;
 			}
 		}
 //###############################################  Collission detection
@@ -295,6 +297,7 @@ int run(SDL_Event *event, Level* lvl){
                     Explosions.push_back(Enemies[i]->explode());
                     delete Enemies[i];
                     Enemies.erase(Enemies.begin() + i);
+                    i--;
                 }
             }
         }
@@ -307,9 +310,10 @@ int run(SDL_Event *event, Level* lvl){
                     delete shots[i];
                     shots.erase(shots.begin() + i);
                     if(Enemies[j]->colHandle(5)){
-                        Explosions.push_back(Enemies[i]->explode());
+                        Explosions.push_back(Enemies[j]->explode());
                         delete Enemies[j];
                         Enemies.erase(Enemies.begin() + j);
+                        i--;
                     }
                     //cout << "shot collision with enemy: " << i << endl;
                 }
@@ -321,6 +325,7 @@ int run(SDL_Event *event, Level* lvl){
                 //cout << "schuss hat player getroffen: " << i << endl;
 				delete enemyshots[i];
 				enemyshots.erase(enemyshots.begin() + i);
+				i--;
 				if(player.colHandle(false)) quit = true;
             }
         }

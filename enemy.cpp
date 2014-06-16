@@ -32,10 +32,11 @@ Enemy::~Enemy(){
     for(unsigned int i = 0; i < mGun.size(); i++) delete mGun[i];
 }
 
-bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int frameAnimPause, float wSpawn, float hSpawn){
+bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int frameAnimPause, float wSpawn, float hSpawn, int points){
 
     mLife = life;
 	maxVel = velocity;
+    score = points;
 
     mXpos = LEFT_SCREEN_WIDTH + (SCREEN_WIDTH - LEFT_SCREEN_WIDTH) * wSpawn; //NEEDS XML VALUE
     mYpos = SCREEN_HEIGHT * hSpawn;  //NEEDS XML VALUE

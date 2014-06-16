@@ -14,7 +14,7 @@ class Enemy{
 		~Enemy();
         bool init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX,
                     float screenScaleY, int life, int velocity, unsigned int animationSpeed,
-                    float wSpawn, float hSpawn);
+                    float wSpawn, float hSpawn, int score);
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		void shoot();
@@ -30,7 +30,7 @@ class Enemy{
 		Explosion* explode();
 
 	private:
-        int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2], BulletFired;
+        int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2], BulletFired, score;
 		unsigned int frameAnimPause;
 		float mScaleX, mScaleY, mScreenScaleX, mScreenScaleY;
 		Timer curAnimFrame;
