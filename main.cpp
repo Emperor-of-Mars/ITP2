@@ -327,7 +327,7 @@ int run(SDL_Event *event, Level* lvl){
                     Explosions.push_back(Enemies[i]->explode());
                     delete Enemies[i];
                     Enemies.erase(Enemies.begin() + i);
-                    i--;
+                    break;
                 }
             }
         }
@@ -340,27 +340,29 @@ int run(SDL_Event *event, Level* lvl){
                     Explosions.push_back(shots[i]->explode());
                     delete shots[i];
                     shots.erase(shots.begin() + i);
-                    //i--;
                     if(Enemies[j]->colHandle(5, player)){
                         Explosions.push_back(Enemies[j]->explode());
                         delete Enemies[j];
                         Enemies.erase(Enemies.begin() + j);
-                        //j--;
                     }
                     cout << "shot collision with enemy: " << i << endl;
+                    break;
                 }
             }
 		}
-        //cout << "coll schuss von gegner" << endl;
-		/*for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
-			if(check_col(enemyshots[i]->getCol(), player->getCol())){
-                //cout << "schuss hat player getroffen: " << i << endl;
-				delete enemyshots[i];
-				enemyshots.erase(enemyshots.begin() + i);
-				i--;
-				if(player->colHandle(false)) quit = true;
+        cout << "coll schuss von gegner" << endl;
+        for(int i = 0; i < (int)Enemies.size(); i++){
+            enemyshots = Enemies[i]->getShots();
+            for(int j = 0; j < (int)enemyshots.size(); j++){
+                cout << "shot: " << j << "from enemy: " << i << endl;
+                if(check_col(enemyshots[j]->getCol(), player->getCol())){
+                    cout << "schuss hat player getroffen: " << j << endl;
+                    Enemies[i]->delShot(j);
+                    if(player->colHandle(false)) quit = true;
+                    break;
+                }
             }
-        }*/
+		}
 //###############################################  Rendering
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
@@ -414,10 +416,6 @@ int run(SDL_Event *event, Level* lvl){
     //aufräumen
 
     cout << "aufräumen" << endl;
-	/*while(enemyshots.size() > 0){
-        delete enemyshots[0];
-		enemyshots.erase(enemyshots.begin());
-	}*/
 	while(shots.size() > 0){
         delete shots[0];
 		shots.erase(shots.begin());
@@ -426,7 +424,6 @@ int run(SDL_Event *event, Level* lvl){
         delete Levels[0];
         Levels.erase(Levels.begin());
 	}
-	//shots.clear();
 	return state;
 }
 
