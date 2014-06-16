@@ -33,10 +33,11 @@ XmlHighscore highsxml;
 //###############################################  Main
 int main(int argc, char *argv[]){
 	SDL_Event event;
-	int frameTime = 0, subMenu = 0, MBUp = 1;
+	int frameTime = 0, subMenu = 0;    //MBUp = 1;
 	//float FPS = 0;
 	bool quit = false;
 	//stringstream FPS_text;
+	int level = -1;             //zur levelauswahl zum speichern des rückgabewerts von levelselection
 	settings = new Settings;
 	SCREEN_HEIGHT = settings->get_resolution_height();
 	SCREEN_WIDTH = settings->get_resolution_width();
@@ -105,19 +106,19 @@ int main(int argc, char *argv[]){
 				}
 			}
 		}
-		if(event.type == SDL_MOUSEBUTTONUP) MBUp = 1;           //wenn event Mousebutton up ist
-		if(MBUp == 1){                                          //welcher button angeklickt wurde
+		//if(event.type == SDL_MOUSEBUTTONUP) MBUp = 1;           //wenn event Mousebutton up ist
+		//if(MBUp == 1){                                          //welcher button angeklickt wurde
 			if(play_button.handleEvent(&event) == 1) subMenu = 1;
 			if(settings_button.handleEvent(&event) == 1) subMenu = 2;
 			if(credits_button.handleEvent(&event) == 1) subMenu = 3;
 			if(close_button.handleEvent(&event) == 1) subMenu = 4;
-		}
+		//}
         while(SDL_PollEvent(&event)){}
 		switch(subMenu){
 		case 0:
 			break;
 		case 1:
-			MBUp = 0;
+			//MBUp = 0;
 
             levelsxml = new XmlDocument;
 
@@ -131,22 +132,22 @@ int main(int argc, char *argv[]){
 
 			delete levelsxml;
 
-//			lvlselect.levelselection_view(&event);
-			if(run(&event, Levels[0]) == 1) quit = true;
+			level = lvlselect.levelselection_view(&event, Levels.size());
+			if(run(&event, Levels[level]) == 1) quit = true;
 			subMenu = 0;
 			break;
 		case 2:
-			MBUp = 0;
+			//MBUp = 0;
 			settings->settings_view(&event);
 			subMenu = 0;
 			break;
 		case 3:
-			MBUp = 0;
+			//MBUp = 0;
 			credits.credits_view(&event);
 			subMenu = 0;
 			break;
 		case 4:
-			MBUp = 0;
+			//MBUp = 0;
 			quit = true;
 			break;
 		}
