@@ -330,6 +330,8 @@ int run(SDL_Event *event, Level* lvl){
 		Background->render(1,0,scrollingOffset - SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		Background->render(1,0,scrollingOffset, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		player->render();
+		str1.render();
+		str2.render();
         for(unsigned int i = 0; i < Enemies.size(); i++){
             Enemies[i]->render();
         }
