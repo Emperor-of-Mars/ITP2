@@ -5,6 +5,7 @@
 #include "shot.h"
 #include "gun.h"
 #include "explosion.h"
+#include "player.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ class Enemy{
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		void shoot();
-		bool colHandle(int dam);
+		bool colHandle(int dam, Player *player);
 		vector<SDL_Rect> *getCol();
 		vector<Shot* > getShots();
         void render();

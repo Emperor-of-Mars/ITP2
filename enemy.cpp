@@ -1,4 +1,3 @@
-
 #include "enemy.h"
 
 using namespace std;
@@ -108,9 +107,12 @@ void Enemy::shoot(){
     }*/
 }
 
-bool Enemy::colHandle(int dam){
+bool Enemy::colHandle(int dam,Player *player){
     mLife -= dam;
-    if(mLife <= 0) return true;
+    if(mLife <= 0)  {
+        player->incScore(score);
+        return true;
+    }
     else return false;
 }
 

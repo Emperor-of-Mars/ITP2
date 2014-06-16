@@ -20,6 +20,8 @@ class Player{
 		int getHeight();
 		int getLife();
 		unsigned int getScore();
+		void incScore(unsigned int i);
+
 	private:
 		int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2];
 		unsigned int frameAnimPause, score;
