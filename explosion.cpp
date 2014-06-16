@@ -18,7 +18,7 @@ bool Explosion::render(vector<Texture*> *Boomanimation){
 
     if(framecounter == 0) return true;
 
-    if(framecounter >= Boomanimation->size()) return false;
+    if(framecounter >= (int)Boomanimation->size()) return false;
 
     (*Boomanimation)[framecounter]->render(1, xPos, yPos, xScale, yScale);
 
