@@ -25,7 +25,7 @@ int Levelselection::levelselection_view(SDL_Event *event, int anzahl){
 		return -1;
 	}
 
-    for(int i = 0; i < 2; i++){     //die texte für level 1 level 2 usw werden erstellt
+    for(int i = 0; i < anzahl; i++){     //die texte für level 1 level 2 usw werden erstellt
         text.push_back(level_text);
         temp_text.str("");
         temp_text << i+1;
@@ -33,7 +33,7 @@ int Levelselection::levelselection_view(SDL_Event *event, int anzahl){
     }
     t_button.setBlendMode(SDL_BLENDMODE_BLEND);
     //cout << "debug levelselection: anzahl: " << anzahl << endl;
-    for(int i = 0; i < 2; i++){         //buttons werden erstellt
+    for(int i = 0; i < anzahl; i++){         //buttons werden erstellt
         buttons.push_back(new Button);
         buttons[i]->init(&t_button, 225, text[i].c_str(), textColor);
         buttons[i]->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
@@ -75,7 +75,7 @@ int Levelselection::levelselection_view(SDL_Event *event, int anzahl){
 
         t_background.render(2);
 
-        for(int i = 0; i < 2; i++){             //rendern der buttons
+        for(int i = 0; i < anzahl; i++){             //rendern der buttons
             buttons[i]->render();
         }
 

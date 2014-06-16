@@ -26,15 +26,12 @@ void Credits::credits_view(SDL_Event *event){
 	t_credits_betreuer.loadFromRenderedText(credits_betreuer.c_str(), textColor);
 	t_credits_teamleader.loadFromRenderedText(credits_teamleader.c_str(), textColor);
 	t_credits_programmer.loadFromRenderedText(credits_programmer.c_str(), textColor);
-	t_credits_programmer_name.loadFromRenderedText("Martin Schwarz", textColor);
 	t_credits_betreuer.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
 	t_credits_teamleader.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
 	t_credits_programmer.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
-	t_credits_programmer_name.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
 	t_credits_betreuer.setPosition((float)SCREEN_WIDTH * 0.1, (float)SCREEN_HEIGHT * 0.1);
 	t_credits_teamleader.setPosition((float)SCREEN_WIDTH * 0.1, (float)SCREEN_HEIGHT * 0.25);
 	t_credits_programmer.setPosition((float)SCREEN_WIDTH * 0.1, (float)SCREEN_HEIGHT * 0.4);
-	t_credits_programmer_name.setPosition((float)SCREEN_WIDTH * 0.3, (float)SCREEN_HEIGHT * 0.5);
 
     backToMenu.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
     backToMenu.setPosition(SCREEN_WIDTH *0.1 - backToMenu.getWidth() * 0.5, SCREEN_HEIGHT * 0.8 - backToMenu.getHeight() / 2);
@@ -60,6 +57,9 @@ void Credits::credits_view(SDL_Event *event){
     t_credits_betreuer.render();
     t_credits_teamleader.render();
     t_credits_programmer.render();
+	t_credits_programmer_name.loadFromRenderedText("Martin Schwarz", textColor);
+	t_credits_programmer_name.setPosition((float)SCREEN_WIDTH * 0.3, (float)SCREEN_HEIGHT * 0.5);
+	t_credits_programmer_name.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 2.5, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 3);
     t_credits_programmer_name.render();
     t_credits_programmer_name.loadFromRenderedText("Erik Skalla", textColor);
     t_credits_programmer_name.setPosition((float)SCREEN_WIDTH * 0.3, (float)SCREEN_HEIGHT * 0.6);
