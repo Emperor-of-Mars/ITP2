@@ -22,7 +22,7 @@ Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int di
 
 bool Shot::move(float frameTime){
 	if(Direction == 0) mYpos += maxVel * ((frameTime) / 10.f * mScaleY);      //schießt nach oben
-	else if(Direction == 1) mYpos -= maxVel * ((frameTime) / 10.f * mScaleY);     //schießt nach unten
+	else if(Direction == 1) mYpos -= maxVel * ((frameTime) / 15.f * mScaleY);     //schießt nach unten
 	for(unsigned int i = 0; i < mCol.size(); i++){
 		mCol[i].x = mXpos + mWidth/2;
 		mCol[i].y = mYpos;
