@@ -105,10 +105,10 @@ void Texture::setPosition(int x, int y){
 
 void Texture::render(int flags, int x, int y, float sx, float sy, SDL_Rect *clip, double angle, SDL_Point* center, SDL_RendererFlip flip){
 	SDL_Rect temprenderQuad = {renderQuad.x, renderQuad.y, (int)(renderQuad.w * mScaleX), (int)(renderQuad.h * mScaleY)};
-	if(flags == 1)temprenderQuad = {x, y, (int)(renderQuad.w * sx), (int)(renderQuad.h * sy)};
+	if(flags == 1)temprenderQuad = {x, y, (int)(renderQuad.w * sx), (int)(renderQuad.h * sy)};//set position and size from function parameters
 	SDL_Rect *pRenderQuad = NULL;
-	if(flags <= 1)pRenderQuad = &temprenderQuad;
-	if(clip != 0){
+	if(flags <= 1)pRenderQuad = &temprenderQuad;//apply renderquad
+	if(clip != 0){//calculate clip
 		temprenderQuad.w = clip->w * sx;
 		temprenderQuad.h = clip->h * sy;
 	}
