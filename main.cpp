@@ -12,6 +12,8 @@
 #include "xmlLoader.h"
 #include "level.h"
 #include "levelselection.h"
+#include "explosion.h"
+#include "highscores.h"
 
 using namespace std;
 
@@ -26,9 +28,9 @@ SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 TTF_Font *gFont = NULL;
 Settings *settings = NULL;
+XmlHighscore *highsxml = NULL;
 vector<Level* > Levels;
-vector<unsigned int> TopScores;
-XmlHighscore highsxml;
+
 
 //###############################################  Main
 int main(int argc, char *argv[]){
@@ -47,10 +49,12 @@ int main(int argc, char *argv[]){
 
 	Timer frameTimer;
 	Credits credits;
+	Highscores highscores;
 	Levelselection lvlselect;
+	highsxml = new XmlHighscore();
 	XmlDocument *levelsxml = NULL;
 	Texture buttonTexture, fps, Background;
-	Button play_button, settings_button, credits_button, close_button;
+	Button play_button, settings_button, highscores_button, credits_button, close_button;
 	SDL_Color textColor = {255, 88, 88, 255};
 //###############################################  Initialize
 	if(!init_SDL()){
@@ -64,9 +68,10 @@ int main(int argc, char *argv[]){
 		!buttonTexture.loadFromFile("res/button.png") ||
 		!play_button.init(&buttonTexture, 225, "Play", textColor) ||
 		!settings_button.init(&buttonTexture, 225, "Settings", textColor) ||
+        !highscores_button.init(&buttonTexture, 225, "Highscores", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
 		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
-        !highsxml.init("res/highscores.xml"))
+        !highsxml->init("res/highscores.xml"))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -80,13 +85,15 @@ int main(int argc, char *argv[]){
 	buttonTexture.setBlendMode(SDL_BLENDMODE_BLEND);
 	play_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	settings_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+	highscores_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	credits_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	close_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	Background.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
-	play_button.setPosition(SCREEN_WIDTH * 0.5 - play_button.getWidth() / 2, SCREEN_HEIGHT * 0.2 - play_button.getHeight() / 2);
-	settings_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.4 - settings_button.getHeight() / 2);
-	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.6 - credits_button.getHeight() / 2);
-	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.8 - close_button.getHeight() / 2);
+	play_button.setPosition(SCREEN_WIDTH * 0.5 - play_button.getWidth() / 2, SCREEN_HEIGHT * 0.1 - play_button.getHeight() / 2);
+	settings_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.3 - settings_button.getHeight() / 2);
+	highscores_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.5 - settings_button.getHeight() / 2);
+	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.7 - credits_button.getHeight() / 2);
+	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.9 - close_button.getHeight() / 2);
 	//fps.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	//PlayVideo();
 //###############################################  Gameloop
@@ -112,7 +119,8 @@ int main(int argc, char *argv[]){
 			if(settings_button.handleEvent(&event) == 1) subMenu = 2;
 			if(credits_button.handleEvent(&event) == 1) subMenu = 3;
 			if(close_button.handleEvent(&event) == 1) subMenu = 4;
-		//}
+			if(highscores_button.handleEvent(&event) == 1) subMenu = 5;
+		}
         while(SDL_PollEvent(&event)){}
 		switch(subMenu){
 		case 0:
@@ -150,6 +158,11 @@ int main(int argc, char *argv[]){
 			//MBUp = 0;
 			quit = true;
 			break;
+        case 5:
+			MBUp = 0;
+			highscores.highscores_view(&event, highsxml);
+			subMenu = 0;
+			break;
 		}
 //###############################################  Rendering
 		//fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
@@ -160,6 +173,7 @@ int main(int argc, char *argv[]){
 		Background.render(2);
 		play_button.render();
 		settings_button.render();
+		highscores_button.render();
 		credits_button.render();
 		close_button.render();
 		//fps.render(0);
@@ -191,16 +205,17 @@ int run(SDL_Event *event, Level* lvl){
 	Timer frameTimer;
 	Texture str1, str2, player_ship, gun_tex;
 	Texture* Background;
-	Player player;
+	Player *player = new Player;
 	vector<Shot*> shots;
 	vector<Shot*> enemyshots;
     vector<Shot*> enemyshots_temp;
 	vector<Enemy* > Enemies;
+	vector<Explosion* > Explosions;
 	Background = lvl->getBackground();
 	if(!Background ||
 		!player_ship.loadFromFile("res/player_01.png") ||
 		!gun_tex.loadFromFile("res/Bullet_01.png") ||
-		!player.init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
+		!player->init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -216,16 +231,16 @@ int run(SDL_Event *event, Level* lvl){
     }
 
 
-    player.setCol(player.getWidth() * 0.15, player.getHeight() * 0.1, player.getWidth() * 0.7, player.getHeight() * 0.6);
+    player->setCol(player->getWidth() * 0.15, player->getHeight() * 0.1, player->getWidth() * 0.7, player->getHeight() * 0.6);
     //cout << "vor while in run" << endl;
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
 		life.str("");
-        life << "Leben: " << player.getLife();
+        life << "Leben: " << player->getLife();
 		score.str("");
-		score << "Score: " << player.getScore();
+		score << "Score: " << player->getScore();
 //###############################################  Input handling
 		while(SDL_PollEvent(event) != 0){
 			if(event->type == SDL_QUIT)quit = true;
@@ -241,7 +256,7 @@ int run(SDL_Event *event, Level* lvl){
 
 		str1.loadFromRenderedText(life.str().c_str(), textColor);
 		str2.loadFromRenderedText(score.str().c_str(), textColor);
-		player.handleEvent(event, frameTime);
+		player->handleEvent(event, frameTime);
 
         /*for(unsigned int i = 0; i < Enemies.size(); i++){       //alle enemies schießen lassen
             Enemies[i]->shoot();
@@ -260,6 +275,7 @@ int run(SDL_Event *event, Level* lvl){
                 //cout << "shot out of screen: " << i << endl;
 				delete shots[i];
 				shots.erase(shots.begin() + i);
+				i--;
 			}
 		}
 
@@ -269,17 +285,20 @@ int run(SDL_Event *event, Level* lvl){
                 //cout << "shot out of screen: " << i << endl;
 				delete enemyshots[i];
 				enemyshots.erase(enemyshots.begin() + i);
+				i--;
 			}
 		}
 //###############################################  Collission detection
         //cout << "coll player gegner" << endl;
 		for(unsigned int i = 0; i < Enemies.size(); i++){           //collision-detection für kollision zwischen player und gegner
-            if(check_col(player.getCol(), Enemies[i]->getCol())){
-                if(player.colHandle(true)) quit = true;
-                if(Enemies[i]->colHandle(50)){
+            if(check_col(player->getCol(), Enemies[i]->getCol())){
+                if(player->colHandle(true)) quit = true;
+                if(Enemies[i]->colHandle(50,player)){
                     //cout << "collision zwischen player und enemy: " << i << endl;
+                    Explosions.push_back(Enemies[i]->explode());
                     delete Enemies[i];
                     Enemies.erase(Enemies.begin() + i);
+                    i--;
                 }
             }
         }
@@ -291,9 +310,11 @@ int run(SDL_Event *event, Level* lvl){
                     //cout << "schuss: " << i << " hat gegner: " << j << " getroffen" << endl;
                     delete shots[i];
                     shots.erase(shots.begin() + i);
-                    if(Enemies[j]->colHandle(5)){
+                    if(Enemies[j]->colHandle(5, player)){
+                        Explosions.push_back(Enemies[j]->explode());
                         delete Enemies[j];
                         Enemies.erase(Enemies.begin() + j);
+                        i--;
                     }
                     //cout << "shot collision with enemy: " << i << endl;
                 }
@@ -301,11 +322,12 @@ int run(SDL_Event *event, Level* lvl){
 		}
         //cout << "coll schuss von gegner" << endl;
 		for(unsigned int i = 0; i < enemyshots.size(); i++){         //collision-detection für schuß von enemy
-			if(check_col(enemyshots[i]->getCol(), player.getCol())){
+			if(check_col(enemyshots[i]->getCol(), player->getCol())){
                 //cout << "schuss hat player getroffen: " << i << endl;
 				delete enemyshots[i];
 				enemyshots.erase(enemyshots.begin() + i);
-				if(player.colHandle(false)) quit = true;
+				i--;
+				if(player->colHandle(false)) quit = true;
             }
         }
 //###############################################  Rendering
@@ -315,7 +337,7 @@ int run(SDL_Event *event, Level* lvl){
 		Background->render(2);
 		str1.render(1,20,100);
 		str2.render(1,20,150);
-		player.render();
+		player->render();
         for(unsigned int i = 0; i < Enemies.size(); i++){
             Enemies[i]->render();
         }
@@ -327,6 +349,15 @@ int run(SDL_Event *event, Level* lvl){
 		for(unsigned int i = 0; i < enemyshots.size(); i++){
             enemyshots[i]->render();
 		}
+
+		for(unsigned int i = 0; i < Explosions.size(); i++){
+            if(!Explosions[i]->render()){
+                delete Explosions[i];
+                Explosions.erase(Explosions.begin()+i);
+                i--;
+            }
+		}
+
 		SDL_RenderPresent(gRenderer);
 
 		frameTime = frameTimer.getTicks();
@@ -336,7 +367,7 @@ int run(SDL_Event *event, Level* lvl){
 		//cout << "nach rendering" << endl;
 	}
 //###############################################  Gameloop end
-    highsxml.writeScore("res/highscores.xml", player.getScore());
+    highsxml->writeScore("res/highscores.xml", player->getScore());
 
     //aufräumen
 

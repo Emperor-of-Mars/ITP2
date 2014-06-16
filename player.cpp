@@ -141,6 +141,10 @@ unsigned int Player::getScore() {
     return score;
 }
 
+void Player::incScore(unsigned int i) {
+    score = score + i;
+}
+
 vector<SDL_Rect> *Player::getCol(){
 	return &mCol;
 }

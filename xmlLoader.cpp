@@ -34,7 +34,7 @@ bool XmlDocument::init(string location){
 
         for (pugi::xml_node enemy = level.child("enemies").first_child(); enemy; enemy = enemy.next_sibling()) {
 
-            int maxVel, mLife;
+            int maxVel, mLife, mPoints;
 
 
             //DEBUG
@@ -52,6 +52,7 @@ bool XmlDocument::init(string location){
 
                     mLife = strtol(enemy.child_value("life"), NULL, 10);
                     maxVel = strtol(enemy.child_value("speed"), NULL, 10);
+                    mPoints = strtol(enemy.child_value("points"), NULL, 10);
 
                     float wSpawn, hSpawn;
                     stringstream ss;
@@ -78,7 +79,7 @@ bool XmlDocument::init(string location){
                                 (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
                                 (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
                                 (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20,
-                                wSpawn, hSpawn)){
+                                wSpawn, hSpawn, mPoints)){
 
                                     cout << "Failed initiating enemy" << endl;
                                     return false;
@@ -140,20 +141,22 @@ bool XmlHighscore::init(string location){
     return true;
 }
 
-void XmlHighscore::showScore(){
+int XmlHighscore::showScore(int i){
     int scorenumber = 0;
     int maxscore = numeric_limits<int>::max();
     int minscore = 0;
     int value = 0;
 
-    for (scorenumber = 0; scorenumber<10; scorenumber++) {
+    for (scorenumber = 0; scorenumber<=i; scorenumber++) {
+        minscore = 0;
         for (pugi::xml_node score = doc.first_child(); score; score = score.next_sibling()) {
-            value = atoi(score.value());
-            if(minscore <= value && minscore < maxscore) minscore = value;
+            value = atoi(score.child_value());
+            if(minscore < value && value < maxscore) minscore = value;
         }
-    if (maxscore > minscore) maxscore = minscore;
-    scorenumber++;
+        if (maxscore > minscore) maxscore = minscore;
+        cout << "I " << i << endl << "scorenumber " << scorenumber << endl << "maxscore " << maxscore << endl << "min " << minscore << endl;
     }
+    return maxscore;
 }
 
 void XmlHighscore::writeScore(string location, int score){
