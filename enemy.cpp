@@ -186,8 +186,8 @@ bool Enemy::movement(int frameTime){
     }
 
     for(unsigned int i = 0; i < mCol.size(); i++){//update collission boxes
-		mCol[i].x = mXpos + (int)(mWidth * mScreenScaleX);
-		mCol[i].y = mYpos + (int)(mHeight * mScreenScaleY);
+		mCol[i].point.x = mXpos + (int)(mWidth * mScreenScaleX);
+		mCol[i].point.y = mYpos + (int)(mHeight * mScreenScaleY);
 	}
 	return false;
 }

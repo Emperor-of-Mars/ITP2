@@ -11,7 +11,7 @@ class Shot{
 		Shot(Texture *tex, int posX, int posY, float sX = 1, float sY = 1, int vel = 10, int dir = 10);
 		void setCol(int x, int y, int w, int h);
 		bool move(float frameTime);
-		vector<SDL_Rect> *getCol();
+		vector<CollisionBox> *getCol();
 		void render();
 		int getDamage();
 		Explosion* explode();
@@ -21,7 +21,7 @@ class Shot{
 		Timer curAnimFrame;
 		SDL_Rect clip;
 		Texture *mTexture;
-		vector<SDL_Rect> mCol;
+		vector<CollisionBox> mCol;
 
 };
 

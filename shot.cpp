@@ -18,14 +18,15 @@ Shot::Shot(Texture *tex, int posX, int posY, float sX, float sY, int vel, int di
 	mHeight = tex->getHeight();
 	clip = {0, 0, mWidth, mHeight};
 	curAnimFrame.start();
+    setCol((int)(mWidth*0.20), (int)(mHeight*0.15), (int)(mWidth*0.60), (int)(mHeight*0.70));
 }
 
 bool Shot::move(float frameTime){
 	if(Direction == 0) mYpos += maxVel * ((frameTime) / 10.f * mScaleY);      //schießt nach oben
 	else if(Direction == 1) mYpos -= maxVel * ((frameTime) / 15.f * mScaleY);     //schießt nach unten
 	for(unsigned int i = 0; i < mCol.size(); i++){
-		mCol[i].x = mXpos + mWidth/2;
-		mCol[i].y = mYpos;
+		mCol[i].point.x = mXpos + mWidth/2;
+		mCol[i].point.y = mYpos;
 	}
 	if((mYpos <= (0-mHeight)) || (mYpos > (SCREEN_HEIGHT+mHeight)))return false;
 	else return true;
@@ -37,12 +38,14 @@ void Shot::render(){
 }
 
 void Shot::setCol(int x, int y, int w, int h){
-	SDL_Rect col = {x, y, w, h};
+	CollisionBox col;
+	col.box = {x, y, w, h};
+	col.point = {0, 0};
 	mCol.push_back(col);
 	return;
 }
 
-vector<SDL_Rect> *Shot::getCol(){
+vector<CollisionBox> *Shot::getCol(){
 	return &mCol;
 }
 
