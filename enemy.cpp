@@ -144,7 +144,6 @@ Explosion* Enemy::explode(){
 bool Enemy::movement(int frameTime){
 
     int frameLenght = maxVel * ((frameTime) / 10.f);
-
     int index = movemodulo%movements.size();
 
     switch((int)movements[index][0]){
