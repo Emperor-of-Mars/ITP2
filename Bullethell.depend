@@ -491,13 +491,14 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402906941 source:/home/stefan/ITP2/enemy.cpp
+1402916518 source:/home/stefan/ITP2/enemy.cpp
 	"enemy.h"
 
-1402906941 /home/stefan/ITP2/enemy.h
+1402916371 /home/stefan/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
+	"explosion.h"
 
 1402906941 /home/stefan/ITP2/shot.h
 	"bullethell.h"
@@ -559,7 +560,7 @@
 1402568906 source:/home/stefan/ITP2/timer.cpp
 	"timer.h"
 
-1402911571 source:/home/stefan/ITP2/main.cpp
+1402916892 source:/home/stefan/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -567,6 +568,7 @@
 	"xmlLoader.h"
 	"level.h"
 	"levelselection.h"
+	"explosion.h"
 
 1402860408 /home/stefan/ITP2/xmlLoader.h
 	"./pugixml/pugixml.hpp"
@@ -799,22 +801,22 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402853272 source:/home/kibbles/GIT/ITP2/enemy.cpp
+1402914980 source:/home/kibbles/GIT/ITP2/enemy.cpp
 	"enemy.h"
 
-1402853300 /home/kibbles/GIT/ITP2/enemy.h
+1402876635 /home/kibbles/GIT/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
 
-1402847041 /home/kibbles/GIT/ITP2/shot.h
+1402876635 /home/kibbles/GIT/ITP2/shot.h
 	"bullethell.h"
 
-1402847041 /home/kibbles/GIT/ITP2/gun.h
+1402876635 /home/kibbles/GIT/ITP2/gun.h
 	"bullethell.h"
 	"shot.h"
 
-1402851788 source:/home/kibbles/GIT/ITP2/gun.cpp
+1402876635 source:/home/kibbles/GIT/ITP2/gun.cpp
 	"gun.h"
 
 1402847041 source:/home/kibbles/GIT/ITP2/level.cpp
@@ -830,7 +832,7 @@
 1402847041 /home/kibbles/GIT/ITP2/levelselection.h
 	"bullethell.h"
 
-1402861057 source:/home/kibbles/GIT/ITP2/main.cpp
+1402911666 source:/home/kibbles/GIT/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -838,14 +840,15 @@
 	"xmlLoader.h"
 	"level.h"
 	"levelselection.h"
+	"highscores.h"
 
 1402847041 /home/kibbles/GIT/ITP2/settings.h
 
-1402847428 /home/kibbles/GIT/ITP2/player.h
+1402876635 /home/kibbles/GIT/ITP2/player.h
 	"shot.h"
 	"gun.h"
 
-1402848507 /home/kibbles/GIT/ITP2/xmlLoader.h
+1402909373 /home/kibbles/GIT/ITP2/xmlLoader.h
 	"./pugixml/pugixml.hpp"
 	"./pugixml/pugiconfig.hpp"
 	"bullethell.h"
@@ -861,7 +864,7 @@
 
 1402847041 /home/kibbles/GIT/ITP2/pugixml/pugiconfig.hpp
 
-1402851594 source:/home/kibbles/GIT/ITP2/player.cpp
+1402876635 source:/home/kibbles/GIT/ITP2/player.cpp
 	"player.h"
 	"gun.h"
 
@@ -886,7 +889,7 @@
 	"settings.h"
 	<fstream>
 
-1402856132 source:/home/kibbles/GIT/ITP2/shot.cpp
+1402876635 source:/home/kibbles/GIT/ITP2/shot.cpp
 	"shot.h"
 
 1402847041 source:/home/kibbles/GIT/ITP2/texture.cpp
@@ -895,7 +898,7 @@
 1402847041 source:/home/kibbles/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402848558 source:/home/kibbles/GIT/ITP2/xmlLoader.cpp
+1402913012 source:/home/kibbles/GIT/ITP2/xmlLoader.cpp
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"
@@ -923,4 +926,20 @@
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"
+
+<<<<<<< HEAD
+1402916847 /home/stefan/ITP2/explosion.h
+
+1402917315 source:/home/stefan/ITP2/explosion.cpp
+	"explosion.h"
+	"texture.h"
+=======
+1402912243 source:/home/kibbles/GIT/ITP2/highscores.cpp
+	"highscores.h"
+	<cstdlib>
+
+1402911201 /home/kibbles/GIT/ITP2/highscores.h
+	"bullethell.h"
+	"xmlLoader.h"
+>>>>>>> 66b5f2a62ed65dfe6aeb69cb92162ddb3c175207
 

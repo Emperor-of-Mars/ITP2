@@ -30,39 +30,6 @@ Enemy::Enemy(){
 
 Enemy::~Enemy(){
     for(unsigned int i = 0; i < mGun.size(); i++) delete mGun[i];
-    Texture frame;
-	stringstream file;
-	string num;
-	int frameTime = 0;
-	Timer frameTimer, tim;
-	tim.start();
-	int i = 1;
-	while(1){
-		frameTimer.start();
-		file << i;
-		file >> num;
-		file.str("");
-		file.clear();
-		while(num.size() < 4) num.insert(0, "0");
-		file << "res/Explosion/" << num << ".png";
-		//cout << file.str() << endl;
-		if(!frame.loadFromFile(file.str().c_str())) break;
-		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
-		SDL_RenderClear(gRenderer);
-		frame.render(2);
-		SDL_RenderPresent(gRenderer);
-		file.str("");
-		num = "";
-		file.clear();
-		i++;
-		frameTime = frameTimer.getTicks();
-		if(frameTime < 1000.f / 25){
-			//cout << 1000.f / (float)25 - (float)frameTime << endl;
-			SDL_Delay(1000.f / (float)25 - (float)frameTime);
-		}
-	}
-	//cout << tim.getTicks() << endl;
-	return;
 }
 
 bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX, float screenScaleY, int life, int velocity, unsigned int frameAnimPause, float wSpawn, float hSpawn){
@@ -146,5 +113,15 @@ bool Enemy::colHandle(int dam){
     else return false;
 }
 
+Explosion* Enemy::explode(){
 
+    int exXpos, exYpos;
+	exXpos = mXpos - clip.w/2;
+    exYpos = mYpos - clip.h/2;
+
+	Explosion *neue = new Explosion(exXpos, exYpos, mScaleX*0.5, mScaleY*0.5);
+
+	return neue;
+
+}
 

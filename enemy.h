@@ -4,6 +4,7 @@
 #include "bullethell.h"
 #include "shot.h"
 #include "gun.h"
+#include "explosion.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ class Enemy{
 		int getWidth();
 		int getHeight();
 		int getLife();
+		Explosion* explode();
+
 	private:
         int maxVel, mLife, mWidth, mHeight, mXpos, mYpos, SpritePos[2], BulletFired;
 		unsigned int frameAnimPause;

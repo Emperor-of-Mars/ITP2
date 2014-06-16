@@ -12,6 +12,8 @@
 #include "xmlLoader.h"
 #include "level.h"
 #include "levelselection.h"
+#include "explosion.h"
+#include "highscores.h"
 
 using namespace std;
 
@@ -26,9 +28,10 @@ SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
 TTF_Font *gFont = NULL;
 Settings *settings = NULL;
+XmlHighscore *highsxml = NULL;
 vector<Level* > Levels;
 vector<unsigned int> TopScores;
-XmlHighscore highsxml;
+
 
 //###############################################  Main
 int main(int argc, char *argv[]){
@@ -46,10 +49,12 @@ int main(int argc, char *argv[]){
 
 	Timer frameTimer;
 	Credits credits;
+	Highscores highscores;
 	Levelselection lvlselect;
+	highsxml = new XmlHighscore();
 	XmlDocument *levelsxml = NULL;
 	Texture buttonTexture, fps, Background;
-	Button play_button, settings_button, credits_button, close_button;
+	Button play_button, settings_button, highscores_button, credits_button, close_button;
 	SDL_Color textColor = {255, 88, 88, 255};
 //###############################################  Initialize
 	if(!init_SDL()){
@@ -63,9 +68,10 @@ int main(int argc, char *argv[]){
 		!buttonTexture.loadFromFile("res/button.png") ||
 		!play_button.init(&buttonTexture, 225, "Play", textColor) ||
 		!settings_button.init(&buttonTexture, 225, "Settings", textColor) ||
+        !highscores_button.init(&buttonTexture, 225, "Highscores", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
 		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
-        !highsxml.init("res/highscores.xml"))
+        !highsxml->init("res/highscores.xml"))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
@@ -79,13 +85,15 @@ int main(int argc, char *argv[]){
 	buttonTexture.setBlendMode(SDL_BLENDMODE_BLEND);
 	play_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	settings_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+	highscores_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	credits_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	close_button.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	Background.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
-	play_button.setPosition(SCREEN_WIDTH * 0.5 - play_button.getWidth() / 2, SCREEN_HEIGHT * 0.2 - play_button.getHeight() / 2);
-	settings_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.4 - settings_button.getHeight() / 2);
-	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.6 - credits_button.getHeight() / 2);
-	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.8 - close_button.getHeight() / 2);
+	play_button.setPosition(SCREEN_WIDTH * 0.5 - play_button.getWidth() / 2, SCREEN_HEIGHT * 0.1 - play_button.getHeight() / 2);
+	settings_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.3 - settings_button.getHeight() / 2);
+	highscores_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.5 - settings_button.getHeight() / 2);
+	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.7 - credits_button.getHeight() / 2);
+	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.9 - close_button.getHeight() / 2);
 	//fps.setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 	//PlayVideo();
 //###############################################  Gameloop
@@ -111,6 +119,7 @@ int main(int argc, char *argv[]){
 			if(settings_button.handleEvent(&event) == 1) subMenu = 2;
 			if(credits_button.handleEvent(&event) == 1) subMenu = 3;
 			if(close_button.handleEvent(&event) == 1) subMenu = 4;
+			if(highscores_button.handleEvent(&event) == 1) subMenu = 5;
 		}
         while(SDL_PollEvent(&event)){}
 		switch(subMenu){
@@ -149,6 +158,11 @@ int main(int argc, char *argv[]){
 			MBUp = 0;
 			quit = true;
 			break;
+        case 5:
+			MBUp = 0;
+			highscores.highscores_view(&event, highsxml);
+			subMenu = 0;
+			break;
 		}
 //###############################################  Rendering
 		//fps.loadFromRenderedText(FPS_text.str().c_str(), textColor);
@@ -159,6 +173,7 @@ int main(int argc, char *argv[]){
 		Background.render(2);
 		play_button.render();
 		settings_button.render();
+		highscores_button.render();
 		credits_button.render();
 		close_button.render();
 		//fps.render(0);
@@ -195,6 +210,7 @@ int run(SDL_Event *event, Level* lvl){
 	vector<Shot*> enemyshots;
     vector<Shot*> enemyshots_temp;
 	vector<Enemy* > Enemies;
+	vector<Explosion* > Explosions;
 	Background = lvl->getBackground();
 	if(!Background ||
 		!player_ship.loadFromFile("res/player_01.png") ||
@@ -277,6 +293,7 @@ int run(SDL_Event *event, Level* lvl){
                 if(player.colHandle(true)) quit = true;
                 if(Enemies[i]->colHandle(50)){
                     //cout << "collision zwischen player und enemy: " << i << endl;
+                    Explosions.push_back(Enemies[i]->explode());
                     delete Enemies[i];
                     Enemies.erase(Enemies.begin() + i);
                 }
@@ -291,6 +308,7 @@ int run(SDL_Event *event, Level* lvl){
                     delete shots[i];
                     shots.erase(shots.begin() + i);
                     if(Enemies[j]->colHandle(5)){
+                        Explosions.push_back(Enemies[i]->explode());
                         delete Enemies[j];
                         Enemies.erase(Enemies.begin() + j);
                     }
@@ -326,6 +344,11 @@ int run(SDL_Event *event, Level* lvl){
 		for(unsigned int i = 0; i < enemyshots.size(); i++){
             enemyshots[i]->render();
 		}
+
+		for(unsigned int i = 0; i < Explosions.size(); i++){
+            if(!Explosions[i]->render()) delete Explosions[i];
+		}
+
 		SDL_RenderPresent(gRenderer);
 
 		frameTime = frameTimer.getTicks();
@@ -335,7 +358,7 @@ int run(SDL_Event *event, Level* lvl){
 		//cout << "nach rendering" << endl;
 	}
 //###############################################  Gameloop end
-    highsxml.writeScore("res/highscores.xml", player.getScore());
+    highsxml->writeScore("res/highscores.xml", player.getScore());
 
     //aufräumen
 
