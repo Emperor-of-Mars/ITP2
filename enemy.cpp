@@ -128,15 +128,15 @@ Explosion* Enemy::explode(){
 
 }
 
-void Enemy::movement(int frameTime){
+bool Enemy::movement(int frameTime){
 
     int frameLenght = maxVel * ((frameTime) / 10.f);
     mYpos += frameLenght * 0.1;
-    if(mYpos > SCREEN_HEIGHT - mHeight)mYpos = SCREEN_HEIGHT - mHeight;
+    if(mYpos > SCREEN_HEIGHT) return true;
 
     for(unsigned int i = 0; i < mCol.size(); i++){//update collission boxes
 		mCol[i].x = mXpos + (int)(mWidth * mScreenScaleX);
 		mCol[i].y = mYpos + (int)(mHeight * mScreenScaleY);
 	}
-
+	return false;
 }

@@ -284,7 +284,12 @@ int run(SDL_Event *event, Level* lvl){
 
         //cout << "schüsse laden" << endl;
         for(unsigned int i = 0; i < Enemies.size(); i++){       //laden der schüße die gegner abgegeben haben
-            Enemies[i]->movement(frameTime);
+            if(Enemies[i]->movement(frameTime)){
+	            delete Enemies[i];
+				Enemies.erase(Enemies.begin() + i);
+				i--;
+				continue;
+            }
             enemyshots_temp = Enemies[i]->getShots();
             for(unsigned int j = 0; j < enemyshots_temp.size(); j++){
                 enemyshots.push_back(enemyshots_temp[j]);
@@ -363,8 +368,6 @@ int run(SDL_Event *event, Level* lvl){
 		border1.render(1,0,0,(float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		border2.render(1,RIGHT_SCREEN_WIDTH,0,(float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		player->render();
-		str1.render();
-		str2.render();
         for(unsigned int i = 0; i < Enemies.size(); i++){
             Enemies[i]->render();
         }
@@ -384,6 +387,10 @@ int run(SDL_Event *event, Level* lvl){
                 i--;
             }
 		}
+		border1.render(1,0,0,(float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+		border2.render(1,RIGHT_SCREEN_WIDTH,0,(float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+		str1.render();
+		str2.render();
 
 		SDL_RenderPresent(gRenderer);
 
