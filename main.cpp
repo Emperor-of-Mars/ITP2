@@ -23,6 +23,8 @@ int SCREEN_WIDTH = 0;
 int SCREEN_HEIGHT = 0;
 int LEFT_SCREEN_WIDTH;
 int RIGHT_SCREEN_WIDTH;
+float SCREENSCALE_X = 0;
+float SCREENSCALE_Y = 0;
 
 SDL_Window *gWindow = NULL;
 SDL_Renderer *gRenderer = NULL;
@@ -44,7 +46,8 @@ int main(int argc, char *argv[]){
 	SCREEN_WIDTH = settings->get_resolution_width();
 	LEFT_SCREEN_WIDTH = SCREEN_WIDTH/32*7;
 	RIGHT_SCREEN_WIDTH = SCREEN_WIDTH - SCREEN_WIDTH/32*7;
-
+	SCREENSCALE_X = SCREEN_WIDTH / BASE_SCREEN_WIDTH;
+	SCREENSCALE_Y = SCREEN_HEIGHT / BASE_SCREEN_HEIGHT;
 
 	Timer frameTimer;
 	Credits credits;
@@ -196,7 +199,9 @@ int run(SDL_Event *event, Level* lvl){
 	int state = 0;
 	int frameTime = 0;
 	bool quit = false;
+    int scrollingOffset = 0;
 	//Textausgabe
+    //float sx = round(SCREEN_WIDTH/BASE_SCREEN_WIDTH); //euivalent 0.711111111111111111 bei 768 hoehe
 	stringstream life;
 	stringstream score;
 	SDL_Color textColor = {255, 64, 64, 255};
@@ -233,6 +238,7 @@ int run(SDL_Event *event, Level* lvl){
     player->setCol(player->getWidth() * 0.15, player->getHeight() * 0.1, player->getWidth() * 0.7, player->getHeight() * 0.6);
     //cout << "vor while in run" << endl;
 //###############################################  Gameloop
+    scrollingOffset = 0;
 	while(!quit){
 		frameTime = frameTimer.getTicks();
 		frameTimer.start();
@@ -333,7 +339,10 @@ int run(SDL_Event *event, Level* lvl){
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);
         //cout << "rendering" << endl;
-		Background->render(2);
+
+
+		Background->render(1,0,scrollingOffset - SCREEN_HEIGHT, 0.711111111111111111,0.711111111111111111);
+		Background->render(1,0,scrollingOffset, 0.711111111111111111, 0.711111111111111111);
 		str1.render(1,20,100);
 		str2.render(1,20,150);
 		player->render();
@@ -364,6 +373,8 @@ int run(SDL_Event *event, Level* lvl){
 			SDL_Delay(1000.f / (float)MAX_FPS - (float)frameTime);
 		}
 		//cout << "nach rendering" << endl;
+    if (scrollingOffset<SCREEN_HEIGHT) scrollingOffset++;
+    else scrollingOffset = 0;
 	}
 //###############################################  Gameloop end
     highsxml->writeScore("res/highscores.xml", player->getScore());
