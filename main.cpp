@@ -192,7 +192,7 @@ int run(SDL_Event *event, Level* lvl){
 	SDL_Color textColor = {255, 64, 64, 255};
 
 	Timer frameTimer;
-	Texture str1, str2, player_ship, gun_tex;
+	Texture str1, str2, player_ship, gun_tex, border1, border2;
 	Texture* Background;
 	Player *player = new Player;
 	vector<Shot*> shots;
@@ -202,6 +202,8 @@ int run(SDL_Event *event, Level* lvl){
 	vector<Explosion* > Explosions;
 	Background = lvl->getBackground();
 	if(!Background ||
+        !border1.loadFromFile("res/Border.png")||
+        !border2.loadFromFile("res/Border.png")||
 		!player_ship.loadFromFile("res/player_01.png") ||
 		!gun_tex.loadFromFile("res/Bullet_01.png") ||
 		!player->init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
@@ -358,6 +360,8 @@ int run(SDL_Event *event, Level* lvl){
         //cout << "rendering" << endl;
 		Background->render(1,0,scrollingOffset - SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		Background->render(1,0,scrollingOffset, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+		border1.render(1,0,0,(float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
+		border2.render(1,RIGHT_SCREEN_WIDTH,0,(float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
 		player->render();
 		str1.render();
 		str2.render();

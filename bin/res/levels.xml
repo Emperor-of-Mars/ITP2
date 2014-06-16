@@ -2,7 +2,7 @@
 <level>
   <name>level1</name>
   <creator>Dickbutt</creator>
-  <background>res/Stars_Background_preview.png</background>
+  <background>res/Stars_Background.png</background>
   <enemies>
     <enemy>
       <sprite>res/testenemy.png</sprite>
@@ -29,13 +29,13 @@
 <level>
   <name>level2</name>
   <creator>Dickbutt</creator>
-  <background>res/Stars_Background_preview.png</background>
+  <background>res/Stars_Background_lel.png</background>
   <enemies>
     <enemy>
       <sprite>res/testenemy.png</sprite>
       <bulletsprite>res/Bullet_03.png</bulletsprite>
       <quantity>2</quantity>
-      <life>20000</life>
+      <life>10</life>
       <speed>10</speed>
       <spawnpoints>
 	<sp1>0.1,0.2</sp1>
