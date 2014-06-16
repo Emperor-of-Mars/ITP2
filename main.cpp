@@ -136,7 +136,7 @@ int main(int argc, char *argv[]){
 
 			level = lvlselect.levelselection_view(&event, Levels.size());
 			if(run(&event, Levels[level]) == 1) quit = true;
-			subMenu = 0;
+			subMenu = 5;
 			break;
 		case 2:
 			settings->settings_view(&event);
@@ -409,6 +409,9 @@ int run(SDL_Event *event, Level* lvl){
 			SDL_Delay(1000.f / (float)MAX_FPS - (float)frameTime);
 		}
 		cout << "nach rendering" << endl;
+		if(Enemies.size() == 0){
+            break;
+		}
     if (scrollingOffset<SCREEN_HEIGHT) scrollingOffset++;
     else scrollingOffset = 0;
 	}
