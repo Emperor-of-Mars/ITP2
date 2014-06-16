@@ -30,7 +30,7 @@ class XmlHighscore{
         XmlHighscore();
         ~XmlHighscore();
         bool init(string location);
-        void showScore();
+        int showScore(int i);
         void writeScore(string location, int score);
 
     private:

@@ -140,20 +140,22 @@ bool XmlHighscore::init(string location){
     return true;
 }
 
-void XmlHighscore::showScore(){
+int XmlHighscore::showScore(int i){
     int scorenumber = 0;
     int maxscore = numeric_limits<int>::max();
     int minscore = 0;
     int value = 0;
 
-    for (scorenumber = 0; scorenumber<10; scorenumber++) {
+    for (scorenumber = 0; scorenumber<=i; scorenumber++) {
+        minscore = 0;
         for (pugi::xml_node score = doc.first_child(); score; score = score.next_sibling()) {
-            value = atoi(score.value());
-            if(minscore <= value && minscore < maxscore) minscore = value;
+            value = atoi(score.child_value());
+            if(minscore < value && value < maxscore) minscore = value;
         }
-    if (maxscore > minscore) maxscore = minscore;
-    scorenumber++;
+        if (maxscore > minscore) maxscore = minscore;
+        cout << "I " << i << endl << "scorenumber " << scorenumber << endl << "maxscore " << maxscore << endl << "min " << minscore << endl;
     }
+    return maxscore;
 }
 
 void XmlHighscore::writeScore(string location, int score){
