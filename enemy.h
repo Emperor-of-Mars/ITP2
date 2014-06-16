@@ -20,6 +20,7 @@ class Enemy{
 		void handleEvent(SDL_Event *e, int frameTime);
 		void shoot();
 		bool colHandle(int dam, Player *player);
+		void movement(int frameTime);
 		vector<SDL_Rect> *getCol();
 		vector<Shot* > getShots();
         void render();

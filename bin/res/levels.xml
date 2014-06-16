@@ -8,7 +8,7 @@
       <sprite>res/testenemy.png</sprite>
       <bulletsprite>res/Bullet_02.png</bulletsprite>
       <quantity>8</quantity>
-      <life>10000</life>
+      <life>20</life>
       <speed>10</speed>
       <points>25</points>
       <spawnpoints>

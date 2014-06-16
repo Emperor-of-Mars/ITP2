@@ -2,6 +2,7 @@
 #define SHOT_H_INCLUDED
 
 #include "bullethell.h"
+#include "explosion.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ class Shot{
 		vector<SDL_Rect> *getCol();
 		void render();
 		int getDamage();
+		Explosion* explode();
 	private:
 		int maxVel, Direction, mXpos, mYpos, mWidth, mHeight, SpritePos, frameAnimPause;
 		float mScaleX, mScaleY;
@@ -20,6 +22,7 @@ class Shot{
 		SDL_Rect clip;
 		Texture *mTexture;
 		vector<SDL_Rect> mCol;
+
 };
 
 #endif // SHOT_H_INCLUDED

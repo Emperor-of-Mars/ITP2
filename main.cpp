@@ -219,6 +219,32 @@ int run(SDL_Event *event, Level* lvl){
         }
     }
 
+    vector<Texture* > Boomanimation;
+
+    stringstream file;
+	string num;
+	int framecounter = 1;
+
+	while(1){
+
+        Texture* frame = new Texture;
+        file << framecounter;
+        file >> num;
+        file.str("");
+        file.clear();
+        while(num.size() < 4) num.insert(0, "0");
+        file << "res/Explosion/" << num << ".png";
+        cout << file.str() << endl;
+        if(!frame->loadFromFile(file.str().c_str())) break;
+        Boomanimation.push_back(frame);
+
+        file.str("");
+		num = "";
+		file.clear();
+        framecounter++;
+	}
+
+
     //cout << "vor while in run" << endl;
 //###############################################  Gameloop
     scrollingOffset = 0;
@@ -253,8 +279,10 @@ int run(SDL_Event *event, Level* lvl){
         /*for(unsigned int i = 0; i < Enemies.size(); i++){       //alle enemies schießen lassen
             Enemies[i]->shoot();
         }*/
+
         //cout << "schüsse laden" << endl;
         for(unsigned int i = 0; i < Enemies.size(); i++){       //laden der schüße die gegner abgegeben haben
+            Enemies[i]->movement(frameTime);
             enemyshots_temp = Enemies[i]->getShots();
             for(unsigned int j = 0; j < enemyshots_temp.size(); j++){
                 enemyshots.push_back(enemyshots_temp[j]);
@@ -300,6 +328,7 @@ int run(SDL_Event *event, Level* lvl){
             for(unsigned int j = 0; j < Enemies.size(); j++){
                 if(check_col(shots[i]->getCol(), Enemies[j]->getCol())){
                     cout << "schuss: " << i << " hat gegner: " << j << " getroffen" << endl;
+                    Explosions.push_back(shots[i]->explode());
                     delete shots[i];
                     shots.erase(shots.begin() + i);
                     //i--;
@@ -345,7 +374,7 @@ int run(SDL_Event *event, Level* lvl){
 		}
 
 		for(unsigned int i = 0; i < Explosions.size(); i++){
-            if(!Explosions[i]->render()){
+            if(!Explosions[i]->render(&Boomanimation)){
                 delete Explosions[i];
                 Explosions.erase(Explosions.begin()+i);
                 i--;

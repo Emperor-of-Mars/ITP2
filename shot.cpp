@@ -24,7 +24,7 @@ bool Shot::move(float frameTime){
 	if(Direction == 0) mYpos += maxVel * ((frameTime) / 10.f * mScaleY);      //schießt nach oben
 	else if(Direction == 1) mYpos -= maxVel * ((frameTime) / 10.f * mScaleY);     //schießt nach unten
 	for(unsigned int i = 0; i < mCol.size(); i++){
-		mCol[i].x = mXpos;
+		mCol[i].x = mXpos + mWidth/2;
 		mCol[i].y = mYpos;
 	}
 	if((mYpos <= (0-mHeight)) || (mYpos > (SCREEN_HEIGHT+mHeight)))return false;
@@ -44,4 +44,16 @@ void Shot::setCol(int x, int y, int w, int h){
 
 vector<SDL_Rect> *Shot::getCol(){
 	return &mCol;
+}
+
+Explosion* Shot::explode(){
+
+    int exXpos, exYpos;
+	exXpos = mXpos - clip.w/2;
+    exYpos = mYpos - clip.h/2;
+
+	Explosion *neue = new Explosion(exXpos, exYpos, mScaleX*0.3, mScaleY*0.3);
+
+	return neue;
+
 }
