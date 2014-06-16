@@ -18,8 +18,6 @@
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 
-#endif
-
 #define BASE_SCREEN_WIDTH 1920
 #define BASE_SCREEN_HEIGHT 1080
 #define MAX_FPS 240
@@ -31,10 +29,17 @@ using namespace std;
 #include "texture.h"
 #include "button.h"
 
+typedef struct{
+    SDL_Point point;
+    SDL_Rect box;
+}CollisionBox;
+
 bool init_SDL();
 void close_SDL();
 void PlayVideo();
-bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2);
+bool check_col(vector<CollisionBox> *col1, vector<CollisionBox> *col2);
+
+#endif
 
 
 

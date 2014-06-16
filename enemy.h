@@ -21,7 +21,7 @@ class Enemy{
 		void shoot();
 		bool colHandle(int dam, Player *player);
 		bool movement(int frameTime);
-		vector<SDL_Rect> *getCol();
+		vector<CollisionBox> *getCol();
 		vector<Shot* > getShots();
         void render();
         int getX();
@@ -42,7 +42,7 @@ class Enemy{
 		Texture *mTexture;
 		vector<Gun*> mGun;
 		vector<Shot* > Shots;
-		vector<SDL_Rect> mCol;
+		vector<CollisionBox> mCol;
 		vector<vector<float >> movements;
 		int movemodulo;
 };

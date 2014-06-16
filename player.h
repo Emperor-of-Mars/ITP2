@@ -11,10 +11,10 @@ class Player{
 		Player();
 		~Player();
 		bool init(Texture *tex, Texture *bullet, vector<Shot*> *Shot, float sx, float sy, float screenScaleX, float screenScaleY, int life, unsigned int animationSpeed);
-		void setCol();
+		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		bool colHandle(bool coll_ship);
-		vector<SDL_Rect> *getCol();
+		vector<CollisionBox> *getCol();
         void render();
 		int getWidth();
 		int getHeight();
@@ -30,7 +30,7 @@ class Player{
 		SDL_Rect clip;
 		Texture *mTexture;
 		vector<Gun*> mGun;
-		vector<SDL_Rect> mCol;
+		vector<CollisionBox> mCol;
 };
 
 #endif // PLAYER_H_INCLUDED

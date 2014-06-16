@@ -65,11 +65,14 @@ bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screen
 	Gun *newgun = NULL;
 	mGun.push_back(newgun = new Gun(&Shots, bullet, (mWidth / 2) - 50 * mScaleX, 20 * mScaleY, mScaleX, mScaleY));
 	mGun.push_back(newgun = new Gun(&Shots, bullet, (mWidth / 2) + 50 * mScaleX, 20 * mScaleY, mScaleX, mScaleY));
+    setCol((int)(mWidth*0.05), (int)(mHeight*0.05), (int)(mWidth*0.90), (int)(mWidth*0.9));
 	return true;
 }
 
 void Enemy::setCol(int x, int y, int w, int h){
-	SDL_Rect col = {x + (int)(w*0.15), y + (int)(h*0.15), w - (int)(w*0.15), h - (int)(h*0.15)};
+	CollisionBox col;
+	col.box = {x, y, w, h};
+	col.point = {0, 0};
 	mCol.push_back(col);
 	return;
 }
@@ -86,7 +89,7 @@ int Enemy::getLife(){
 	return mLife;
 }
 
-vector<SDL_Rect> *Enemy::getCol(){
+vector<CollisionBox> *Enemy::getCol(){
 	return &mCol;
 }
 

@@ -532,13 +532,17 @@ void PlayVideo(){
 	return;
 }
 
-bool check_col(vector<SDL_Rect> *col1, vector<SDL_Rect> *col2){     //die funktion zur collision-detection
-	for(unsigned int i = 0; i < col1->size(); i++){
-		for(unsigned int j = 0; j < col2->size(); j++){
-			if(((*col1)[i].x + (*col1)[i].w) < (*col2)[j].x) return false;
-			if((*col1)[i].x > ((*col2)[j].x + (*col2)[j].w)) return false;
-			if(((*col1)[i].y + (*col1)[i].h) < (*col2)[j].y) return false;
-			if((*col1)[i].y > (*col2)[j].y + (*col2)[j].h) return false;
+bool check_col(vector<CollisionBox> *col1, vector<CollisionBox> *col2){     //die funktion zur collision-detection
+	unsigned int i;
+	unsigned int j;
+	for(i = 0; i < col1->size(); i++){
+		for(j = 0; j < col2->size(); j++){
+			if(((*col1)[i].point.x + (*col1)[i].box.x + (*col1)[i].box.w) < ((*col2)[j].point.x + (*col2)[j].box.x)) return false;
+			if(((*col1)[i].point.x + (*col1)[i].box.x) > ((*col2)[j].box.w + (*col2)[j].point.x + (*col2)[j].box.x)) return false;
+			if(((*col1)[i].point.y + (*col1)[i].box.y + (*col1)[i].box.h) < ((*col2)[j].point.y + (*col2)[j].box.y)) return false;
+			if(((*col1)[i].point.y + (*col1)[i].box.y) > ((*col2)[j].box.h + (*col2)[j].point.y + (*col2)[j].box.y)) return false;
+
+			else return true;
 		}
 	}
 	return true;

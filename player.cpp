@@ -47,13 +47,16 @@ bool Player::init(Texture *tex, Texture *bullet, vector<Shot*> *Shots, float sx,
 	Gun *newgun = NULL;
 	mGun.push_back(newgun = new Gun(Shots, bullet, (mWidth / 2) - 50 * mScaleX, 20 * mScaleY, mScaleX, mScaleY));
 	mGun.push_back(newgun = new Gun(Shots, bullet, (mWidth / 2) + 50 * mScaleX, 20 * mScaleY, mScaleX, mScaleY));
-    setCol();
+    setCol((int)(mWidth*0.05), (int)(mHeight*0.05), (int)(mWidth*0.40), (int)(mHeight*0.80));
 	return true;
 }
 
-void Player::setCol(){
-	SDL_Rect col = {0, 0, mWidth - (int)(mWidth*0.15), mHeight - (int)(mHeight*0.15)};
+void Player::setCol(int x, int y, int w, int h){
+	CollisionBox col;
+	col.box = {x, y, w, h};
+	col.point = {0, 0};
 	mCol.push_back(col);
+	cout << "COLBOX:    " << mCol[0].box.x << endl;
 	return;
 }
 
@@ -113,8 +116,8 @@ void Player::handleEvent(SDL_Event *e, int frameTime){
 		mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY, 0);
 	}
 	for(unsigned int i = 0; i < mCol.size(); i++){//update collission boxes
-		mCol[i].x = mXpos + (int)(mWidth * 0.15);
-		mCol[i].y = mYpos + (int)(mHeight * 0.15);
+		mCol[i].point.x = mXpos + (int)(mWidth * mScreenScaleX);
+		mCol[i].point.y = mYpos + (int)(mHeight * mScreenScaleY);
 	}
 	return;
 }
@@ -146,7 +149,7 @@ void Player::incScore(unsigned int i) {
     score = score + i;
 }
 
-vector<SDL_Rect> *Player::getCol(){
+vector<CollisionBox> *Player::getCol(){
 	return &mCol;
 }
 
