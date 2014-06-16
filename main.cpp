@@ -95,6 +95,8 @@ int main(int argc, char *argv[]){
 	highscores_button.setPosition(SCREEN_WIDTH * 0.5 - settings_button.getWidth() / 2, SCREEN_HEIGHT * 0.5 - settings_button.getHeight() / 2);
 	credits_button.setPosition(SCREEN_WIDTH * 0.5 - credits_button.getWidth() / 2, SCREEN_HEIGHT * 0.7 - credits_button.getHeight() / 2);
 	close_button.setPosition(SCREEN_WIDTH * 0.5 - close_button.getWidth() / 2, SCREEN_HEIGHT * 0.9 - close_button.getHeight() / 2);
+
+	PlayVideo();
 //###############################################  Gameloop
 	while(!quit){
 		frameTime = frameTimer.getTicks();
@@ -205,7 +207,7 @@ int run(SDL_Event *event, Level* lvl){
         !border2.loadFromFile("res/Border.png")||
 		!player_ship.loadFromFile("res/player_01.png") ||
 		!gun_tex.loadFromFile("res/Bullet_01.png") ||
-		!player->init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
+		!player->init(&player_ship, &gun_tex, &shots, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH * 0.6, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT * 0.6, (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, 100, 20))
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
