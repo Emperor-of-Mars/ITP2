@@ -2,172 +2,46 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 <<<<<<< HEAD
-<<<<<<< HEAD
-	<File name="levelselection.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="credits.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="332" topLine="11" />
+			<Cursor1 position="143" topLine="27" />
 		</Cursor>
 	</File>
-	<File name="explosion.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="381" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="player.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4265" topLine="0" />
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
-	<File name="credits.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-=======
-	<File name="timer.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="level.cpp" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="levelselection.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
->>>>>>> f4baa3c424c12f7990bcfb5e758a692ad31fa99b
+	<File name="enemy.cpp" open="1" top="1" tabpos="4" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="2812" topLine="11" />
+			<Cursor1 position="2870" topLine="113" />
 		</Cursor>
 	</File>
-	<File name="player.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="levelselection.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4265" topLine="0" />
+			<Cursor1 position="1011" topLine="0" />
 		</Cursor>
 	</File>
-<<<<<<< HEAD
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="10796" topLine="276" />
+			<Cursor1 position="1223" topLine="15" />
+		</Cursor>
+	</File>
+	<File name="enemy.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1042" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="xmlLoader.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="4" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1521" topLine="45" />
+		</Cursor>
+	</File>
 =======
-	<File name="player.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="493" topLine="0" />
->>>>>>> f4baa3c424c12f7990bcfb5e758a692ad31fa99b
-<<<<<<< HEAD
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
-=======
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
+			<Cursor1 position="5718" topLine="147" />
 		</Cursor>
 	</File>
-	<File name="enemy.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-<<<<<<< HEAD
-			<Cursor1 position="538" topLine="0" />
-=======
-			<Cursor1 position="1768" topLine="60" />
-		</Cursor>
-	</File>
-<<<<<<< HEAD
-	<File name="player.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1064" topLine="39" />
-		</Cursor>
-	</File>
-	<File name="player.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="493" topLine="0" />
-=======
-	<File name="texture.cpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2187" topLine="93" />
->>>>>>> f4baa3c424c12f7990bcfb5e758a692ad31fa99b
-		</Cursor>
-	</File>
-	<File name="button.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="75" />
-		</Cursor>
-	</File>
-<<<<<<< HEAD
-	<File name="explosion.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="743" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="gun.cpp" open="1" top="1" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="458" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="levelselection.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2806" topLine="59" />
-=======
-	<File name="enemy.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1650" topLine="27" />
-		</Cursor>
-	</File>
-	<File name="xmlLoader.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1768" topLine="60" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="12551" topLine="319" />
->>>>>>> f4baa3c424c12f7990bcfb5e758a692ad31fa99b
-		</Cursor>
-	</File>
-	<File name="highscores.cpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="237" topLine="10" />
-		</Cursor>
-	</File>
-	<File name="settings.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8075" topLine="165" />
-		</Cursor>
-	</File>
-<<<<<<< HEAD
-	<File name="level.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="299" topLine="0" />
-=======
-	<File name="gun.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="166" topLine="0" />
->>>>>>> f4baa3c424c12f7990bcfb5e758a692ad31fa99b
-<<<<<<< HEAD
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
-=======
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
-		</Cursor>
-	</File>
-	<File name="level.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="299" topLine="0" />
-		</Cursor>
-	</File>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
-	<File name="enemy.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1650" topLine="51" />
-		</Cursor>
-	</File>
-	<File name="settings.cpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7083" topLine="159" />
-=======
-	<File name="shot.cpp" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="951" topLine="5" />
-		</Cursor>
-	</File>
-	<File name="credits.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="166" topLine="0" />
->>>>>>> f4baa3c424c12f7990bcfb5e758a692ad31fa99b
-		</Cursor>
-	</File>
->>>>>>> 73d3f697094db5b9886113555a8ef8b0fc6b2adc
+>>>>>>> 54a6c913247074fcf00d84370617837a24cae652
 </CodeBlocks_layout_file>

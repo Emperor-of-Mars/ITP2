@@ -466,7 +466,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402932165 source:/home/stefan/ITP2/credits.cpp
+1402933775 source:/home/stefan/ITP2/credits.cpp
 	"credits.h"
 
 1402668894 /home/stefan/ITP2/credits.h
@@ -495,10 +495,10 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402930274 source:/home/stefan/ITP2/enemy.cpp
+1402942378 source:/home/stefan/ITP2/enemy.cpp
 	"enemy.h"
 
-1402928992 /home/stefan/ITP2/enemy.h
+1402941755 /home/stefan/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
@@ -566,7 +566,7 @@
 1402568906 source:/home/stefan/ITP2/timer.cpp
 	"timer.h"
 
-1402932165 source:/home/stefan/ITP2/main.cpp
+1402940592 source:/home/stefan/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -583,7 +583,7 @@
 	"bullethell.h"
 	"level.h"
 
-1402919250 source:/home/stefan/ITP2/xmlLoader.cpp
+1402938942 source:/home/stefan/ITP2/xmlLoader.cpp
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"
@@ -780,7 +780,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402926299 source:/home/kibbles/GIT/ITP2/credits.cpp
+1402933925 source:/home/kibbles/GIT/ITP2/credits.cpp
 	"credits.h"
 
 1402926296 /home/kibbles/GIT/ITP2/credits.h
@@ -812,15 +812,16 @@
 1402927141 source:/home/kibbles/GIT/ITP2/enemy.cpp
 	"enemy.h"
 
-1402926296 /home/kibbles/GIT/ITP2/enemy.h
+1402934604 /home/kibbles/GIT/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
 	"explosion.h"
 	"player.h"
 
-1402926296 /home/kibbles/GIT/ITP2/shot.h
+1402932452 /home/kibbles/GIT/ITP2/shot.h
 	"bullethell.h"
+	"explosion.h"
 
 1402926296 /home/kibbles/GIT/ITP2/gun.h
 	"bullethell.h"
@@ -836,7 +837,7 @@
 	"bullethell.h"
 	"enemy.h"
 
-1402926299 source:/home/kibbles/GIT/ITP2/levelselection.cpp
+1402933925 source:/home/kibbles/GIT/ITP2/levelselection.cpp
 	"levelselection.h"
 
 1402926299 /home/kibbles/GIT/ITP2/levelselection.h
@@ -901,7 +902,7 @@
 	"settings.h"
 	<fstream>
 
-1402926296 source:/home/kibbles/GIT/ITP2/shot.cpp
+1402932452 source:/home/kibbles/GIT/ITP2/shot.cpp
 	"shot.h"
 
 1402926299 source:/home/kibbles/GIT/ITP2/texture.cpp
@@ -951,7 +952,7 @@
 
 1402917315 "
 
-1402926299 source:/home/kibbles/GIT/ITP2/highscores.cpp
+1402930259 source:/home/kibbles/GIT/ITP2/highscores.cpp
 	"highscores.h"
 	<cstdlib>
 
@@ -969,11 +970,12 @@
 	"bullethell.h"
 	"xmlLoader.h"
 
-1402926296 source:/home/kibbles/GIT/ITP2/explosion.cpp
+1402933925 source:/home/kibbles/GIT/ITP2/explosion.cpp
 	"explosion.h"
 	"texture.h"
 
-1402926296 /home/kibbles/GIT/ITP2/explosion.h
+1402932452 /home/kibbles/GIT/ITP2/explosion.h
+	"bullethell.h"
 
 1402920726 /home/user/GIT/ITP2/explosion.h
 
