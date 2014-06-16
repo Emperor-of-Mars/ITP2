@@ -15,7 +15,7 @@ class Enemy{
 		~Enemy();
         bool init(Texture *tex, Texture *bullet, float sx, float sy, float screenScaleX,
                     float screenScaleY, int life, int velocity, unsigned int animationSpeed,
-                    float wSpawn, float hSpawn, int score, vector<vector<float >> bewegungen);
+                    float wSpawn, float hSpawn, int score, vector<vector<float >> bewegungen, int startmove);
 		void setCol(int x, int y, int w, int h);
 		void handleEvent(SDL_Event *e, int frameTime);
 		void shoot();

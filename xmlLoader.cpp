@@ -34,7 +34,7 @@ bool XmlDocument::init(string location){
 
         for (pugi::xml_node enemy = level.child("enemies").first_child(); enemy; enemy = enemy.next_sibling()) {
 
-            int maxVel, mLife, mPoints, j;
+            int maxVel, mLife, mPoints, j, startmove;
             vector<vector<float >> bewegungen;
             vector<float > neuerMove;
 
@@ -76,6 +76,7 @@ bool XmlDocument::init(string location){
                 mLife = strtol(enemy.child_value("life"), NULL, 10);
                 maxVel = strtol(enemy.child_value("speed"), NULL, 10);
                 mPoints = strtol(enemy.child_value("points"), NULL, 10);
+                startmove = strtol(enemy.child_value("startmove"), NULL, 10);
 
                 float wSpawn, hSpawn;
                 stringstream ss;
@@ -102,7 +103,7 @@ bool XmlDocument::init(string location){
                             (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT,
                             (float)SCREEN_WIDTH / BASE_SCREEN_WIDTH,
                             (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT, mLife, maxVel, 20,
-                            wSpawn, hSpawn, mPoints, bewegungen)){
+                            wSpawn, hSpawn, mPoints, bewegungen, startmove)){
 
                                 cout << "Failed initiating enemy" << endl;
                                 return false;
