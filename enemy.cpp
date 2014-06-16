@@ -100,11 +100,11 @@ int Enemy::getY(){
 }
 
 void Enemy::shoot(){
-    /*if(curAnimFrame.getTicks() > 60){
+    if(curAnimFrame.getTicks() > 6000){
         mGun[0]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
         mGun[1]->fire(mXpos, mYpos, mScaleX, mScaleY, 1);
         curAnimFrame.start();
-    }*/
+    }
 }
 
 bool Enemy::colHandle(int dam,Player *player){

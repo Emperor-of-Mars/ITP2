@@ -278,9 +278,9 @@ int run(SDL_Event *event, Level* lvl){
 		str2.setPosition(SCREEN_WIDTH * 0.05, SCREEN_HEIGHT * 0.2);
 		player->handleEvent(event, frameTime);
 
-        /*for(unsigned int i = 0; i < Enemies.size(); i++){       //alle enemies schießen lassen
+        for(unsigned int i = 0; i < Enemies.size(); i++){       //alle enemies schießen lassen
             Enemies[i]->shoot();
-        }*/
+        }
 
         //cout << "schüsse laden" << endl;
         for(unsigned int i = 0; i < Enemies.size(); i++){       //laden der schüße die gegner abgegeben haben

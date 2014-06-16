@@ -65,10 +65,10 @@
 1401788710 source:/home/user/Downloads/ITP2/timer.cpp
 	"timer.h"
 
-1402861527 source:/home/user/GIT/ITP2/button.cpp
+1402942794 source:/home/user/GIT/ITP2/button.cpp
 	"button.h"
 
-1402861527 /home/user/GIT/ITP2/button.h
+1402942794 /home/user/GIT/ITP2/button.h
 	<iostream>
 	<string>
 	<sstream>
@@ -79,7 +79,7 @@
 	<SDL2/SDL_mixer.h>
 	"texture.h"
 
-1402861527 /home/user/GIT/ITP2/texture.h
+1402942794 /home/user/GIT/ITP2/texture.h
 	<iostream>
 	<string>
 	<sstream>
@@ -89,12 +89,12 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402925020 source:/home/user/GIT/ITP2/settings.cpp
+1402942794 source:/home/user/GIT/ITP2/settings.cpp
 	"bullethell.h"
 	"settings.h"
 	<fstream>
 
-1402861527 /home/user/GIT/ITP2/bullethell.h
+1402942794 /home/user/GIT/ITP2/bullethell.h
 	<iostream>
 	<string>
 	<sstream>
@@ -107,7 +107,7 @@
 	"texture.h"
 	"button.h"
 
-1402861527 /home/user/GIT/ITP2/timer.h
+1402942794 /home/user/GIT/ITP2/timer.h
 	<iostream>
 	<string>
 	<sstream>
@@ -117,15 +117,15 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402861527 /home/user/GIT/ITP2/settings.h
+1402942794 /home/user/GIT/ITP2/settings.h
 
-1402861527 source:/home/user/GIT/ITP2/texture.cpp
+1402942794 source:/home/user/GIT/ITP2/texture.cpp
 	"texture.h"
 
-1402861527 source:/home/user/GIT/ITP2/timer.cpp
+1402942794 source:/home/user/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402926307 source:/home/user/GIT/ITP2/main.cpp
+1402943206 source:/home/user/GIT/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -136,14 +136,15 @@
 	"explosion.h"
 	"highscores.h"
 
-1402926321 /home/user/GIT/ITP2/player.h
+1402942794 /home/user/GIT/ITP2/player.h
 	"shot.h"
 	"gun.h"
 
-1402868862 /home/user/GIT/ITP2/shot.h
+1402942794 /home/user/GIT/ITP2/shot.h
 	"bullethell.h"
+	"explosion.h"
 
-1402868897 /home/user/GIT/ITP2/gun.h
+1402942794 /home/user/GIT/ITP2/gun.h
 	"bullethell.h"
 	"shot.h"
 
@@ -158,24 +159,24 @@
 1402521764 /home/user/GIT/ITP2/shot.cpp
 	"shot.h"
 
-1402925605 source:/home/user/GIT/ITP2/gun.cpp
+1402942794 source:/home/user/GIT/ITP2/gun.cpp
 	"gun.h"
 
 1402925809 source:/home/user/GIT/ITP2/enemy.cpp
 	"enemy.h"
 
-1402920726 /home/user/GIT/ITP2/enemy.h
+1402942794 /home/user/GIT/ITP2/enemy.h
 	"bullethell.h"
 	"shot.h"
 	"gun.h"
 	"explosion.h"
 	"player.h"
 
-1402926307 source:/home/user/GIT/ITP2/player.cpp
+1402942794 source:/home/user/GIT/ITP2/player.cpp
 	"player.h"
 	"gun.h"
 
-1402868914 source:/home/user/GIT/ITP2/shot.cpp
+1402942794 source:/home/user/GIT/ITP2/shot.cpp
 	"shot.h"
 
 1402559152 source:/home/samuel/GIT/ITP2/button.cpp
@@ -410,7 +411,7 @@
 	<new>
 	<stdint.h>
 
-1402861527 source:/home/user/GIT/ITP2/pugixml/pugixml.cpp
+1402942794 source:/home/user/GIT/ITP2/pugixml/pugixml.cpp
 	"pugixml.hpp"
 	<stdlib.h>
 	<stdio.h>
@@ -426,7 +427,7 @@
 	<new>
 	<stdint.h>
 
-1402861527 /home/user/GIT/ITP2/pugixml/pugixml.hpp
+1402942794 /home/user/GIT/ITP2/pugixml/pugixml.hpp
 	"pugiconfig.hpp"
 	<stddef.h>
 	<exception>
@@ -434,12 +435,12 @@
 	<iosfwd>
 	<string>
 
-1402861527 /home/user/GIT/ITP2/pugixml/pugiconfig.hpp
+1402942794 /home/user/GIT/ITP2/pugixml/pugiconfig.hpp
 
-1402921004 source:/home/user/GIT/ITP2/credits.cpp
+1402942794 source:/home/user/GIT/ITP2/credits.cpp
 	"credits.h"
 
-1402861527 /home/user/GIT/ITP2/credits.h
+1402942794 /home/user/GIT/ITP2/credits.h
 	"bullethell.h"
 
 1402568906 source:/home/stefan/ITP2/button.cpp
@@ -916,27 +917,27 @@
 	"xmlLoader.h"
 	"enemy.h"
 
-1402921039 source:/home/user/GIT/ITP2/level.cpp
+1402942794 source:/home/user/GIT/ITP2/level.cpp
 	"level.h"
 
-1402861527 /home/user/GIT/ITP2/level.h
+1402942794 /home/user/GIT/ITP2/level.h
 	"bullethell.h"
 	"enemy.h"
 
-1402921253 source:/home/user/GIT/ITP2/levelselection.cpp
+1402942794 source:/home/user/GIT/ITP2/levelselection.cpp
 	"levelselection.h"
 
-1402920020 /home/user/GIT/ITP2/levelselection.h
+1402942794 /home/user/GIT/ITP2/levelselection.h
 	"bullethell.h"
 	"level.h"
 
-1402920726 /home/user/GIT/ITP2/xmlLoader.h
+1402942794 /home/user/GIT/ITP2/xmlLoader.h
 	"./pugixml/pugixml.hpp"
 	"./pugixml/pugiconfig.hpp"
 	"bullethell.h"
 	"level.h"
 
-1402920726 source:/home/user/GIT/ITP2/xmlLoader.cpp
+1402942794 source:/home/user/GIT/ITP2/xmlLoader.cpp
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"
@@ -977,17 +978,18 @@
 1402932452 /home/kibbles/GIT/ITP2/explosion.h
 	"bullethell.h"
 
-1402920726 /home/user/GIT/ITP2/explosion.h
+1402942794 /home/user/GIT/ITP2/explosion.h
+	"bullethell.h"
 
-1402920726 source:/home/user/GIT/ITP2/explosion.cpp
+1402942794 source:/home/user/GIT/ITP2/explosion.cpp
 	"explosion.h"
 	"texture.h"
 
-1402921028 source:/home/user/GIT/ITP2/highscores.cpp
+1402942794 source:/home/user/GIT/ITP2/highscores.cpp
 	"highscores.h"
 	<cstdlib>
 
-1402920726 /home/user/GIT/ITP2/highscores.h
+1402942794 /home/user/GIT/ITP2/highscores.h
 	"bullethell.h"
 	"xmlLoader.h"
 
