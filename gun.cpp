@@ -18,7 +18,7 @@ void Gun::fire(float posX, float posY, float mScaleX, float mScaleY, int dir){
 	if(coolDown.getTicks() > 100){
 		Shot *newshot;
 		mShots->push_back(newshot = new Shot(mTexture, mXpos + (int)posX, mYpos + (int)posY, mScaleX, mScaleY, -15, dir));
-		(*mShots)[mShots->size() - 1]->setCol(0, 0, 60, 100);
+		(*mShots)[mShots->size() - 1]->setCol(posX + 15, posY + 15, 45, 85);
 		coolDown.start();
 	}
 	return;

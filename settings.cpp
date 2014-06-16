@@ -154,8 +154,6 @@ int Settings::settings_view(SDL_Event *event){
 				}
 			}
 		}
-		//if(event->type == SDL_MOUSEBUTTONUP) MBUp = 1;
-		//if(MBUp == 1){
 			if(setResLeft.handleEvent(event) == 1){
                 decrease_resolution();
                 resolution->setScale((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH, (float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT);
@@ -176,7 +174,6 @@ int Settings::settings_view(SDL_Event *event){
                 while(event->button.state == SDL_PRESSED){SDL_PollEvent(event);}
 			}
 			if(backToMenu.handleEvent(event) == 1)quit = true;
-		//}
 //###############################################  Rendering
 		SDL_SetRenderDrawColor(gRenderer, 0x00, 0xFF, 0xFF, 0xFF );
 		SDL_RenderClear(gRenderer);

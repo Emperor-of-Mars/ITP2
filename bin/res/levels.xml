@@ -6,9 +6,9 @@
   <enemies>
     <enemy>
       <sprite>res/testenemy.png</sprite>
-      <bulletsprite>res/bullet.png</bulletsprite>
-      <quantity>4</quantity>
-      <life>10</life>
+      <bulletsprite>res/Bullet_02.png</bulletsprite>
+      <quantity>8</quantity>
+      <life>10000</life>
       <speed>10</speed>
       <points>25</points>
       <spawnpoints>
@@ -16,6 +16,10 @@
 	<sp2>0.1,0.1</sp2>
 	<sp3>0.2,0.1</sp3>
 	<sp4>0.2,0.2</sp4>
+	<sp5>0.1,0.2</sp5>
+	<sp6>0.1,0.1</sp6>
+	<sp7>0.2,0.1</sp7>
+	<sp8>0.2,0.2</sp8>
       </spawnpoints>
       <direction>s,e,w,n</direction>
     </enemy>
@@ -29,9 +33,9 @@
   <enemies>
     <enemy>
       <sprite>res/testenemy.png</sprite>
-      <bulletsprite>res/bullet.png</bulletsprite>
+      <bulletsprite>res/Bullet_03.png</bulletsprite>
       <quantity>2</quantity>
-      <life>20</life>
+      <life>20000</life>
       <speed>10</speed>
       <spawnpoints>
 	<sp1>0.1,0.2</sp1>

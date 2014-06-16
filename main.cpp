@@ -214,8 +214,6 @@ int run(SDL_Event *event, Level* lvl){
         }
     }
 
-
-    player->setCol(player->getWidth() * 0.15, player->getHeight() * 0.1, player->getWidth() * 0.7, player->getHeight() * 0.6);
     //cout << "vor while in run" << endl;
 //###############################################  Gameloop
 	while(!quit){
@@ -240,6 +238,10 @@ int run(SDL_Event *event, Level* lvl){
 
 		str1.loadFromRenderedText(life.str().c_str(), textColor);
 		str2.loadFromRenderedText(score.str().c_str(), textColor);
+		str1.setScale(((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH) * 1.2, ((float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT) * 1.2);
+		str2.setScale(((float)SCREEN_WIDTH / BASE_SCREEN_WIDTH) * 1.2, ((float)SCREEN_HEIGHT / BASE_SCREEN_HEIGHT) * 1.2);
+		str1.setPosition(SCREEN_WIDTH * 0.05, SCREEN_HEIGHT * 0.1);
+		str2.setPosition(SCREEN_WIDTH * 0.05, SCREEN_HEIGHT * 0.2);
 		player->handleEvent(event, frameTime);
 
         /*for(unsigned int i = 0; i < Enemies.size(); i++){       //alle enemies schießen lassen
@@ -291,16 +293,17 @@ int run(SDL_Event *event, Level* lvl){
 		for(unsigned int i = 0; i < shots.size(); i++){             //collision-detection für schuß von player
             for(unsigned int j = 0; j < Enemies.size(); j++){
                 if(check_col(shots[i]->getCol(), Enemies[j]->getCol())){
-                    //cout << "schuss: " << i << " hat gegner: " << j << " getroffen" << endl;
+                    cout << "schuss: " << i << " hat gegner: " << j << " getroffen" << endl;
                     delete shots[i];
                     shots.erase(shots.begin() + i);
+                    //i--;
                     if(Enemies[j]->colHandle(5, player)){
                         Explosions.push_back(Enemies[j]->explode());
                         delete Enemies[j];
                         Enemies.erase(Enemies.begin() + j);
-                        i--;
+                        //j--;
                     }
-                    //cout << "shot collision with enemy: " << i << endl;
+                    cout << "shot collision with enemy: " << i << endl;
                 }
             }
 		}
@@ -319,8 +322,8 @@ int run(SDL_Event *event, Level* lvl){
 		SDL_RenderClear(gRenderer);
         //cout << "rendering" << endl;
 		Background->render(2);
-		str1.render(1,20,100);
-		str2.render(1,20,150);
+		str1.render();
+		str2.render();
 		player->render();
         for(unsigned int i = 0; i < Enemies.size(); i++){
             Enemies[i]->render();

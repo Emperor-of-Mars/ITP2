@@ -89,7 +89,7 @@
 	<SDL2/SDL_ttf.h>
 	<SDL2/SDL_mixer.h>
 
-1402861527 source:/home/user/GIT/ITP2/settings.cpp
+1402925020 source:/home/user/GIT/ITP2/settings.cpp
 	"bullethell.h"
 	"settings.h"
 	<fstream>
@@ -125,7 +125,7 @@
 1402861527 source:/home/user/GIT/ITP2/timer.cpp
 	"timer.h"
 
-1402917783 source:/home/user/GIT/ITP2/main.cpp
+1402926307 source:/home/user/GIT/ITP2/main.cpp
 	"bullethell.h"
 	"settings.h"
 	"player.h"
@@ -133,8 +133,10 @@
 	"xmlLoader.h"
 	"level.h"
 	"levelselection.h"
+	"explosion.h"
+	"highscores.h"
 
-1402920726 /home/user/GIT/ITP2/player.h
+1402926321 /home/user/GIT/ITP2/player.h
 	"shot.h"
 	"gun.h"
 
@@ -156,10 +158,10 @@
 1402521764 /home/user/GIT/ITP2/shot.cpp
 	"shot.h"
 
-1402868862 source:/home/user/GIT/ITP2/gun.cpp
+1402925605 source:/home/user/GIT/ITP2/gun.cpp
 	"gun.h"
 
-1402920726 source:/home/user/GIT/ITP2/enemy.cpp
+1402925809 source:/home/user/GIT/ITP2/enemy.cpp
 	"enemy.h"
 
 1402920726 /home/user/GIT/ITP2/enemy.h
@@ -169,7 +171,7 @@
 	"explosion.h"
 	"player.h"
 
-1402871897 source:/home/user/GIT/ITP2/player.cpp
+1402926307 source:/home/user/GIT/ITP2/player.cpp
 	"player.h"
 	"gun.h"
 
@@ -929,7 +931,7 @@
 	"bullethell.h"
 	"level.h"
 
-1402866898 source:/home/user/GIT/ITP2/xmlLoader.cpp
+1402920726 source:/home/user/GIT/ITP2/xmlLoader.cpp
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"

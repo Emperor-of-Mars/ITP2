@@ -59,7 +59,7 @@ bool Enemy::init(Texture *tex, Texture *bullet, float sx, float sy, float screen
 }
 
 void Enemy::setCol(int x, int y, int w, int h){
-	SDL_Rect col = {x, y, w, h};
+	SDL_Rect col = {x + (int)(w*0.15), y + (int)(h*0.15), w - (int)(w*0.15), h - (int)(h*0.15)};
 	mCol.push_back(col);
 	return;
 }
