@@ -30,7 +30,6 @@ TTF_Font *gFont = NULL;
 Settings *settings = NULL;
 XmlHighscore *highsxml = NULL;
 vector<Level* > Levels;
-vector<unsigned int> TopScores;
 
 
 //###############################################  Main
@@ -346,7 +345,11 @@ int run(SDL_Event *event, Level* lvl){
 		}
 
 		for(unsigned int i = 0; i < Explosions.size(); i++){
-            if(!Explosions[i]->render()) delete Explosions[i];
+            if(!Explosions[i]->render()){
+                delete Explosions[i];
+                Explosions.erase(Explosions.begin()+i);
+                i--;
+            }
 		}
 
 		SDL_RenderPresent(gRenderer);

@@ -56,6 +56,8 @@
 		<Unit filename="explosion.h" />
 		<Unit filename="gun.cpp" />
 		<Unit filename="gun.h" />
+		<Unit filename="highscores.cpp" />
+		<Unit filename="highscores.h" />
 		<Unit filename="level.cpp" />
 		<Unit filename="level.h" />
 		<Unit filename="levelselection.cpp" />

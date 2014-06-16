@@ -570,13 +570,13 @@
 	"levelselection.h"
 	"explosion.h"
 
-1402860408 /home/stefan/ITP2/xmlLoader.h
+1402917516 /home/stefan/ITP2/xmlLoader.h
 	"./pugixml/pugixml.hpp"
 	"./pugixml/pugiconfig.hpp"
 	"bullethell.h"
 	"level.h"
 
-1402867531 source:/home/stefan/ITP2/xmlLoader.cpp
+1402917516 source:/home/stefan/ITP2/xmlLoader.cpp
 	<limits>
 	"xmlLoader.h"
 	"enemy.h"
@@ -927,13 +927,16 @@
 	"xmlLoader.h"
 	"enemy.h"
 
-<<<<<<< HEAD
+1402866898 D
+
 1402916847 /home/stefan/ITP2/explosion.h
 
 1402917315 source:/home/stefan/ITP2/explosion.cpp
 	"explosion.h"
 	"texture.h"
-=======
+
+1402917315 "
+
 1402912243 source:/home/kibbles/GIT/ITP2/highscores.cpp
 	"highscores.h"
 	<cstdlib>
@@ -941,5 +944,14 @@
 1402911201 /home/kibbles/GIT/ITP2/highscores.h
 	"bullethell.h"
 	"xmlLoader.h"
->>>>>>> 66b5f2a62ed65dfe6aeb69cb92162ddb3c175207
+
+1402911201 5f2a62ed65dfe6aeb69cb92162ddb3c175207
+
+1402917516 source:/home/stefan/ITP2/highscores.cpp
+	"highscores.h"
+	<cstdlib>
+
+1402917516 /home/stefan/ITP2/highscores.h
+	"bullethell.h"
+	"xmlLoader.h"
 
