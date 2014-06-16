@@ -50,11 +50,8 @@ int main(int argc, char *argv[]){
 	Credits credits;
 	Highscores highscores;
 	Levelselection lvlselect;
-<<<<<<< HEAD
 	highsxml = new XmlHighscore();
-=======
 	XmlDocument *levelsxml = NULL;
->>>>>>> f264714a24a8cdc577a3c915757677ce3be17a60
 	Texture buttonTexture, fps, Background;
 	Button play_button, settings_button, highscores_button, credits_button, close_button;
 	SDL_Color textColor = {255, 88, 88, 255};
@@ -73,12 +70,7 @@ int main(int argc, char *argv[]){
         !highscores_button.init(&buttonTexture, 225, "Highscores", textColor) ||
 		!credits_button.init(&buttonTexture, 225, "Credits", textColor) ||
 		!close_button.init(&buttonTexture, 225, "Close", textColor) ||
-<<<<<<< HEAD
-        !levelsxml.init("res/levels.xml") ||
         !highsxml->init("res/highscores.xml"))
-=======
-        !highsxml.init("res/highscores.xml"))
->>>>>>> f264714a24a8cdc577a3c915757677ce3be17a60
 	{
 		cout << "Failed to load resources!" << endl;
 		close_SDL();
